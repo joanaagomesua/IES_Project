@@ -1,3 +1,28 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+/* Make sure the html and body take up the full height and width */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* Set up the main container to also take up the full height and width */
+div#root, /* Assuming your root div has the id 'root' */
+div {
+  height: 100%;
+  width: 100%;
+}
+
+.full-page-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-items: start; /* This will keep the cards aligned at their top edge */
+  flex-wrap: wrap;
+  width: 100vw;
+  box-sizing: border-box; 
+}
