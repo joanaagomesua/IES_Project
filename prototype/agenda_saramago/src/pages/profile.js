@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function event_page(){
+function profile(){
 
 }
 
-export default event_page
+export default profile

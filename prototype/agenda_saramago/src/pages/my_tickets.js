@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function event_page(){
+function my_tickets(){
 
 }
 
-export default event_page
+export default my_tickets
