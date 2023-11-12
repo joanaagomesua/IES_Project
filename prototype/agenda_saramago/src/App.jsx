@@ -3,10 +3,10 @@ import { useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css';
 import Navbar from './components/navbar.jsx'
-import event_page from './pages/event_page';
-import my_tickets from './pages/my_tickets';
-import profile from './pages/profile';
-import favourites from './pages/favourites.js'; 
+import Event_page from './pages/event_page.jsx';
+import My_tickets from './pages/my_tickets.jsx';
+import Profile from './pages/profile.jsx';
+import Favourites from './pages/favourites.jsx'; 
 
 function App() {
   return (
@@ -14,10 +14,10 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" />
-        <Route path="/event_page" element={<event_page />} />
-        <Route path="/my_tickets" element={<my_tickets />} />
-        <Route path="/profile" element={<profile />} />
-        <Route path="/favourites" element={<favourites />} />
+        <Route path="/event_page" element={<Event_page />} />
+        <Route path="/my_tickets" element={<My_tickets />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/favourites" element={<Favourites />} />
       </Routes>
     </BrowserRouter>
   );
