@@ -1,0 +1,36 @@
+.um{
+  background-color: red;
+}
+
+.small-card-map {
+  background-color: aqua;
+  display: flex;
+  justify-content: flex-end; /* Centraliza os itens verticalmente */
+  align-items: flex-end; /* Alinha os itens à direita */
+  height: 50vh;
+  width: 70vw;
+  box-sizing: border-box;
+  margin: 5vw;
+}
+
+.small-card-event {
+  background-color: rgb(0, 46, 46);
+  display: flex;
+  justify-content: flex-end; /* Centraliza os itens verticalmente */
+  align-items: flex-end; /* Alinha os itens à direita */
+  height: 50vh;
+  width: 70vw;
+  box-sizing: border-box;
+  margin: 5vw;
+}
+
+wired-combo {
+  margin: 5px;
+  background-color: aliceblue;
+}
+
+wired-item {
+  background-color: aliceblue;
+  color: black;
+  --wired-item-selected-bg: rgb(158, 92, 233);
+}
