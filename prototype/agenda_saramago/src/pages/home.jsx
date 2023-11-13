@@ -1,8 +1,8 @@
 import React from 'react';
 import Map from '../components/map.jsx';
 import Event from '../components/event.jsx';
-import { WiredCard } from 'wired-elements';
-import "../App.css";
+import "wired-elements";
+import "../assets/css/styles.css";
 
 function Home() {
   return (

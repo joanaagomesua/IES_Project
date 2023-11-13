@@ -7,13 +7,14 @@ import Event_page from './pages/event_page.jsx';
 import My_tickets from './pages/my_tickets.jsx';
 import Profile from './pages/profile.jsx';
 import Favourites from './pages/favourites.jsx'; 
+import Home from './pages/home.jsx';
 
 function App() {
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" />
+        <Route path="/" element={<Home />}/>
         <Route path="/event_page" element={<Event_page />} />
         <Route path="/my_tickets" element={<My_tickets />} />
         <Route path="/profile" element={<Profile />} />

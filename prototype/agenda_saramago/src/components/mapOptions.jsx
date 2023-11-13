@@ -1,15 +1,17 @@
-import React from "react";
-import "wired-elements";
+import React, { useState } from "react";
+import { WiredCombo, WiredItem } from 'wired-elements-react';
 import "../assets/css/styles.css";
 
 const MapOptions = () => {
   return (
-    <div className="flex justify-center items-center p-4 gap-4 relative">
-        <wired-combo id="combo" selected="two">
-        <wired-item value="one">Number One</wired-item>
-        <wired-item value="two">Number Two</wired-item>
-        <wired-item value="three">Number Three</wired-item>
-        </wired-combo>
+    <div>
+    <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      <option selected>Choose a country</option>
+      <option value="US">United States</option>
+      <option value="CA">Canada</option>
+      <option value="FR">France</option>
+      <option value="DE">Germany</option>
+    </select>
     </div>
   );
 };
