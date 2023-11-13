@@ -7,9 +7,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'custom': ['Shadows Into Light', 'cursive'],
-      },
+        'poppins': ['Poppins', 'sans-serif'],
     },
   },
   plugins: [],
+ }
 }
