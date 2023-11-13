@@ -87,7 +87,7 @@ function event_page(){
             <div className='flex h-auto bg-yellow-200'>
                 <div className='w-2/3'>
                     <h1 className='font-poppins font-bold text-3xl'>Similar Events</h1>
-                    <CarouselWithContent />
+                    <CarouselWithContent/>
                 </div>
                 <div className='w-1/3'>
                     <h2 className='font-poppins font-bold'>Localização</h2>
