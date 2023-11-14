@@ -5,7 +5,7 @@ import Card from '../components/ticket_cards';
 function my_tickets(){
     
     const cardData = [
-        { title: 'Campeonato Taekwondo', content: 'Conteúdo do Card 1', imageSrc: './src/assets/images/ballet.jpg.jpg' },
+        { title: 'Campeonato Taekwondo', content: 'Conteúdo do Card 1', imageSrc: '../assets/images/ballet.jpg.jpg' },
         { title: 'Dança Contemporêna', content: 'Conteúdo do Card 2', imageSrc: './images/ballet.jpg.jpg' },
         { title: 'Feira de Vinhos', content: 'Conteúdo do Card 3', imageSrc: './src/assets/images/logo.png' },
         { title: 'Festival de Cinema', content: 'Conteúdo do Card 4', imageSrc: './src/assets/images/logo.png' },

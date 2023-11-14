@@ -5,7 +5,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import React from 'react';
 
 const navigation = [
-  { name: 'My Tickets', to: '/my-tickets', current: false },
+  { name: 'My Tickets', to: '/my_tickets', current: false },
   { name: 'Favourites', to: '/favourites', current: false },
   { name: 'Calendar', to: '/calendar', current: false },
 ];

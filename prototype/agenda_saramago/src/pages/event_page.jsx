@@ -44,7 +44,7 @@ function event_page(){
                     </div>
                     <div className='font-poppins'>
                         <h2 className='font-bold mb-2'>Tags:</h2>
-                        <div class="box-border h-20 w-full p-4 border-2 border-black border-opacity-10">
+                        <div className="box-border h-20 w-full p-4 border-2 border-black border-opacity-10">
                             <div className='flex space-x-2'>
                                 <div className="rounded-full bg-slate-200 bg-opacity-100 p-2">
                                     <p className="text-black">#theatre</p>
