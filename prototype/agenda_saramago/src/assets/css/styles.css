@@ -1,0 +1,34 @@
+.um{
+  background-color: red;
+}
+
+.small-card-map {
+  height: 70vh;
+  width: 70vw;
+  box-sizing: border-box;
+  margin: 1vw;
+}
+
+.small-card-event {
+  display: flex;
+  height: 50vh;
+  width: 70vw;
+  box-sizing: border-box;
+  margin: 1vw;
+}
+
+.full-page-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-items: flex-start; /* This will keep the cards aligned at their top edge */
+  flex-wrap: wrap;
+  box-sizing: border-box; 
+}
+
+.DirectionsMap {
+  background-color: brown;
+  height: 100%;
+  width: 100%;
+
+}
