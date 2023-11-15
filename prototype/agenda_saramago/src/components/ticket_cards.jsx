@@ -6,37 +6,55 @@ function Card({ title, content, imageSrc }) {
   return (
     <div
       style={{
-        border: '1px solid #ccc',
-        padding: '16px',
-        borderRadius: '8px',
-        overflow: 'hidden',
+        position: 'relative',
         maxWidth: '450px',
         height: '500px',
-        position: 'relative',
+        overflow: 'hidden',
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-    <div>
-      <img
-        src={imageSrc}
-        alt={title}
-      />
-    </div>
+      {/* Div com a data visível sem hover */}
       <div
         style={{
-          padding: '16px',
           position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          backgroundColor: 'rgba(255, 255, 255, 0.8)',
-          display: isHovered ? 'block' : 'none',
+          top: '16px',
+          left: '16px',
+          zIndex: 1,
+          display: isHovered ? 'none' : 'block',
         }}
       >
-        <b style={{ fontSize: '35px', marginBottom: '8px', color: '#333' }} >{title}</b>
-        <p className='font-poppins w-full mb-4' style={{ fontSize: '24px', marginBottom: '8px', color: '#333' }} >{content}</p>
+      </div>
+
+      <div
+        style={{
+          border: '1px solid #ccc',
+          borderRadius: '8px',
+          overflow: 'hidden',
+          height: '100%',
+        }}
+      >
+        <img
+          src={imageSrc}
+          alt={title}
+          style={{ width: '100%' }}
+        />
+        <div
+          style={{
+            padding: '16px',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(255, 255, 255, 0.8)',
+            display: isHovered ? 'block' : 'none',
+          }}
+        >
+          {/* Conteúdo visível apenas quando hover */}
+          <b style={{ fontSize: '35px', marginBottom: '8px', color: '#333' }}>{title}</b>
+          <p className='font-poppins w-full mb-4' style={{ fontSize: '24px', marginBottom: '8px', color: '#333' }}>{content}</p>
+        </div>
       </div>
     </div>
   );
