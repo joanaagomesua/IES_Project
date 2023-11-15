@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Card from '../components/ticket_cards';
 import dance from '../assets/images/dança.png';
-import taekwondo from '../assets/images/taekwondo.jpg';
 import vinho from '../assets/images/vinho.jpg';
 import cinema from '../assets/images/cinema.jpg';
 import teatro from '../assets/images/teatro.jpg';

@@ -1,19 +1,25 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Card from '../components/ticket_cards';
+import mercado from '../assets/images/mercado.jpg';
+import corrida from '../assets/images/corrida.jpg';
+import festival from '../assets/images/festival.png';
+import junina from '../assets/images/junina.png';
+import yoga from '../assets/images/yoga.jpg';
+import ai from '../assets/images/ai.jpg';
 
 function Favourites() {
-    // const likedevents = [
-    //     { title: 'Evento 1', content: 'Conteúdo do Evento 1', imageSrc: '../assets/images/event1.jpg' },
-    //     { title: 'Evento 2', content: 'Conteúdo do Evento 2', imageSrc: '../assets/images/event2.jpg' },
-    //     { title: 'Evento 3', content: 'Conteúdo do Evento 3', imageSrc: '../assets/images/event3.jpg' },
-    //   ];
+    const likedevents = [
+        { title: 'Mercado de Agricultores', content: 'Um evento que transforma as ruas da cidade em galerias de arte ao ar livre, apresentando murais, esculturas e performances artísticas.', imageSrc: mercado },
+        { title: 'Corrida de Rua Beneficente', content: 'Uma corrida ou caminhada que arrecada fundos para uma causa específica, incentivando a atividade física e o envolvimento comunitário.', imageSrc: corrida },
+        { title: 'Feira Gastronómica', content: 'Um festival de sabores que destaca a culinária local e internacional, oferecendo uma variedade de pratos, alimentos gourmet e experiências culinárias únicas.', imageSrc: festival },
+      ];
 
-    //   const savedevents = [
-    //     { title: 'Evento 4', content: 'Conteúdo do Evento 4', imageSrc: '../assets/images/event4.jpg' },
-    //     { title: 'Evento 5', content: 'Conteúdo do Evento 5', imageSrc: '../assets/images/event5.jpg' },
-    //     { title: 'Evento 6', content: 'Conteúdo do Evento 6', imageSrc: '../assets/images/event6.jpg' },
-    //   ];
+      const savedevents = [
+        { title: 'Festa Junina', content: 'Vem aí o "Arraiá da Alegria," a nossa tradicional Festa Junina que promete trazer calor humano, muita animação e a magia das festividades juninas para todos! Prepare-se para dançar quadrilha, saborear delícias típicas e se envolver numa atmosfera acolhedora e festiva.', imageSrc: junina },
+        { title: 'Aula de Ioga ao Ar Livre', content: 'Uma sessão de ioga realizada em um parque ou área verde, proporcionando uma experiência relaxante e saudável para participantes de todos os níveis.', imageSrc: yoga },
+        { title: 'Conferência de Inovação Tecnológica', content: 'Um encontro para profissionais da área de tecnologia, inovação e startups discutirem as últimas tendências e avanços na indústria.', imageSrc: ai },
+      ];
 
   return (
     <div className="p-10 space-y-10">
