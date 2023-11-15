@@ -4,6 +4,7 @@ import Card from '../components/ticket_cards';
 import mercado from '../assets/images/mercado.jpg';
 import corrida from '../assets/images/corrida.jpg';
 import festival from '../assets/images/festival.png';
+import carro from '../assets/images/carro.jpg';
 import junina from '../assets/images/junina.png';
 import yoga from '../assets/images/yoga.jpg';
 import ai from '../assets/images/ai.jpg';
@@ -13,6 +14,7 @@ function Favourites() {
         { title: 'Mercado de Agricultores', content: 'Um evento que transforma as ruas da cidade em galerias de arte ao ar livre, apresentando murais, esculturas e performances artísticas.', imageSrc: mercado },
         { title: 'Corrida de Rua Beneficente', content: 'Uma corrida ou caminhada que arrecada fundos para uma causa específica, incentivando a atividade física e o envolvimento comunitário.', imageSrc: corrida },
         { title: 'Feira Gastronómica', content: 'Um festival de sabores que destaca a culinária local e internacional, oferecendo uma variedade de pratos, alimentos gourmet e experiências culinárias únicas.', imageSrc: festival },
+        { title: 'Exposição de Carros Antigos', content: 'Um evento que exibe carros clássicos e antigos, atraindo entusiastas de automóveis e proporcionando uma viagem no tempo automotiva.', imageSrc: carro },
       ];
 
       const savedevents = [

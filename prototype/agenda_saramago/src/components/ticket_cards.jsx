@@ -21,7 +21,6 @@ function Card({ title, content, imageSrc }) {
       <img
         src={imageSrc}
         alt={title}
-        style={{ width: '100%', height: '100%', objectFit: 'cover', fontSize: '30px', fontWeight: 'bold' }}
       />
     </div>
       <div
