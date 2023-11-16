@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '/home/joana/IES/IES_Project/prototype/agenda_saramago/src/assets/css/Profile.css';
+import '../assets/css/Profile.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // index.js or index.tsx
 import { library } from '@fortawesome/fontawesome-svg-core';

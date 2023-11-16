@@ -25,11 +25,9 @@ function my_tickets() {
       <div className="bg-yellow-200 space-y-2">
         <p className="font-poppins font-bold text-4xl">My Tickets</p>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)' }}>
-        {cardData.map((card, index) => (
-          <div key={index} className="mb-10">
-            <Card key={index} title={card.title} content={card.content} imageSrc={card.imageSrc} />
-          </div>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap:'20px' }}>
+        {cardData.map((event, index) => (
+          <Card key={index} title={event.title} content={event.content} imageSrc={event.imageSrc} />
         ))}
       </div>
     </div>
