@@ -5,7 +5,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import React from 'react';
 
 const navigation = [
-  { name: 'My Tickets', to: '/my-tickets', current: false },
+  { name: 'My Tickets', to: '/my_tickets', current: false },
   { name: 'Favourites', to: '/favourites', current: false },
   { name: 'Calendar', to: '/calendar', current: false },
 ];
@@ -16,7 +16,7 @@ function classNames(...classes) {
 
 export default function Navbar() {
   return (
-    <Disclosure as="nav" className="bg-green-600">
+    <Disclosure as="nav" className="bg-[#a7c7eb]">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-9xl px-2 sm:px-6 lg:px-8">
@@ -38,7 +38,7 @@ export default function Navbar() {
                     <img
                       className="h-8 w-auto"
                       src="/src/assets/images/logo.png"
-                      alt="Agenda, Saramago!"
+                      alt="Agenda Saramago"
                     />
                   </Link>
                 </div>
@@ -50,7 +50,7 @@ export default function Navbar() {
                       className={classNames(
                         item.current
                           ? 'bg-gray-900 text-white'
-                          : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          : 'text-black-300 hover:bg-gray-700 hover:text-white',
                         'rounded-md px-3 py-2 text-sm font-medium'
                       )}
                       aria-current={item.current ? 'page' : undefined}
@@ -60,16 +60,15 @@ export default function Navbar() {
                   ))}
                 </div>
                 <div className="flex-grow mx-4 sm:mx-auto">
-                  <div className="relative flex items-stretch">
+                  <div className="relative flex items-stretch left-10">
                     <input
                       type="search"
-                      className="flex-auto relative m-0 block min-w-0 rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
-                      placeholder="Search"
-                      aria-label="Search"
+                      className="flex-auto relative m-0 block min-w-0 rounded-l border border-solid border-black bg-transparent bg-clip-padding px-3 py-[0.25rem]  outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+                      placeholder='Search'
                       aria-describedby="button-addon3"
                     />
                     <button
-                      className="relative z-[2] rounded-r border-2 border-primary px-6 py-2 text-xs font-medium uppercase text-primary transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
+                      className="relative z-[2] rounded-r border-1 border-black px-6 py-2 text-xs font-medium  text-primary transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
                       type="button"
                       id="button-addon3"
                       data-te-ripple-init
@@ -82,7 +81,7 @@ export default function Navbar() {
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button
                   type="button"
-                  className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  className="relative rounded-full bg-gray-700 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
@@ -92,13 +91,13 @@ export default function Navbar() {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Menu.Button className="relative flex rounded-full bg-gray-700 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
-                        className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
+                        className="h-8 w-7 rounded-full"
+                        src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-9.png"
+                        alt="profile picture"
                       />
                     </Menu.Button>
                   </div>
