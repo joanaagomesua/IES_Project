@@ -8,10 +8,15 @@ import My_tickets from './pages/my_tickets.jsx';
 import Profile from './pages/profile.jsx';
 import Favourites from './pages/favourites.jsx'; 
 import Home from './pages/home.jsx';
+import Favicon from "react-favicon"; 
+import logo from "./assets/images/logo.png";
 
 function App() {
+  const faviconUrl = useState(logo); 
+
   return (
     <BrowserRouter>
+    <Favicon url={faviconUrl} /> 
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />}/>
