@@ -1,16 +1,15 @@
-import React, { useEffect } from "react";
-import { WiredCard } from "wired-elements";
-import MapComponent from "./directionsMap";
-import MapOptions from "./mapOptions";
-import "../assets/css/styles.css";
-import map from "../assets/img/download.jpeg";
+import React from 'react';
+import DirectionsMap from './directionsMap.jsx'; // Assuming MapComponent is your Google Map logic
 
-const Map = () => {
+const Map = ({ width, height }) => {
+  const mapStyle = {
+    width: width || '100%', // Default to 100% if width prop is not provided
+    height: height || '400px', // Default to 400px if height prop is not provided
+  };
+
   return (
     <div className="flex flex-col items-center p-4">
-      <wired-card class="small-card-map" elevation="2">
-        <MapComponent />
-      </wired-card>
+        <DirectionsMap width={width} height={height} />
     </div>
   );
 };

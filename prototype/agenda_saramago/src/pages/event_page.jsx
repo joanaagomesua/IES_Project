@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import CarouselWithContent from '../components/carousel.jsx';
 import Map from '../components/map.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChair, faChild, faPerson, faPersonCane } from '@fortawesome/free-solid-svg-icons';
+import { faChair, faChild, faPerson, faPersonCane, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 function event_page(){
     return (
@@ -15,7 +15,14 @@ function event_page(){
             </div>
             <div className=' flex bg-green-200 space-x-10'>
                 <div className='flex-initial w-1/4'>
-                    <img src="./src/assets/images/poster_test.png"></img>
+                    <div className='relative'>
+                        <img src="./src/assets/images/poster_test.png"></img>
+                        <div className="absolute top-0 right-0 p-4 flex items-center justify-center">
+                            <button className="w-10 h-10 rounded-full bg-slate-300 hover:bg-slate-500 text-white">
+                                <FontAwesomeIcon icon={faPlus}/>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div className='w-1/2 flex flex-col'>
                     <div className='flex font-poppins font-bold mb-4'>
@@ -82,15 +89,42 @@ function event_page(){
                             <p>3€</p>
                         </div>
                     </div>
+                    <div className='mt-4 mb-4'>
+                    <h2 className='font-bold text-2xl mt-4 mb-2'>Date</h2>
+                        <p>20 de novembro de 2023</p>
+                        <h2 className='font-bold text-2xl mt-4 mb-2'>Schedule</h2>
+                        <p>15:30</p>
+                        <h2 className='font-bold text-2xl mt-4 mb-2'>Duration</h2>
+                        <p>50 minutos</p>
+
+                    </div>
                 </div>
             </div>
-            <div className='flex h-auto bg-yellow-200'>
-                <div className='w-2/3'>
-                    <h1 className='font-poppins font-bold text-3xl'>Similar Events</h1>
-                    <CarouselWithContent/>
+            <div className='flex h-auto bg-yellow-200 flex-col-reverse md:flex-row sm:flex-col'>
+            <div className='flex flex-col w-full md:w-2/3'>
+            <h1 className='font-poppins font-bold text-3xl mb-4'>Similar Events</h1>
+            <div className='flex items-start space-x-10'>
+              <div>
+                <h3 className='font-poppins text-2xl mb-2'>For kids...</h3>
+                <CarouselWithContent/>
+              </div>
+              <div className='border-l border-gray-500 pl-4'>
+                <div className='ml-6'>
+                    <h3 className='font-poppins text-2xl mb-2'>For theatre lovers...</h3>
+                    <CarouselWithContent />
                 </div>
-                <div className='w-1/3'>
-                    <h2 className='font-poppins font-bold'>Localização</h2>
+              </div>
+              <div className='border-l border-gray-500 pl-4'>
+                <div className='ml-6'>
+                <h3 className='font-poppins text-2xl mb-2'>Fantasy...</h3>
+                <CarouselWithContent/>
+                </div>
+              </div>
+                </div>
+                </div>
+                <div className='w-full md:w-1/3 flex flex-col order-3'>
+                    <h2 className='font-poppins font-bold'>Location</h2>
+                    <Map  width="560px" height="390px"/>
                 </div>
             </div>
         </div>
