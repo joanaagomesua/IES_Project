@@ -1,9 +1,9 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import React from 'react';
-import {NotificationsDropdown} from '/src/components/notification_dropdown'
+import NotificationsDropdown from '../components/notification_dropdown.jsx';
 
 const navigation = [
   { name: 'My Tickets', to: '/my_tickets', current: false },
@@ -15,7 +15,13 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Navbar() {
+function Navbar() {
+  const [openNotifs, setOpenNotifs] = useState(false);
+
+  const toggleNotifications = () => {
+    setOpenNotifs((prevOpenNotifs) => !prevOpenNotifs);
+  };
+
   return (
     <Disclosure as="nav" className="bg-[#a7c7eb]">
       {({ open }) => (
@@ -80,14 +86,17 @@ export default function Navbar() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button
+                <button 
                   type="button"
                   className="relative rounded-full bg-gray-700 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  onClick={toggleNotifications}
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
+
+                {openNotifs && <NotificationsDropdown />}
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
@@ -172,3 +181,4 @@ export default function Navbar() {
     </Disclosure>
   );
 }
+export default Navbar;
