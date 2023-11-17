@@ -46,10 +46,10 @@ function Navbar() {
               </div>
               <div className="flex sm:justify-start items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <Link to="/event_page">
+                  <Link to="/">
                     <img
-                      className="h-8 w-auto"
-                      src="/src/assets/images/logo.png"
+                      className="h-10 w-auto"
+                      src="/src/assets/images/logo_small1.png"
                       alt="Agenda Saramago"
                     />
                   </Link>
