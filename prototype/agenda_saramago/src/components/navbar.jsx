@@ -1,5 +1,5 @@
-import { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Fragment, useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import React from 'react';
@@ -17,10 +17,15 @@ function classNames(...classes) {
 
 function Navbar() {
   const [openNotifs, setOpenNotifs] = useState(false);
+  const navigate = useNavigate();
 
   const toggleNotifications = () => {
     setOpenNotifs((prevOpenNotifs) => !prevOpenNotifs);
   };
+
+  useEffect(() => {
+    setOpenNotifs(false);
+  }, [navigate]);
 
   return (
     <Disclosure as="nav" className="bg-[#a7c7eb]">
