@@ -6,7 +6,13 @@ import "../assets/css/styles.css";
 function Home() {
   return (
     <div>
-        <Map />
+      <div className="relative mix-blend-overlay m-10 flex">
+        <div className='w-1/3 h-{400px}  bg-bluepers'></div>
+
+        <div className='w-2/3'>
+          <Map/>
+        </div>
+      </div>
         <Event />
     </div>
   );

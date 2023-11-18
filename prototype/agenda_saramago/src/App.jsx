@@ -9,6 +9,7 @@ import Profile from './pages/profile.jsx';
 import Favourites from './pages/favourites.jsx'; 
 import Home from './pages/home.jsx';
 import Login from './pages/login.jsx';
+import Register from './pages/register.jsx';
 import Favicon from "react-favicon"; 
 import logo from "./assets/images/logo.png";
 
@@ -26,6 +27,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/favourites" element={<Favourites />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   );

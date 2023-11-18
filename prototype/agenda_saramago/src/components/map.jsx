@@ -8,7 +8,7 @@ const Map = ({ width, height }) => {
   };
 
   return (
-    <div className="flex flex-col items-center p-4">
+    <div className="flex flex-col items-center">
         <DirectionsMap width={width} height={height} />
     </div>
   );
