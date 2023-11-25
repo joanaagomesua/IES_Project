@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("Event")
 public class Event {
     @Id
-    private long id;
+    private Long id;
     private String name;
     private String company;
     private String description;
@@ -19,8 +19,11 @@ public class Event {
     private String poster;
     private List<Float> prices;
     private HashMap<Float, Float> location;
+    private String city;
 
-    public Event(long id, String name, String company, String description, Date starting_date_of_event, Date ending_date_of_event, String schedule, String poster, List<Float> prices, HashMap<Float,Float> location){
+    public Event() {}
+
+    public Event(Long id, String name, String company, String description, Date starting_date_of_event, Date ending_date_of_event, String schedule, String poster, List<Float> prices, HashMap<Float,Float> location, String city){
         this.id = id;
         this.name = name;
         this.company = company;
@@ -31,9 +34,10 @@ public class Event {
         this.poster = poster;
         this.prices = prices;
         this.location = location;
+        this.city = city;
     }
 
-    public Event(long id, String name, String company, String description, Date starting_date_of_event, String schedule, String poster, List<Float> prices, HashMap<Float,Float> location){
+    public Event(Long id, String name, String company, String description, Date starting_date_of_event, String schedule, String poster, List<Float> prices, HashMap<Float,Float> location, String city){
         this.id = id;
         this.name = name;
         this.company = company;
@@ -43,11 +47,12 @@ public class Event {
         this.poster = poster;
         this.prices = prices;
         this.location = location;
+        this.city = city;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public long getId() {
+    public Long getId() {
         return this.id;
     }
 
@@ -131,6 +136,15 @@ public class Event {
         return input != null ? input.replace("'", "\\'") : "null";
     }
 
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+
     @Override
     public String toString() {
         String starting_date_string = this.starting_date_of_event;
@@ -138,9 +152,9 @@ public class Event {
         String prices_string = this.prices != null ? this.prices.toString() : "null";
         String location_string = this.location;
 
-        String result = String.format("Event {'id': %d, 'name': '%s', 'company': '%s', 'description': '%s', 'starting_date_of_event': %s, 'ending_date_of_event': %s, 'schedule': '%s', 'poster': '%s', 'prices': %s, 'location': %s}",
+        String result = String.format("Event {'id': %d, 'name': '%s', 'company': '%s', 'description': '%s', 'starting_date_of_event': %s, 'ending_date_of_event': %s, 'schedule': '%s', 'poster': '%s', 'prices': %s, 'location': %s, 'city': %s}",
                 this.id, escapeString(this.name), escapeString(this.company), escapeString(this.description),
-                starting_date_string, ending_date_string, this.schedule, escapeString(this.poster), prices_string, location_string);
+                starting_date_string, ending_date_string, this.schedule, escapeString(this.poster), prices_string, location_string, this.city);
 
         return result;
     }
