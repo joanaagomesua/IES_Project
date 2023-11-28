@@ -1,10 +1,18 @@
 package pt.deti.ua.models;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
-import org.springframework.data.mongodb.core.mapping.Document;
+import java.util.ArrayList;
+import java.time.format.DateTimeFormatter;
+import java.time.ZonedDateTime;
+import java.time.ZoneId;
+
 
 @Document("Event")
 public class Event {
@@ -13,43 +21,29 @@ public class Event {
     private String name;
     private String company;
     private String description;
-    private Date starting_date_of_event;
-    private Date ending_date_of_event;
+    private ArrayList<String> tags;
+    private ArrayList<Date> date_event;
     private String schedule;
-    private String poster;
-    private List<Float> prices;
-    private HashMap<Float, Float> location;
+    private String poster; //?
+    private HashMap<String,Float> prices;
+    private ArrayList<Float> location;
     private String city;
 
     public Event() {}
 
-    public Event(Long id, String name, String company, String description, Date starting_date_of_event, Date ending_date_of_event, String schedule, String poster, List<Float> prices, HashMap<Float,Float> location, String city){
+    public Event(Long id, String name, String company, String description, ArrayList<String> tags, ArrayList<Date> date_event, String schedule, String poster, HashMap<String,Float> prices, ArrayList<Float> location, String city){
         this.id = id;
         this.name = name;
         this.company = company;
         this.description = description;
-        this.starting_date_of_event = starting_date_of_event;
-        this.ending_date_of_event = ending_date_of_event;
+        this.tags = tags;
+        this.date_event = date_event;
         this.schedule = schedule;
         this.poster = poster;
         this.prices = prices;
         this.location = location;
         this.city = city;
     }
-
-    public Event(Long id, String name, String company, String description, Date starting_date_of_event, String schedule, String poster, List<Float> prices, HashMap<Float,Float> location, String city){
-        this.id = id;
-        this.name = name;
-        this.company = company;
-        this.description = description;
-        this.starting_date_of_event = starting_date_of_event;
-        this.schedule = schedule;
-        this.poster = poster;
-        this.prices = prices;
-        this.location = location;
-        this.city = city;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
@@ -84,20 +78,20 @@ public class Event {
         this.description = description;
     }
 
-    public Date getStarting_date_of_event() {
-        return starting_date_of_event;
+    public ArrayList<String> getTags() {
+        return tags;
     }
 
-    public void setStarting_date_of_event(Date starting_date_of_event) {
-        this.starting_date_of_event = starting_date_of_event;
+    public void setTags(ArrayList<String> tags) {
+        this.tags = tags;
     }
 
-    public Date getEnding_date_of_event() {
-        return ending_date_of_event;
+    public ArrayList<Date> getDate_event() {
+        return date_event;
     }
 
-    public void setEnding_date_of_event(Date ending_date_of_event) {
-        this.ending_date_of_event = ending_date_of_event;
+    public void setDate(ArrayList<Date> date_event) {
+        this.date_event = date_event;
     }
 
     public String getSchedule() {
@@ -116,24 +110,20 @@ public class Event {
         this.poster = poster;
     }
 
-    public List<Float> getPrices() {
+    public HashMap<String, Float> getPrices() {
         return prices;
     }
 
-    public void setPrices(List<Float> prices) {
+    public void setPrices(HashMap<String,Float> prices) {
         this.prices = prices;
     }
 
-    public HashMap<Float, Float> getLocation() {
+    public ArrayList<Float> getLocation() {
         return location;
     }
 
-    public void setLocation(HashMap<Float, Float> location) {
+    public void setLocation(ArrayList<Float> location) {
         this.location = location;
-    }
-
-    private String escapeString(String input) {
-        return input != null ? input.replace("'", "\\'") : "null";
     }
 
     public void setCity(String city) {
@@ -144,19 +134,21 @@ public class Event {
         return city;
     }
 
+    private String escapeString(String input) {
+        return input != null ? input.replace("'", "\\'") : "null";
+    }
 
     @Override
     public String toString() {
-        String starting_date_string = this.starting_date_of_event;
-        String ending_date_string = this.ending_date_of_event != null ? this.ending_date_of_event.toString() : "null";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String startingDate = formatter.format(this.date_event.get(0).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
+        String endingDate = this.date_event.size() > 1 ? formatter.format(this.date_event.get(1).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()) : "null";
         String prices_string = this.prices != null ? this.prices.toString() : "null";
-        String location_string = this.location;
+        String location_string = this.location.toString();
 
-        String result = String.format("Event {'id': %d, 'name': '%s', 'company': '%s', 'description': '%s', 'starting_date_of_event': %s, 'ending_date_of_event': %s, 'schedule': '%s', 'poster': '%s', 'prices': %s, 'location': %s, 'city': %s}",
+        return String.format("Event {'id': %d, 'name': '%s', 'company': '%s', 'description': '%s', 'starting_date_of_event': %s, 'ending_date_of_event': %s, 'schedule': '%s', 'poster': '%s', 'prices': %s, 'location': %s, 'city': %s}",
                 this.id, escapeString(this.name), escapeString(this.company), escapeString(this.description),
-                starting_date_string, ending_date_string, this.schedule, escapeString(this.poster), prices_string, location_string, this.city);
-
-        return result;
+                startingDate, endingDate, this.schedule, escapeString(this.poster), prices_string, location_string, this.city);
     }
 
 }

@@ -1,0 +1,10 @@
+pt/deti/ua/services/EventService.class
+pt/deti/ua/controllers/EventController.class
+pt/deti/ua/models/Company.class
+pt/deti/ua/controllers/CompanyController.class
+pt/deti/ua/models/User.class
+pt/deti/ua/controllers/UserController.class
+pt/deti/ua/models/Event.class
+pt/deti/ua/models/Ticket.class
+pt/deti/ua/App.class
+pt/deti/ua/repositories/EventRepository.class

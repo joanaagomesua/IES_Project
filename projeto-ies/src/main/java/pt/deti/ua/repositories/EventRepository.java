@@ -6,8 +6,9 @@ import pt.deti.ua.models.Event;
 import java.util.List;
 
 public interface EventRepository extends MongoRepository<Event, Long> {
-    public Event findById(Long id);
-    public List<Event> findByTag(String tag);
+    public Event findByEventId(Long id);
+    public List<Event> findByTags(String tag);
     public List<Event> findByCity(String city);
-    public List<Event> findByCompany(String Company);
+    public List<Event> findByCompany(String company);
+    public List<Event> findByDate(String date);
 }
