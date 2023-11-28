@@ -17,7 +17,9 @@ import java.time.ZoneId;
 @Document("Event")
 public class Event {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private String company;
     private String description;
@@ -54,7 +56,7 @@ public class Event {
         this.id = id;
     }
 
-    public String getName(String name) {
+    public String getName() {
         return this.name;
     }
 
@@ -90,7 +92,7 @@ public class Event {
         return date_event;
     }
 
-    public void setDate(ArrayList<Date> date_event) {
+    public void setDate_event(ArrayList<Date> date_event) {
         this.date_event = date_event;
     }
 
