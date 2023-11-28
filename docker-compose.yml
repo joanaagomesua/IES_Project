@@ -1,0 +1,21 @@
+version: "3.8"
+volumes:
+  datafiles:
+
+services:
+
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5673:5673"
+      - "15673:15673"  
+  reactclient:
+    build: ./prototype/agenda_saramago/src
+    container_name: reactclient
+    ports:
+      - "5173:5173"
+    stdin_open: true
+    depends_on:
+      - rabbitmq
+    restart: unless-stopped
+    image: agendasaramago-frontend
