@@ -10,6 +10,9 @@ module.exports = {
       fontFamily: {
         'poppins': ['Poppins', 'sans-serif'],
     },
+    colors:{
+      bluepers: "#a7c7eb"
+    }
   },
   plugins: [require('flowbite/plugin')],
  }

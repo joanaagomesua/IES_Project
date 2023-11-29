@@ -1,8 +1,9 @@
-import { Fragment } from 'react';
-import { Link } from 'react-router-dom';
+import { Fragment, useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import React from 'react';
+import NotificationsDropdown from '../components/notification_dropdown.jsx';
 
 const navigation = [
   { name: 'My Tickets', to: '/my_tickets', current: false },
@@ -14,7 +15,39 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Navbar() {
+function Navbar() {
+  const [openNotifs, setOpenNotifs] = useState(false);
+  const navigate = useNavigate();
+
+  const toggleNotifications = () => {
+    setOpenNotifs((prevOpenNotifs) => !prevOpenNotifs);
+  };
+
+  useEffect(() => {
+    setOpenNotifs(false);
+  }, [navigate]);
+
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const history = useHistory(); // Use history to navigate
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleSearch = () => {
+    // Redirect to the search results page with the search query as a parameter
+    history.push(`/searchevents?query=${searchQuery}`);
+  };
+
+  const handleKeyPress = (e) => {
+    // Check if the 'Enter' key is pressed
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
+
   return (
     <Disclosure as="nav" className="bg-[#a7c7eb]">
       {({ open }) => (
@@ -34,10 +67,10 @@ export default function Navbar() {
               </div>
               <div className="flex sm:justify-start items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <Link to="/event_page">
+                  <Link to="/">
                     <img
-                      className="h-8 w-auto"
-                      src="/src/assets/images/logo.png"
+                      className="h-10 w-auto"
+                      src="/src/assets/images/logo_small1.png"
                       alt="Agenda Saramago"
                     />
                   </Link>
@@ -59,15 +92,20 @@ export default function Navbar() {
                     </Link>
                   ))}
                 </div>
-                <div className="flex-grow mx-4 sm:mx-auto">
-                  <div className="relative flex items-stretch left-10">
+                
+                <div className="flex-grow hidden lg:block">
+                  <div className="relative flex items-stretch left-80">
                     <input
                       type="search"
+                      value={searchQuery}
+                      onChange={handleSearchChange}
+                      onKeyPress={handleKeyPress}
                       className="flex-auto relative m-0 block min-w-0 rounded-l border border-solid border-black bg-transparent bg-clip-padding px-3 py-[0.25rem]  outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
                       placeholder='Search'
                       aria-describedby="button-addon3"
                     />
                     <button
+                      onClick={handleSearch}
                       className="relative z-[2] rounded-r border-1 border-black px-6 py-2 text-xs font-medium  text-primary transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
                       type="button"
                       id="button-addon3"
@@ -77,16 +115,20 @@ export default function Navbar() {
                     </button>
                   </div>
                 </div>
+                
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button
+                <button 
                   type="button"
                   className="relative rounded-full bg-gray-700 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  onClick={toggleNotifications}
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
+
+                {openNotifs && <NotificationsDropdown />}
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
@@ -171,3 +213,4 @@ export default function Navbar() {
     </Disclosure>
   );
 }
+export default Navbar;
