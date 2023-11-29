@@ -28,6 +28,10 @@ public class EventService {
         return optionalEvent.orElse(null);
     }
 
+    public List<Event> getEventByTag(String tag){
+        return eventRepository.findByTag(tag);
+    }
+
     public List<Event> getEventByCity(String city) {
         return eventRepository.findByCity(city);
     }
