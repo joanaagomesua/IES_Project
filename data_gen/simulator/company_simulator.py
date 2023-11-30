@@ -21,7 +21,7 @@ class Company_Simulator():
         self.companies.append(Company('Cinema company', ['Cinema e Vídeo']))
         self.companies.append(Company('Gastronomy company', ['Gastronomia']))
         self.companies.append(Company('Profissional Development company', ['Carreira e Desenvolvimento Profissional']))
-        self.companies.append(Company('Education company', ['Educação e Apredizado']))
+        self.companies.append(Company('Education company', ['Educação e Aprendizado']))
         self.companies.append(Company('Culture company', ['Cultura e Lazer']))
         
         return {'type': 'companies_created', 'companies': self.companies}

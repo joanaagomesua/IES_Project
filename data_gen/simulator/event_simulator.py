@@ -1,17 +1,17 @@
 from pymongo import MongoClient
 import json
-from event_model import Event
-from company_model import Company
+from simulator import Event, Company
 from faker import Faker
 import random
 
 
-JSON_FILE = "tags.json"
+TAGS_JSON = "data/tags.json"
+DESC_JSON = "data/desc.json"
 
 class Event_Simulator():
     def __init__(self, host, port):
-        # self.host = host
-        # self.port = port
+        self.host = host
+        self.port = port
 
         # try:
         #     connstr = 'mongodb://' + self.host + ':' + str(self.port) + '/'
@@ -39,7 +39,7 @@ class Event_Simulator():
         self.companies.append(Company('Cinema company', ['Cinema e Vídeo']))
         self.companies.append(Company('Gastronomy company', ['Gastronomia']))
         self.companies.append(Company('Profissional Development company', ['Carreira e Desenvolvimento Profissional']))
-        self.companies.append(Company('Education company', ['Educação e Apredizado']))
+        self.companies.append(Company('Education company', ['Educação e Aprendizado']))
         self.companies.append(Company('Culture company', ['Cultura e Lazer']))
         
         
@@ -49,7 +49,7 @@ class Event_Simulator():
         company = random.choice(self.companies)
         
         # gerar a categoria e tags
-        tags = self.loadfile(JSON_FILE)
+        tags = self.loadfile(TAGS_JSON)
         category = random.choice(company.categories)
         num_tags = random.randint(1, 3)
         tags = [category] + random.sample(tags[category], k=num_tags)
@@ -59,7 +59,7 @@ class Event_Simulator():
         
         description = " "
         # gerar a descrição
-        descs = self.loadfile("desc.json")
+        descs = self.loadfile(DESC_JSON)
         description = descs[category]
         
         
@@ -101,7 +101,7 @@ class Event_Simulator():
         location = Faker().address()
         xy_location = [random.uniform(-180, 180), random.uniform(-90, 90)]
         
-        poster_dic = {"Dança": "img/dance.jpg", "Teatro": "img/teatro.jpg", "Música": "img/musica.jpg", "Leitura e Literatura": "img/leitura.jpg", "Artes Visuais": "img/artes.jpg", "Cinema e Vídeo": "img/cinema.jpg", "Gastronomia": "img/gastronomia.jpg", "Carreira e Desenvolvimento Profissional": "img/carreira.jpg", "Educação e Aprendizado": "educacao.png", "Cultura e Lazer": "img/lazer.jpg"}
+        poster_dic = {"Dança": "img/dance.jpg", "Teatro": "img/teatro.jpg", "Música": "img/musica.jpg", "Leitura e Literatura": "img/leitura.jpg", "Artes Visuais": "img/artes.jpg", "Cinema e Vídeo": "img/cinema.jpg", "Gastronomia": "img/gastronomia.jpg", "Carreira e Desenvolvimento Profissional": "img/carreira.jpg", "Educação e Aprendizado": "img/educacao.png", "Cultura e Lazer": "img/lazer.jpg"}
         
         poster = poster_dic[category]
         
@@ -119,13 +119,12 @@ class Event_Simulator():
         # print("Duration: ", duration)
         
         event = Event(name, company, description, tags, data, schedule, poster, prices, location, xy_location, duration)
-        print(event.toDic())
+        print('Event simulator finished.')  
         return {'type': 'event_criated', 'event': event.toDic()}
 
     def run(self):
         print('Starting event simulator...')
-        self.create_event()
-        print('Event simulator finished.')  
+        return self.create_event()
         
     def loadfile(self, filename):
             try:

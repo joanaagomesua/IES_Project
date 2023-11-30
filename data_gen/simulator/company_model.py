@@ -1,3 +1,4 @@
+
 class Company(object):
     def __init__(self,name, categories):
         self.name = name

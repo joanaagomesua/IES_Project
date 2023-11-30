@@ -9,10 +9,10 @@ class Receiver():
     def __exit__(self):
         self.connectionclose()
 
-    def conection(self):
+    def connection(self):
         connection = pika.BlockingConnection(pika.ConnectionParameters('rabbitmq', 5673))
         channel = connection.channel()
-        self.channel.queue_declare(queue=self.queue)
+        channel.queue_declare(queue=self.queue)
     
     def connectionsclose(self):
         self.connection.close()
