@@ -48,5 +48,4 @@ public class EventController {
     ResponseEntity<Event> updateEventInfo(@PathVariable(value = "id", @RequestBody Event EventInfo) Long id){
         return ResponseEntity.ok().body(eventService.updateEvent(EventInfo));
     }
-
 }
