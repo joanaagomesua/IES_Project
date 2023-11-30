@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -36,10 +37,16 @@ public class EventController {
     }
 
     //PUT METHODS -----> not needed, adiantado
-
-    @PostMapping("/create")
+    //create new event
+    @PostMapping("")
     ResponseEntity<Event>createEvent(@RequestBody Event event){
         return ResponseEntity.ok().body(eventService.saveEvent(event));
+    }
+
+    //update and event
+    @PutMapping("/{id}/update")
+    ResponseEntity<Event> updateEventInfo(@PathVariable(value = "id", @RequestBody Event EventInfo) Long id){
+        return ResponseEntity.ok().body(eventService.updateEvent(EventInfo));
     }
 
 }
