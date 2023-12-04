@@ -28,24 +28,7 @@ function Navbar() {
   }, [navigate]);
 
 
-  const [searchQuery, setSearchQuery] = useState('');
-  const history = useHistory(); // Use history to navigate
-
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
-  const handleSearch = () => {
-    // Redirect to the search results page with the search query as a parameter
-    history.push(`/searchevents?query=${searchQuery}`);
-  };
-
-  const handleKeyPress = (e) => {
-    // Check if the 'Enter' key is pressed
-    if (e.key === 'Enter') {
-      handleSearch();
-    }
-  };
+  
 
 
   return (
@@ -92,20 +75,15 @@ function Navbar() {
                     </Link>
                   ))}
                 </div>
-                
-                <div className="flex-grow hidden lg:block">
+                <div className="flex-grow hidden lg:block ">
                   <div className="relative flex items-stretch left-80">
                     <input
                       type="search"
-                      value={searchQuery}
-                      onChange={handleSearchChange}
-                      onKeyPress={handleKeyPress}
                       className="flex-auto relative m-0 block min-w-0 rounded-l border border-solid border-black bg-transparent bg-clip-padding px-3 py-[0.25rem]  outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
                       placeholder='Search'
                       aria-describedby="button-addon3"
                     />
                     <button
-                      onClick={handleSearch}
                       className="relative z-[2] rounded-r border-1 border-black px-6 py-2 text-xs font-medium  text-primary transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
                       type="button"
                       id="button-addon3"
@@ -115,7 +93,6 @@ function Navbar() {
                     </button>
                   </div>
                 </div>
-                
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button 

@@ -26,7 +26,7 @@ public class Event {
     private ArrayList<String> tags;
     private ArrayList<Date> date_event;
     private String schedule;
-    private String poster; //?
+    private String poster; //exemplo : "uploads/1.png"
     private HashMap<String,Float> prices;
     private ArrayList<Float> location;
     private String city;

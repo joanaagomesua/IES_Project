@@ -114,13 +114,21 @@ function profile(){
         <div className="additional-content">
             <div className="liked-events">
                 <h3>A Minha Agenda</h3>
-                <ul>
-                </ul>
+
+                <div>
+                    <ul>
+                    </ul>
+                </div>
+                
             </div>
             <div className="my-events">
-                <h3>My Events</h3>
-                <ul>
-                </ul>
+                <h3>Eventos Prévios</h3>
+
+                <div>
+                    <ul>
+                    </ul>
+                </div>
+                
             </div>
         </div>
     </div>
