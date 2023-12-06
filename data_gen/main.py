@@ -9,17 +9,17 @@ MONGO_PORT = 27017
 
 def main():
     simulator = Event_Simulator(MONGO_HOST, MONGO_PORT)
-    # receiver = Receiver()
-    # sender = Sender()
+    receiver = Receiver()
+    sender = Sender()
 
-    # consumer_thread = Thread(target=receiver.recv, args=(simulator,))
-    # consumer_thread.start()
+    consumer_thread = Thread(target=receiver.recv, args=(simulator,))
+    consumer_thread.start()
     
     while(True):
         messages = simulator.run()
         print(messages)
-        # for m in messages:
-        #     sender.send(m)
+        for m in messages:
+            sender.send(m)
 
         sleep(10)
 
