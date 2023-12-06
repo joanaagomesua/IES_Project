@@ -17,5 +17,10 @@ public class CompanyService {
         return optionalCompany.orElse(null);
     }
 
+    public Event saveCompany(Company company) {
+        return companyRepository.save(company);
+    }
+
+
 
 }
