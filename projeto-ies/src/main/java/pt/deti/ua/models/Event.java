@@ -4,7 +4,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -14,32 +13,45 @@ import java.time.ZonedDateTime;
 import java.time.ZoneId;
 
 
-@Document("Event")
+@Table("Event")
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @Column
+    private int id;
+    @Column
     private String name;
+    @Column
     private String company;
+    @Column
     private String description;
-    private ArrayList<String> tags;
-    private ArrayList<Date> date_event;
+    @Column
+    private String tags;
+    @Column
+    private Date date_start;
+    @Column
+    private Date date_end;
+    @Column
     private String schedule;
+    @Column
     private String poster; //exemplo : "uploads/1.png"
-    private HashMap<String,Float> prices;
-    private ArrayList<Float> location;
+    @Column
+    private String prices;
+    @Column
+    private String location;
+    @Column
     private String city;
 
     public Event() {}
 
-    public Event(Long id, String name, String company, String description, ArrayList<String> tags, ArrayList<Date> date_event, String schedule, String poster, HashMap<String,Float> prices, ArrayList<Float> location, String city){
+    public Event(int id, String name, String company, String description, String tags, Date date_start, Date date_end, String schedule, String poster, String prices, String location, String city){
         this.id = id;
         this.name = name;
         this.company = company;
         this.description = description;
         this.tags = tags;
-        this.date_event = date_event;
+        this.date_start = date_start;
+        this.date_end = date_end;
         this.schedule = schedule;
         this.poster = poster;
         this.prices = prices;
@@ -48,7 +60,7 @@ public class Event {
     }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
+    public int getId() {
         return this.id;
     }
 
@@ -80,21 +92,28 @@ public class Event {
         this.description = description;
     }
 
-    public ArrayList<String> getTags() {
+    public String getTags() {
         return tags;
     }
 
-    public void setTags(ArrayList<String> tags) {
+    public void setTags(String tags) {
         this.tags = tags;
     }
 
-    public ArrayList<Date> getDate_event() {
-        return date_event;
+    public Date getDate_start() {
+        return date_start;
     }
 
-    public void setDate_event(ArrayList<Date> date_event) {
-        this.date_event = date_event;
+    public void setDate_start(Date date_start) {
+        this.date_start = date_start;
     }
+
+    public Date getDate_start() {
+        return date_start;
+    }
+
+    public void setDate_end(Date date_end) {
+        this.date_end = date_end;}
 
     public String getSchedule() {
         return schedule;
@@ -112,19 +131,19 @@ public class Event {
         this.poster = poster;
     }
 
-    public HashMap<String, Float> getPrices() {
+    public String getPrices() {
         return prices;
     }
 
-    public void setPrices(HashMap<String,Float> prices) {
+    public void setPrices(String prices) {
         this.prices = prices;
     }
 
-    public ArrayList<Float> getLocation() {
+    public String getLocation() {
         return location;
     }
 
-    public void setLocation(ArrayList<Float> location) {
+    public void setLocation(String location) {
         this.location = location;
     }
 
@@ -140,6 +159,7 @@ public class Event {
         return input != null ? input.replace("'", "\\'") : "null";
     }
 
+    //still need to fix this toString(), not correct
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

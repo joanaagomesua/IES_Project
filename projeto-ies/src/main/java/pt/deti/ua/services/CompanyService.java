@@ -21,7 +21,7 @@ public class CompanyService {
         return eventRepository.findAll();
     }
 
-    public Event saveCompany(Company company) {
+    public Company saveCompany(Company company) {
         return companyRepository.save(company);
     }
 
@@ -35,6 +35,10 @@ public class CompanyService {
         } else {
             return null;
         }
+    }
+
+    public List<Event> getAllEventsFromCompany(String name){
+
     }
 
 
