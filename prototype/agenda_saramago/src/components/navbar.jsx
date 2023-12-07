@@ -1,14 +1,14 @@
 import { Fragment, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, BellIcon, XMarkIcon, UserIcon } from '@heroicons/react/24/outline';
 import React from 'react';
 import NotificationsDropdown from '../components/notification_dropdown.jsx';
 
 const navigation = [
-  { name: 'My Tickets', to: '/my_tickets', current: false },
-  { name: 'Favourites', to: '/favourites', current: false },
-  { name: 'Calendar', to: '/calendar', current: false },
+  { name: 'Os Meus Bilhetes', to: '/my_tickets', current: false },
+  { name: 'Favoritos', to: '/favourites', current: false },
+  { name: 'Calendário', to: '/calendar', current: false },
 ];
 
 function classNames(...classes) {
@@ -28,15 +28,12 @@ function Navbar() {
   }, [navigate]);
 
 
-  
-
-
   return (
     <Disclosure as="nav" className="bg-[#a7c7eb]">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-9xl px-2 sm:px-6 lg:px-8">
-            <div className="relative flex h-16 items-center justify-between">
+            <div className="relative flex h-20 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
                 <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -52,7 +49,7 @@ function Navbar() {
                 <div className="flex flex-shrink-0 items-center">
                   <Link to="/">
                     <img
-                      className="h-10 w-auto"
+                      className="h-14 w-auto"
                       src="/src/assets/images/logo_small1.png"
                       alt="Agenda Saramago"
                     />
@@ -66,8 +63,8 @@ function Navbar() {
                       className={classNames(
                         item.current
                           ? 'bg-gray-900 text-white'
-                          : 'text-black-300 hover:bg-gray-700 hover:text-white',
-                        'rounded-md px-3 py-2 text-sm font-medium'
+                          : 'text-white bold hover:bg-gray-700 hover:text-white',
+                        'rounded-md px-4 py-4 text-l font-semibold'
                       )}
                       aria-current={item.current ? 'page' : undefined}
                     >
@@ -75,34 +72,16 @@ function Navbar() {
                     </Link>
                   ))}
                 </div>
-                <div className="flex-grow hidden lg:block ">
-                  <div className="relative flex items-stretch left-80">
-                    <input
-                      type="search"
-                      className="flex-auto relative m-0 block min-w-0 rounded-l border border-solid border-black bg-transparent bg-clip-padding px-3 py-[0.25rem]  outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
-                      placeholder='Search'
-                      aria-describedby="button-addon3"
-                    />
-                    <button
-                      className="relative z-[2] rounded-r border-1 border-black px-6 py-2 text-xs font-medium  text-primary transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
-                      type="button"
-                      id="button-addon3"
-                      data-te-ripple-init
-                    >
-                      Search
-                    </button>
-                  </div>
-                </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button 
                   type="button"
-                  className="relative rounded-full bg-gray-700 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  className="relative rounded-full bg-gray-100 p-1 text-gray-500 hover:text-gray-800 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                   onClick={toggleNotifications}
                 >
                   <span className="absolute -inset-1.5" />
-                  <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-6 w-6" aria-hidden="true" />
+                  <span className="sr-only">Ver notificações</span>
+                  <BellIcon className="h-7 w-7" aria-hidden="true" />
                 </button>
 
                 {openNotifs && <NotificationsDropdown />}
@@ -110,14 +89,10 @@ function Navbar() {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="relative flex rounded-full bg-gray-700 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Menu.Button className="relative rounded-full bg-gray-100 p-1 text-gray-500 hover:text-gray-800 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="absolute -inset-1.5" />
-                      <span className="sr-only">Open user menu</span>
-                      <img
-                        className="h-8 w-7 rounded-full"
-                        src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-9.png"
-                        alt="profile picture"
-                      />
+                      <span className="sr-only">Abrir o menu de user</span>
+                      <UserIcon className="h-7 w-7" aria-hidden="true" />
                     </Menu.Button>
                   </div>
                   <Transition
@@ -136,7 +111,7 @@ function Navbar() {
                             to="/profile"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
-                            Profile
+                            Perfil
                           </Link>
                         )}
                       </Menu.Item>
@@ -146,7 +121,7 @@ function Navbar() {
                             to="#"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
-                            Settings
+                            Definições
                           </Link>
                         )}
                       </Menu.Item>
@@ -156,7 +131,7 @@ function Navbar() {
                             to="#"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
-                            Sign out
+                            Sair
                           </Link>
                         )}
                       </Menu.Item>

@@ -9,8 +9,8 @@ const DirectionsMap = ({ width, height }) => {
   };
 
   const center = {
-    lat: -3.745,
-    lng: -38.523,
+    lat: 40.633,
+    lng: -8.650,
   };
 
   return (
