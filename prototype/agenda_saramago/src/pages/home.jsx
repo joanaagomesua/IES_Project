@@ -20,7 +20,7 @@ function Home() {
       <div className="relative m-10 flex ">
           {/* <div className='w-1/3 h-{400px}  bg-bluepers'></div> */}
 
-          <div className='w-2/3 '>
+          <div className='w-2/3 ml-10'>
             <Map/>
           </div>
       </div>

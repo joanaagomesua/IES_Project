@@ -1,6 +1,6 @@
 package pt.deti.ua.repositories;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import pt.deti.ua.models.Event;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Date;
 
 
-public interface EventRepository extends MongoRepository<Event, Long> { //add other methods later
+public interface EventRepository extends JpaRepository<Event, Long> { //add other methods later
     public List<Event> findByTag(String tag);
     public List<Event> findByCity(String city);
     public List<Event> findByCompany(String company);

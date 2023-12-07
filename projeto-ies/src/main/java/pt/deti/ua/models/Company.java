@@ -1,13 +1,18 @@
 package pt.deti.ua.models;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-
+import org.springframework.data.annotation.Id;
 import java. util.*;
 
+@Entity
+@Table("Company")
 public class Company {
-
+    @Id
+    @Column
     private String name;
+    @Column
     private String type;
 
     public Company() {}

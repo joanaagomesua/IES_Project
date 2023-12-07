@@ -12,13 +12,33 @@ public class CompanyService {
     @Autowired
     private CompanyRepository companyRepository;
 
-    public Company getCompanyById(Long id){
-        Optional<Company> optionalCompany = companyRepository.findById(id);
+    public Company getCompanyByName(String name){
+        Optional<Company> optionalCompany = companyRepository.findByName(name);
         return optionalCompany.orElse(null);
     }
 
-    public Event saveCompany(Company company) {
+    public List<Company> getAllEvents() {
+        return eventRepository.findAll();
+    }
+
+    public Company saveCompany(Company company) {
         return companyRepository.save(company);
+    }
+
+    public Company updateCompany(Company company) {
+        Optional<Comapny> companyToUpdateOptional = companyRepository.findByName(company.getName());
+        if (companyToUpdateOptional.isPresent()) {
+            Company company_to_update = companyToUpdateOptional.get();
+            company_to_update.setName(company.getName());
+            company_to_update.setType(company.getType());
+            return companyRepository.save(company_to_update);
+        } else {
+            return null;
+        }
+    }
+
+    public List<Event> getAllEventsFromCompany(String name){
+
     }
 
 
