@@ -157,18 +157,22 @@ public class Event {
         return input != null ? input.replace("'", "\\'") : "null";
     }
 
-    //still need to fix this toString(), not correct
-    // @Override
-    // public String toString() {
-    //     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    //     String startingDate = formatter.format(this.date_event.get(0).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
-    //     String endingDate = this.date_event.size() > 1 ? formatter.format(this.date_event.get(1).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()) : "null";
-    //     String prices_string = this.prices != null ? this.prices.toString() : "null";
-    //     String location_string = this.location.toString();
-
-    //     return String.format("Event {'id': %d, 'name': '%s', 'company': '%s', 'description': '%s', 'starting_date_of_event': %s, 'ending_date_of_event': %s, 'schedule': '%s', 'poster': '%s', 'prices': %s, 'location': %s, 'city': %s}",
-    //             this.id, escapeString(this.name), escapeString(this.company), escapeString(this.description),
-    //             startingDate, endingDate, this.schedule, escapeString(this.poster), prices_string, location_string, this.city);
-    // }
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + this.id +
+                ", name='" + this.name + '\'' +
+                ", company='" + this.company + '\'' +
+                ", description='" + this.description + '\'' +
+                ", tags='" + this.tags + '\'' +
+                ", date_start=" + this.date_start +
+                ", date_end=" + this.date_end +
+                ", schedule='" + this.schedule + '\'' +
+                ", poster='" + this.poster + '\'' +
+                ", prices='" + this.prices + '\'' +
+                ", location='" + this.location + '\'' +
+                ", city='" + this.city + '\'' +
+                '}';
+    }
 
 }

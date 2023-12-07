@@ -13,16 +13,22 @@ import java. util.*;
 @Table(name="Company")
 public class Company {
     @Id
-    @Column
+    @Column("comp_name")
     private String name;
-    @Column
+    @Column("comp_img")
+    private String image;
+    @Column("comp_type")
     private String type;
+    @Column("comp_bio")
+    private String bio;
 
     public Company() {}
 
-    public Company(String name, String type) {
+    public Company(String name, String image,String type, String bio) {
         this.name = name;
+        this.image = image;
         this.type = type;
+        this.bio = bio;
     }
 
     public String getName() {
@@ -41,8 +47,14 @@ public class Company {
         this.type = type;
     }
 
-    @Override
-    public String toString() {
-        return String.format("Company {'name': '%s', 'Type': %s }", this.name, this.type);
+    @java.lang.Override
+    public java.lang.String toString() {
+        return "Company{" +
+                "name='" + this.name + '\'' +
+                ", image='" + this.image + '\'' +
+                ", type='" + this.type + '\'' +
+                ", bio='" + this.bio + '\'' +
+                '}';
     }
-}
+
+

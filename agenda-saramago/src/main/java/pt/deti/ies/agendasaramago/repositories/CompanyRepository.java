@@ -17,5 +17,7 @@ public interface CompanyRepository extends JpaRepository<Company, String> {
     public List<Company> findByType(String type);
     @Query("SELECT e.name, e.description FROM Event e JOIN Company c ON e.company = c.name WHERE c.name = :companyName")
     public List<Event> findAllEventsFromCompany(@Param("companyName") String companyName);
+
+
 }
 
