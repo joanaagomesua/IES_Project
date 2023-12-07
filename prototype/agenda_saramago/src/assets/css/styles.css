@@ -1,5 +1,5 @@
 .um{
-  background-color: red;
+  background-color: #a7c7eb;
 }
 
 .small-card-map {
@@ -35,7 +35,7 @@
 
 .search-bar-container {
   padding-top: 10vh;
-  padding-bottom: 10vh;
+  padding-bottom: 2vh;
   width: 60%;
   margin: auto;
   display: flex;
