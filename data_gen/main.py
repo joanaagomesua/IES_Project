@@ -28,8 +28,6 @@ def main(limit):
     # receiver = Receiver()
     # sender = Sender()
 
-    consumer_thread = Thread(target=receiver.recv, args=(simulator,))
-    consumer_thread.start()
     
     # Companies
     messages = simulatorCompany.run()
