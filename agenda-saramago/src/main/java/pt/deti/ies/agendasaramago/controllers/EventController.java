@@ -2,6 +2,7 @@ package pt.deti.ies.agendasaramago.controllers;
 
 import pt.deti.ies.agendasaramago.models.Event;
 import pt.deti.ies.agendasaramago.services.EventService;
+import pt.deti.ies.agendasaramago.communication.Sender;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.json.JSONObject;
 
 import java.util.*;
 
@@ -25,9 +27,12 @@ public class EventController {
     @Autowired
     private EventService eventService;
 
+    @Autowired
+    private Sender sender;
+
     // GET METHODS ----> only the first one is needed for this iteration
     @GetMapping("/{id}")
-    ResponseEntity<Event> getEventByID(@PathVariable(value = "id") int id){
+    ResponseEntity<Event> getEventByID(@PathVariable(value = "id") Long id){
         return ResponseEntity.ok().body(eventService.getEventById(id));
     }
 
@@ -40,16 +45,18 @@ public class EventController {
     //create new event
     @PostMapping("")
     ResponseEntity<Event>createEvent(@RequestBody Event event){
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("name", "teste");
+        jsonObject.put("msg", "OLAAA");
+
+        // Envie o objeto JSON
+        sender.send(jsonObject);
         return ResponseEntity.ok().body(eventService.saveEvent(event));
     }
 
-
-    // Update an event
+    //update and event
     @PutMapping("/{id}/update")
-    ResponseEntity<Event> updateEventInfo(@PathVariable(value = "id") int id, @RequestBody Event eventInfo) {
-        // Ensure the ID is set in the eventInfo object
-        eventInfo.setId(id);
+    ResponseEntity<Event> updateEventInfo(@PathVariable("id") int id, @RequestBody Event eventInfo) {
         return ResponseEntity.ok().body(eventService.updateEvent(eventInfo));
     }
-
 }

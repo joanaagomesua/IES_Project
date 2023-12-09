@@ -5,24 +5,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+import org.springframework.data.annotation.Id;
 
 import java.util.*;
 @Entity
-@Table("users")
+@Table(name="users")
 public class User {
     @Id
-    @Column("user_id")
+    @Column(name="user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column("user_name")
-    private String name;
-    @Column("user_username")
+    @Column(name="user_username")
     private String username;
-    @Column("user_birthday")
+    @Column(name="user_birthday")
     private Date birthday;
-    @Column("user_bio");
+    @Column(name="user_name")
+    private String name;
+    @Column(name="user_bio")
     private String bio;
-    @Column("user_profile_pic");
+    @Column(name="user_profile_pic")
     private String profile_pic;
 
     public int getId() {

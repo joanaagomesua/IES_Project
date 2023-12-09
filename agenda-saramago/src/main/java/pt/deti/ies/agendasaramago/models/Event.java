@@ -19,29 +19,29 @@ import java.time.ZoneId;
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column(name = "event_id")
     private int id;
-    @Column
+    @Column(name = "event_name")
     private String name;
-    @Column
+    @Column(name = "event_company")
     private String company;
-    @Column
+    @Column(name = "event_description")
     private String description;
-    @Column
+    @Column(name = "event_tags")
     private String tags;
-    @Column
+    @Column(name = "event_date_start")
     private Date date_start;
-    @Column
+    @Column(name = "event_date_end")
     private Date date_end;
-    @Column
+    @Column(name = "event_schedule")
     private String schedule;
-    @Column
+    @Column(name = "event_poster")
     private String poster; //exemplo : "uploads/1.png"
-    @Column
+    @Column(name = "event_prices")
     private String prices;
-    @Column
+    @Column(name = "event_location")
     private String location;
-    @Column
+    @Column(name = "event_city")
     private String city;
 
     public Event() {}
@@ -64,7 +64,7 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId() {
         return this.id;
-    } 
+    }
 
     public void setId(int id) {
         this.id = id;

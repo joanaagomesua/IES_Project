@@ -2,8 +2,6 @@ package pt.deti.ies.agendasaramago.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.Id;
@@ -13,18 +11,19 @@ import java. util.*;
 @Table(name="Company")
 public class Company {
     @Id
-    @Column("comp_name")
+    @Column(name = "comp_name")
     private String name;
-    @Column("comp_img")
+    @Column(name = "comp_img")
     private String image;
-    @Column("comp_type")
+    @Column(name = "comp_type")
     private String type;
-    @Column("comp_bio")
+    @Column(name = "comp_bio")
     private String bio;
 
-    public Company() {}
+    public Company() {
+    }
 
-    public Company(String name, String image,String type, String bio) {
+    public Company(String name, String image, String type, String bio) {
         this.name = name;
         this.image = image;
         this.type = type;
@@ -56,5 +55,4 @@ public class Company {
                 ", bio='" + this.bio + '\'' +
                 '}';
     }
-
-
+}

@@ -42,9 +42,6 @@ public class CompanyService {
         }
     }
 
-    // public List<Event> getAllEventsFromCompany(String name){
-
-    // }
 
 
 
