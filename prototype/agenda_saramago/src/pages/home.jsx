@@ -1,16 +1,14 @@
 import React from 'react';
 import Map from '../components/map.jsx';
 import Event from '../components/event.jsx';
-import { useState } from "react";
-import { SearchBar } from "../components/SearchBar.jsx";
-import { SearchResultsList } from "../components/SearchResultsList.jsx";
 import "../assets/css/styles.css";
+import Receiver from '../comms/Receiver';
 
 function Home() {
+  const [results, setResults] = useState([]);
+  const [receiver, setReceiver] = useState(new Receiver());
 
-  const [results, setResults] = useState([]); 
-
-  return (
+    return (
     <div>
       <div className="search-bar-container">
         <SearchBar setResults={setResults} />
