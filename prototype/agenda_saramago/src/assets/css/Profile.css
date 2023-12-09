@@ -14,7 +14,7 @@ body {
 .profile-details {
     max-width: 400px;
     width: 100%;
-    margin-left: 150px;
+    margin-left: 170px;
 }
 
 label {
@@ -37,6 +37,7 @@ input {
 .profile-name {
     font-size: 20px;
     margin-bottom: 20px;
+    font-weight: bold;
 }
 .profile-name-undefined {
     font-size: 18px;
@@ -45,7 +46,7 @@ input {
     font-style: italic;
 }
 .profile-email {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 20px;
 }
 .profile-email-undefined {
@@ -55,7 +56,7 @@ input {
     font-style: italic;
 }
 .profile-phone {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 20px;
 }
 .profile-phone-undefined {
@@ -65,10 +66,33 @@ input {
     font-style: italic;
 }
 .profile-address {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 20px;
 }
 .profile-address-undefined {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: gray;
+    font-style: italic;
+}
+.profile-bio {
+    font-size: 15px;
+    margin-bottom: 20px;
+    padding: 8px;
+    margin-right: 200px;
+}
+.profile-bio-undefined {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: gray;
+    font-style: italic;
+}
+.profile-birthday {
+    font-size: 18px;
+    margin-bottom: 20px;
+    
+}
+.profile-birthday-undefined {
     font-size: 18px;
     margin-bottom: 20px;
     color: gray;
