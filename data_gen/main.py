@@ -6,8 +6,8 @@ import json
 from simulator import *
 # MONGO_HOST = "mongodb"
 # MONGO_PORT = 27017
-API_URL_EVENT = "localhost:/api/event"
-API_URL_COMPANY = "api/company"
+API_URL_EVENT = "localhost:8080/api/event"
+API_URL_COMPANY = "localhost:8080/api/company"
 
 
 def main(limit):
