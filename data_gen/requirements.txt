@@ -1,7 +1,7 @@
-'pymongo'
-'faker'
-'random'
-'pika'
-'sys'
-'json'
-'requests'
+pymongo
+faker
+random
+pika
+sys
+json
+requests
