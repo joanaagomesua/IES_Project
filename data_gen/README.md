@@ -13,7 +13,3 @@ event dic : {
         }
 
 {"type": "event_created", "event": event_dic} -> mensagem de resposta à event criation
-
-
-
-pode se correr o main.py com um argumento (int) para limitar a quantidade de eventos a serem criados

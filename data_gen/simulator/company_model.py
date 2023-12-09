@@ -6,9 +6,3 @@ class Company(object):
     
     def __str__(self):
         return 'Company: %s'.format(self.name)
-    
-    def toDic(self):
-        return {
-            'name': self.name,
-            'categories': self.categories
-        }

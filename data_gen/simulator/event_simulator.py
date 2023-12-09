@@ -9,7 +9,9 @@ TAGS_JSON = "data/tags.json"
 DESC_JSON = "data/desc.json"
 
 class Event_Simulator():
-    def __init__(self):
+    def __init__(self, host, port):
+        self.host = host
+        self.port = port
 
         # try:
         #     connstr = 'mongodb://' + self.host + ':' + str(self.port) + '/'
@@ -63,11 +65,11 @@ class Event_Simulator():
         
         # gerar a data
         num = random.random()
-        if num <= 0.2:
+        if num <= 0.1:
             r = range(2)
         else:
             r = range(1)
-        
+            
         data = []
         for i in r:
             data.append(Faker().date_time_between(start_date='now', end_date='+30d'))
@@ -76,8 +78,9 @@ class Event_Simulator():
         data_inicio = data_time[0].date()
         if len(data) > 1:
             data_fim = data_time[1].date()
+            data = [data_inicio, data_fim]
         else:
-            data_fim = "NULL"
+            data = [data_inicio]
         
 
         # schedule
@@ -115,13 +118,7 @@ class Event_Simulator():
         # print("XY Location: ", xy_location)
         # print("Duration: ", duration)
         
-        data_inicio_form = data_inicio.strftime("%Y-%m-%d")
-        if data_fim != "NULL":
-            data_fim_form = data_fim.strftime("%Y-%m-%d")
-        else: 
-            data_fim_form = "NULL"
-        
-        event = Event(name, company, description, tags, data_inicio_form, data_fim_form, schedule, poster, prices, location, xy_location, duration)
+        event = Event(name, company, description, tags, data, schedule, poster, prices, location, xy_location, duration)
         print('Event simulator finished.')  
         return {'type': 'event_criated', 'event': event.toDic()}
 
@@ -140,7 +137,7 @@ class Event_Simulator():
             return data
         
 if __name__ == '__main__':
-    es = Event_Simulator()
+    es = Event_Simulator('localhost', 27017)
     es.run()
         
     
