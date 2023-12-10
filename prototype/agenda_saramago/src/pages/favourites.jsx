@@ -25,8 +25,8 @@ function Favourites() {
 
   return (
     <div className="p-10 space-y-10">
-      <div className="bg-orange-200 space-y-2">
-        <p className='font-poppins font-bold text-4xl'>The Events You Liked</p>
+      <div className="bg-blue-200 bg-width-100px space-y-2">
+        <p className='font-poppins font-bold text-4xl'>Eventos que Gostaste</p>
       </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '20px' }}>
@@ -36,7 +36,7 @@ function Favourites() {
       </div>
 
       <div className="bg-blue-200 space-y-2">
-        <p className='font-poppins font-bold text-4xl'>The Events You Saved</p>
+        <p className='font-poppins font-bold text-4xl'>Eventos que Guardaste</p>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '20px' }}>

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../assets/css/Profile.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// index.js or index.tsx
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUser, faEnvelope, faPhone, faMapMarker, faFileImage, faHeart} from '@fortawesome/free-solid-svg-icons';
 
