@@ -3,21 +3,30 @@ import json
 
 class Sender():
     def __init__(self):
-        self.queue = 'datagen'
+        self.rabbitmq_host = 'localhost'
+        self.rabbitmq_port = 5672
+        self.rabbitmq_username = 'guest'
+        self.rabbitmq_password = 'guest'
+        self.exchange = '' 
+        self.queue = 'new_event'
+        self.routing_key = 'new_event'
+        self.channel = None
         self.connection()
+
     
     def __exit__(self):
         self.connectionclose()
     
     def connection(self):
-        self.connection = pika.BlockingConnection(pika.ConnectionParameters('agendasaramago_rabbitmq', 5672))
-        self.channel = self.connection.channel()
-        self.channel.queue_declare(queue=self.queue)
+        credentials = pika.PlainCredentials(self.rabbitmq_username, self.rabbitmq_password)
+        connection = pika.BlockingConnection(pika.ConnectionParameters(host=self.rabbitmq_host, port=self.rabbitmq_port, credentials=credentials))
+        self.channel = connection.channel()
+        self.channel.queue_declare(queue=self.queue, durable=False)
     
     def connectionclose(self):
         self.connection.close()
     
     def send(self, msg):
-        msg = json.dumps(msg)
-        print('Sent {}'.format(msg), flush=True)
-        self.channel.basic_publish(exchange='', routing_key=self.queue, body=msg)
+        message = json.dumps(msg)
+        self.channel.basic_publish(exchange=self.exchange, routing_key=self.routing_key, body=message)
+        print(f'Message sent: {message}')

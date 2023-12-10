@@ -3,7 +3,7 @@ import sys
 import json
 
 from simulator import *
-# from communication import *
+from communication import *
 
 COMPANIES_JSON = "data/companies.json"
 
@@ -11,7 +11,7 @@ def main(limit):
     
     simulatorEvent = Event_Simulator()
     
-    # sender = Sender()
+    sender = Sender()
     
     if limit:
         limit = int(limit)
@@ -19,7 +19,7 @@ def main(limit):
         limit = 0
     
     # receiver = Receiver()Company
-    # sender = Sender()
+    sender = Sender()
 
     try:
         with open(COMPANIES_JSON, 'r') as f:
@@ -35,7 +35,7 @@ def main(limit):
         simulatorEvent.add_company(company)
         json_data = json.dumps({'type': 'company_criated', 'company': company.toDic()})
         print(json_data)
-        # sender.send(json_data)
+        sender.send(json_data)
 
     
     counter = 0
@@ -46,7 +46,7 @@ def main(limit):
         json_data = json.dumps(messages)
         
         print(json_data)
-        # sender.send(json_data)        
+        sender.send(json_data)        
         # for m in messages:
         #     sender.send(m)
 
