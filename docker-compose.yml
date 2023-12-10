@@ -1,5 +1,18 @@
 version: "3.8"
 services:
+  mysql:
+    image: mysql:8.0.33
+    container_name: mysql
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ies_agenda_2023
+      MYSQL_DATABASE: agenda_saramago
+      MYSQL_USER: user1
+      MYSQL_PASSWORD: ies_agenda_2023
+    networks:
+      - agenda_saramago_network
 
   rabbitmq:
     image: rabbitmq
@@ -54,6 +67,8 @@ services:
       - SPRING_DATA_MYSQL_PASSWORD=user1
       - SPRING_DATA_MYSQL_DATABASE=lockedin
       - SPRING_RABBITMQ_HOST=rabbitmq
+    networks:
+      - agenda_saramago_network
     
 networks:
   agenda_saramago_network:
