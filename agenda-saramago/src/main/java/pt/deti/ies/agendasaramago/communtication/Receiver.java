@@ -2,7 +2,9 @@ package pt.deti.ies.agendasaramago.communication;
 
 import pt.deti.ies.agendasaramago.exceptions.ResourceNotFoundException;
 import org.json.JSONObject;
+import org.json.JSONArray;
 import java.util.Date;
+import java.util.*;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import org.springframework.stereotype.Service;
@@ -27,48 +29,82 @@ public class Receiver {
         JSONObject jsonMessage = new JSONObject(message);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-        String type = jsonMessage.getString("type");
+        if (jsonMessage.has("type") && jsonMessage.get("type") instanceof String) {
+            String type = jsonMessage.getString("type");
+            switch (type) {
+                case "event_created":
+                    JSONObject eventJson = jsonMessage.getJSONObject("event");
+                    Event event = new Event();
+                    NotifNewEvent notif = new NotifNewEvent(
 
-        switch (type) {
-            case "event_created":
-                Event event = new Event();
-                NotifNewEvent notif = new NotifNewEvent(
+                    );
 
-                );
+                    event.setName(eventJson.getString("name"));
 
-                event.setName(jsonMessage.getString("name"));
-                event.setCompany(jsonMessage.getString("company"));
-                event.setDescription(jsonMessage.getString("description"));
-                event.setTags(jsonMessage.getString("tags"));
-                try {
-                    Date data_inicio = sdf.parse(jsonMessage.getString("data_inicio"));
-                    event.setDatestart(data_inicio);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    Date data_fim = sdf.parse(jsonMessage.getString("data_fim"));
-                    event.setDateend(data_fim);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                event.setSchedule(jsonMessage.getString("schedule"));
-                event.setPoster(jsonMessage.getString("poster"));
-                event.setPrices(jsonMessage.getString("prices"));
-                event.setLocation(jsonMessage.getString("location"));
-                event.setCity(jsonMessage.getString("city"));
-                eventService.saveEvent(event);
-                break;
+                    event.setCompany(eventJson.getString("company"));
 
-            case "company_created":
-                Company company = new Company();
-                company.setName(jsonMessage.getString("name"));
-                company.setCategory(jsonMessage.getString("category"));
-                companyService.saveCompany(company);
-                break;
-            default:
-                System.err.println("Couldn't read message type.");
-                break;
+                    if (eventJson.has("tags") && eventJson.get("tags") instanceof JSONArray) {
+                        JSONArray tagsArray = eventJson.getJSONArray("tags");
+                        List<String> tags = new ArrayList<>();
+                        for (int i = 0; i < tagsArray.length(); i++) {
+                            tags.add(tagsArray.getString(i));
+                        }
+                        String tagsString = String.join(", ", tags);
+                        event.setTags(tagsString);
+                    }
+
+                    event.setDescription(eventJson.getString("description"));
+
+                    try {
+                        Date data_inicio = sdf.parse(eventJson.getString("data_inicio"));
+                        event.setDatestart(data_inicio);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        String data_inicio_str = eventJson.getString("data_inicio");
+                        Date data_inicio = "NULL".equals(data_inicio_str) ? null : sdf.parse(data_inicio_str);
+                        event.setDatestart(data_inicio);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    event.setSchedule(eventJson.getString("schedule"));
+
+                    event.setPoster(eventJson.getString("poster"));
+
+                    JSONObject pricesJson = eventJson.getJSONObject("prices");
+                    List<String> pricesList = new ArrayList<>();
+                    for (String key : pricesJson.keySet()) {
+                        String priceEntry = key + ": " + pricesJson.getInt(key);
+                        pricesList.add(priceEntry);
+                    }
+                    String pricesString = String.join(", ", pricesList);
+                    event.setPrices(pricesString);
+
+                    event.setLocation(eventJson.getString("location"));
+
+                    event.setCity(eventJson.getString("city"));
+
+                    eventService.saveEvent(event);
+                    System.out.println("EVENT ADDED!");
+                    break;
+
+                case "company_created":
+                    JSONObject companyJson = jsonMessage.getJSONObject("company");
+                    Company company = new Company();
+                    company.setName(companyJson.getString("name"));
+                    company.setCategory(companyJson.getString("categories"));
+                    companyService.saveCompany(company);
+                    System.out.println("COMPANY ADDED!");
+                    break;
+                default:
+                    System.err.println("Couldn't read message type.");
+                    break;
+            }
+
+        } else {
+            System.err.println("A chave 'type' não está presente ou não é uma string.");
         }
     }
 }
