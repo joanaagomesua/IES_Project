@@ -10,7 +10,7 @@ class Event (object):
         self.poster = poster # string
         # children, adults, seniors, students, family
         self.prices = prices #hashmap
-        self.location = location # list x,y
+        self.location = location 
         self.city = city
         self.duration = duration 
     
