@@ -29,6 +29,7 @@ services:
     restart: on-failure
     links:
       - rabbitmq
+      - mysql
     networks:
       - agenda_saramago_network
 
@@ -40,7 +41,7 @@ services:
       - "5173:5173"
     stdin_open: true
     depends_on:
-      - rabbitmq
+      - web
     restart: unless-stopped
     image: agendasaramago-frontend
     networks:
@@ -53,6 +54,7 @@ services:
     restart: on-failure
     depends_on:
       - rabbitmq
+      - mysql
     ports:
       - 5001:8080
     environment:
