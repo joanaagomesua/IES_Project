@@ -23,7 +23,7 @@ public class EventService {
     }
 
     //fazer handle das exceptions depois ---> esta primeira é só para não dar erros enquanto não criarmos as classes de exceptions
-    public Event getEventById(long id) {
+    public Event getEventById(int id) {
         Optional<Event> optionalEvent = eventRepository.findById(id);
         return optionalEvent.orElse(null);
     }
@@ -45,7 +45,7 @@ public class EventService {
     }
 
     public Event updateEvent(Event event) {
-        Optional<Event> eventToUpdateOptional = eventRepository.findById((long) event.getId());
+        Optional<Event> eventToUpdateOptional = eventRepository.findById((int) event.getId());
         if (eventToUpdateOptional.isPresent()) {
             Event event_to_update = eventToUpdateOptional.get();
             event_to_update.setName(event.getName());

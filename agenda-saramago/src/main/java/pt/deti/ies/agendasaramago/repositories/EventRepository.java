@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Date;
 
 
-public interface EventRepository extends JpaRepository<Event, Long> { //add other methods later
+public interface EventRepository extends JpaRepository<Event, Integer> { //add other methods later
     public List<Event> findByTags(String tags);
     public List<Event> findByCity(String city);
     public List<Event> findByCompany(String company);

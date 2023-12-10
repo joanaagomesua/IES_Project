@@ -26,9 +26,8 @@ public class EventController {
     @Autowired
     private EventService eventService;
 
-    // GET METHODS ----> only the first one is needed for this iteration
     @GetMapping("/{id}")
-    ResponseEntity<Event> getEventByID(@PathVariable(value = "id") Long id){
+    ResponseEntity<Event> getEventByID(@PathVariable(value = "id") int id){
         return ResponseEntity.ok().body(eventService.getEventById(id));
     }
 
