@@ -44,9 +44,9 @@ def main(limit):
         counter += 1
         messages = simulatorEvent.run()
         json_data = json.dumps(messages)
-        # sender.send(json_data)
-        print(json_data)
         
+        print(json_data)
+        # sender.send(json_data)        
         # for m in messages:
         #     sender.send(m)
 
