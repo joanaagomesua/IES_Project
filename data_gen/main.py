@@ -1,39 +1,41 @@
 from time import sleep
 import sys
-import requests
 import json
 
 from simulator import *
-# MONGO_HOST = "mongodb"
-# MONGO_PORT = 27017
-API_URL_EVENT = "localhost:8080/api/event"
-API_URL_COMPANY = "localhost:8080/api/company"
+# from communication import *
 
+COMPANIES_JSON = "data/companies.json"
 
 def main(limit):
     
-    simulatorCompany = Company_Simulator()
-    
     simulatorEvent = Event_Simulator()
+    
+    # sender = Sender()
     
     if limit:
         limit = int(limit)
     else:
         limit = 0
-        
-    headers = {
-        "Content-Type": "application/json"
-    }
     
-    # receiver = Receiver()
+    # receiver = Receiver()Company
     # sender = Sender()
 
+    try:
+        with open(COMPANIES_JSON, 'r') as f:
+            data = json.load(f)
+    except:
+        print('Error opening {} file. Exiting...'.format(COMPANIES_JSON))
+        exit(1)
     
+
     # Companies
-    messages = simulatorCompany.run()
-    print(messages)
-    json_data = json.dumps(messages)
-    requests.post(API_URL_COMPANY, data=json_data, headers=headers)
+    for key, value in data.items():
+        company = Company(key, value[0])
+        simulatorEvent.add_company(company)
+        json_data = json.dumps({'type': 'company_criated', 'company': company.toDic()})
+        print(json_data)
+        # sender.send(json_data)
 
     
     counter = 0
@@ -42,9 +44,9 @@ def main(limit):
         counter += 1
         messages = simulatorEvent.run()
         json_data = json.dumps(messages)
-        requests.post(API_URL_EVENT, data=json_data, headers=headers)
-        print(messages)
         
+        print(json_data)
+        # sender.send(json_data)        
         # for m in messages:
         #     sender.send(m)
 

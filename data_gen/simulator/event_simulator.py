@@ -1,4 +1,3 @@
-from pymongo import MongoClient
 import json
 from simulator import Event, Company
 from faker import Faker
@@ -7,38 +6,12 @@ import random
 
 TAGS_JSON = "data/tags.json"
 DESC_JSON = "data/desc.json"
+CITIES_JSON = "data/cities.json"
 
 class Event_Simulator():
     def __init__(self):
-
-        # try:
-        #     connstr = 'mongodb://' + self.host + ':' + str(self.port) + '/'
-        #     self.client = MongoClient(connstr)
-        # except:
-        #     print('Connection to mongo container failed. Exiting.')
-        #     exit(1)
-
-        # self.db = self.client['------']
-        
-        
-        # # Buscando as companies da base de dados
-        # company_data = [a for a in self.db['company'].find()]
         
         self.companies = []
-        # for company in company_data:
-        #     name = company['name']
-        #     self.companies.append(Company(id, name))
-            
-        self.companies.append(Company('Dance company', ['Dança']))
-        self.companies.append(Company('Theater company', ['Teatro']))
-        self.companies.append(Company('Music company', ['Música']))
-        self.companies.append(Company('Literature company', ['Leitura e Literatura']))
-        self.companies.append(Company('Art company', ['Artes Visuais']))
-        self.companies.append(Company('Cinema company', ['Cinema e Vídeo']))
-        self.companies.append(Company('Gastronomy company', ['Gastronomia']))
-        self.companies.append(Company('Profissional Development company', ['Carreira e Desenvolvimento Profissional']))
-        self.companies.append(Company('Education company', ['Educação e Aprendizado']))
-        self.companies.append(Company('Culture company', ['Cultura e Lazer']))
         
         
     def create_event(self):
@@ -48,9 +21,17 @@ class Event_Simulator():
         
         # gerar a categoria e tags
         tags = self.loadfile(TAGS_JSON)
-        category = random.choice(company.categories)
+        category = company.categories
         num_tags = random.randint(1, 3)
         tags = [category] + random.sample(tags[category], k=num_tags)
+        
+        
+        cities = self.loadfile(CITIES_JSON)
+        distritos = cities["distritos de portugal"]
+
+        # Escolha um distrito aleatório
+        city = random.choice(distritos)
+        
         
         # nome evento
         name = random.choice(tags) + " by " + Faker().name()
@@ -121,7 +102,7 @@ class Event_Simulator():
         else: 
             data_fim_form = "NULL"
         
-        event = Event(name, company, description, tags, data_inicio_form, data_fim_form, schedule, poster, prices, location, xy_location, duration)
+        event = Event(name, company, description, tags, data_inicio_form, data_fim_form, schedule, poster, prices, location, city, duration)
         print('Event simulator finished.')  
         return {'type': 'event_criated', 'event': event.toDic()}
 
@@ -138,7 +119,10 @@ class Event_Simulator():
                 exit(1)
             
             return data
-        
+
+    def add_company(self, company):
+        self.companies.append(company)
+    
 if __name__ == '__main__':
     es = Event_Simulator()
     es.run()

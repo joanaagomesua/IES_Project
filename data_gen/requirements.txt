@@ -4,4 +4,3 @@ random
 pika
 sys
 json
-requests
