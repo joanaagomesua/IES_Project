@@ -30,19 +30,4 @@ public class CompanyService {
         return companyRepository.save(company);
     }
 
-    public Company updateCompany(Company company) {
-        Optional<Company> companyToUpdateOptional = companyRepository.findByName(company.getName());
-        if (companyToUpdateOptional.isPresent()) {
-            Company company_to_update = companyToUpdateOptional.get();
-            company_to_update.setName(company.getName());
-            company_to_update.setType(company.getType());
-            return companyRepository.save(company_to_update);
-        } else {
-            return null;
-        }
-    }
-
-
-
-
 }

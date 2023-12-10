@@ -28,8 +28,8 @@ public class EventService {
         return optionalEvent.orElse(null);
     }
 
-    public List<Event> getEventByTag(String tag){
-        return eventRepository.findByTag(tag);
+    public List<Event> getEventByTags(String tags){
+        return eventRepository.findByTags(tags);
     }
 
     public List<Event> getEventByCity(String city) {
@@ -40,8 +40,8 @@ public class EventService {
         return eventRepository.findByCompany(company);
     }
 
-    public List<Event> getEventByDate(Date date) {
-        return eventRepository.findByDate(date);
+    public List<Event> getEventByDateStart(Date date) {
+        return eventRepository.findByDatestart(date);
     }
 
     public Event updateEvent(Event event) {
@@ -52,7 +52,8 @@ public class EventService {
             event_to_update.setCompany(event.getCompany());
             event_to_update.setDescription(event.getDescription());
             event_to_update.setTags(event.getTags());
-            event_to_update.setDate_start(event.getDate_start());
+            event_to_update.setDatestart(event.getDatestart());
+            event_to_update.setDateend(event.getDateend());
             event_to_update.setSchedule(event.getSchedule());
             event_to_update.setPoster(event.getPoster());
             event_to_update.setPrices(event.getPrices());

@@ -2,7 +2,6 @@ package pt.deti.ies.agendasaramago.controllers;
 
 import pt.deti.ies.agendasaramago.models.Event;
 import pt.deti.ies.agendasaramago.services.EventService;
-import pt.deti.ies.agendasaramago.communication.Sender;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,30 +26,21 @@ public class EventController {
     @Autowired
     private EventService eventService;
 
-    @Autowired
-    private Sender sender;
-
     // GET METHODS ----> only the first one is needed for this iteration
     @GetMapping("/{id}")
     ResponseEntity<Event> getEventByID(@PathVariable(value = "id") Long id){
         return ResponseEntity.ok().body(eventService.getEventById(id));
     }
 
-    @GetMapping("/{tag}")
-    ResponseEntity <List<Event>> getEventsByTag(@PathVariable(value = "tag") String tag){
-        return ResponseEntity.ok().body(eventService.getEventByTag(tag));
+    @GetMapping("/{tags}")
+    ResponseEntity <List<Event>> getEventsByTags(@PathVariable(value = "tags") String tags){
+        return ResponseEntity.ok().body(eventService.getEventByTags(tags));
     }
 
     //PUT METHODS -----> not needed, adiantado
     //create new event
     @PostMapping("")
     ResponseEntity<Event>createEvent(@RequestBody Event event){
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name", "teste");
-        jsonObject.put("msg", "OLAAA");
-
-        // Envie o objeto JSON
-        sender.send(jsonObject);
         return ResponseEntity.ok().body(eventService.saveEvent(event));
     }
 

@@ -10,8 +10,8 @@ import java.util.Date;
 
 
 public interface EventRepository extends JpaRepository<Event, Long> { //add other methods later
-    public List<Event> findByTag(String tag);
+    public List<Event> findByTags(String tags);
     public List<Event> findByCity(String city);
     public List<Event> findByCompany(String company);
-    public List<Event> findByDate(Date date); //ideia é selecionar a data através de um calendário, that's why im using Date type
+    public List<Event> findByDatestart(Date datestart); //ideia é selecionar a data através de um calendário, that's why im using Date type
 }
