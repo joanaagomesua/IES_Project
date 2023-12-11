@@ -10,6 +10,7 @@ import Favourites from './pages/favourites.jsx';
 import Home from './pages/home.jsx';
 import Login from './pages/login.jsx';
 import Register from './pages/register.jsx';
+import Event_search_page from './pages/event_search_page.jsx';
 import Favicon from "react-favicon"; 
 import logo from "./assets/images/logo.png";
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/favourites" element={<Favourites />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/event_search_page" element={<Event_search_page />} />
       </Routes>
     </BrowserRouter>
   );

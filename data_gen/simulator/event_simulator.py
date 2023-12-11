@@ -103,7 +103,7 @@ class Event_Simulator():
             data_fim_form = "NULL"
         
         event = Event(name, company, description, tags, data_inicio_form, data_fim_form, schedule, poster, prices, location, city, duration)
-        print('Event simulator finished.')  
+        print('Event simulator finished.') 
         return {'type': 'event_created', 'event': event.toDic()}
 
     def run(self):
