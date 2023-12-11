@@ -32,7 +32,6 @@ def main(limit):
         company = Company(key, value[0])
         simulatorEvent.add_company(company)
         json_data = json.dumps({'type': 'company_created', 'company': company.toDic()})
-        print(json_data)
         sender.send(json_data)
 
     
@@ -43,7 +42,6 @@ def main(limit):
         messages = simulatorEvent.run()
         json_data = json.dumps(messages)
         
-        print(json_data)
         sender.send(json_data)        
         # for m in messages:
         #     sender.send(m)
