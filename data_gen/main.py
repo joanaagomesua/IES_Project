@@ -11,8 +11,6 @@ def main(limit):
     
     simulatorEvent = Event_Simulator()
     
-    sender = Sender()
-    
     if limit:
         limit = int(limit)
     else:
