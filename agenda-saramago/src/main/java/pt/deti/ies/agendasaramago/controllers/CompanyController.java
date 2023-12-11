@@ -27,17 +27,12 @@ public class CompanyController {
     private CompanyService companyService;
 
     @GetMapping("/{name}")
-    ResponseEntity<Company> getCompanyByName(@PathVariable(value = "name") String name){
+    ResponseEntity<Company> getCompanyByName(@PathVariable(value = "name") String name) {
         return ResponseEntity.ok().body(companyService.getCompanyByName(name));
     }
 
     @PostMapping("")
-    ResponseEntity<Company> createCompany(@RequestBody Company company){
+    ResponseEntity<Company> createCompany(@RequestBody Company company) {
         return ResponseEntity.ok().body(companyService.saveCompany(company));
-    }
-
-    @PutMapping("/{name}/update")
-    ResponseEntity<Company> updateCompanyInfo(@PathVariable(value = "name") String name, @RequestBody Company companyInfo) {
-        return ResponseEntity.ok().body(companyService.updateCompany(companyInfo));
     }
 }

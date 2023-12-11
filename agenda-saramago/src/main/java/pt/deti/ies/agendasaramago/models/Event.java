@@ -1,12 +1,14 @@
 package pt.deti.ies.agendasaramago.models;
 
+import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import org.springframework.data.annotation.Id;
-
+import javax.persistence.Id;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -16,32 +18,35 @@ import java.time.ZoneId;
 
 
 @Table(name= "Event")
+@Entity
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "event_id")
+    @Column(name = "id")
     private int id;
-    @Column(name = "event_name")
+    @Column(name = "name")
     private String name;
-    @Column(name = "event_company")
+    @Column(name = "company")
     private String company;
-    @Column(name = "event_description")
+    @Column(name = "description")
     private String description;
-    @Column(name = "event_tags")
+    @Column(name = "tags")
     private String tags;
-    @Column(name = "event_date_start")
-    private Date date_start;
-    @Column(name = "event_date_end")
-    private Date date_end;
-    @Column(name = "event_schedule")
+    @Column(name = "datestart")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date datestart;
+    @Column(name = "dateend")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateend;
+    @Column(name = "schedule")
     private String schedule;
-    @Column(name = "event_poster")
+    @Column(name = "poster")
     private String poster; //exemplo : "uploads/1.png"
-    @Column(name = "event_prices")
+    @Column(name = "prices")
     private String prices;
-    @Column(name = "event_location")
+    @Column(name = "location")
     private String location;
-    @Column(name = "event_city")
+    @Column(name = "city")
     private String city;
 
     public Event() {}
@@ -52,16 +57,15 @@ public class Event {
         this.company = company;
         this.description = description;
         this.tags = tags;
-        this.date_start = date_start;
-        this.date_end = date_end;
+        this.datestart = datestart;
+        this.dateend = dateend;
         this.schedule = schedule;
         this.poster = poster;
         this.prices = prices;
         this.location = location;
         this.city = city;
     }
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     public int getId() {
         return this.id;
     }
@@ -102,16 +106,19 @@ public class Event {
         this.tags = tags;
     }
 
-    public Date getDate_start() {
-        return date_start;
+    public Date getDatestart() {
+        return datestart;
     }
 
-    public void setDate_start(Date date_start) {
-        this.date_start = date_start;
+    public void setDatestart(Date datestart) {
+        this.datestart = datestart;
     }
 
-    public void setDate_end(Date date_end) {
-        this.date_end = date_end;}
+    public Date getDateend() {
+        return dateend;
+    }
+    public void setDateend(Date dateend) {
+        this.dateend = dateend;}
 
     public String getSchedule() {
         return schedule;
@@ -165,8 +172,8 @@ public class Event {
                 ", company='" + this.company + '\'' +
                 ", description='" + this.description + '\'' +
                 ", tags='" + this.tags + '\'' +
-                ", date_start=" + this.date_start +
-                ", date_end=" + this.date_end +
+                ", datestart=" + this.datestart +
+                ", dateend=" + this.dateend +
                 ", schedule='" + this.schedule + '\'' +
                 ", poster='" + this.poster + '\'' +
                 ", prices='" + this.prices + '\'' +

@@ -23,13 +23,13 @@ public class EventService {
     }
 
     //fazer handle das exceptions depois ---> esta primeira é só para não dar erros enquanto não criarmos as classes de exceptions
-    public Event getEventById(long id) {
+    public Event getEventById(int id) {
         Optional<Event> optionalEvent = eventRepository.findById(id);
         return optionalEvent.orElse(null);
     }
 
-    public List<Event> getEventByTag(String tag){
-        return eventRepository.findByTag(tag);
+    public List<Event> getEventByTags(String tags){
+        return eventRepository.findByTags(tags);
     }
 
     public List<Event> getEventByCity(String city) {
@@ -40,19 +40,20 @@ public class EventService {
         return eventRepository.findByCompany(company);
     }
 
-    public List<Event> getEventByDate(Date date) {
-        return eventRepository.findByDate(date);
+    public List<Event> getEventByDateStart(Date date) {
+        return eventRepository.findByDatestart(date);
     }
 
     public Event updateEvent(Event event) {
-        Optional<Event> eventToUpdateOptional = eventRepository.findById((long) event.getId());
+        Optional<Event> eventToUpdateOptional = eventRepository.findById((int) event.getId());
         if (eventToUpdateOptional.isPresent()) {
             Event event_to_update = eventToUpdateOptional.get();
             event_to_update.setName(event.getName());
             event_to_update.setCompany(event.getCompany());
             event_to_update.setDescription(event.getDescription());
             event_to_update.setTags(event.getTags());
-            event_to_update.setDate_start(event.getDate_start());
+            event_to_update.setDatestart(event.getDatestart());
+            event_to_update.setDateend(event.getDateend());
             event_to_update.setSchedule(event.getSchedule());
             event_to_update.setPoster(event.getPoster());
             event_to_update.setPrices(event.getPrices());

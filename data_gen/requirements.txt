@@ -1,7 +1,2 @@
-pymongo
 faker
-random
 pika
-sys
-json
-requests
