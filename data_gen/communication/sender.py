@@ -30,8 +30,7 @@ class Sender():
         if self.connection_instance:
             self.connection_instance.close()
     
-    def send(self, msg):        
-        message = json.dumps(msg)
+    def send(self, message):
         self.channel.basic_publish(exchange=self.exchange, routing_key=self.routing_key, body=message)
         print(f'Message sent: {message}')
 
