@@ -1,27 +1,49 @@
 package pt.deti.ies.agendasaramago.models;
 
+import pt.deti.ies.agendasaramago.models.Event;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.CascadeType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 import java. util.*;
 
 @Entity
 @Table(name="Company")
 public class Company {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "comp_id")
+    private int id;
+
     @Column(name = "comp_name")
     private String name;
     @Column(name = "comp_category")
     private String category;
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    private List<Event> events = new ArrayList<>();
 
     public Company() {
     }
 
-    public Company(String name, String category) {
+    public Company(int id, String name, String category) {
+        this.id = id;
         this.name = name;
-        this.category= category;
+        this.category = category;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -40,9 +62,10 @@ public class Company {
         this.category = category;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    @Override
+    public String toString() {
         return "Company{" +
+                "id='" + this.id + '\'' +
                 "name='" + this.name + '\'' +
                 ", category='" + this.category + '\'' +
                 '}';

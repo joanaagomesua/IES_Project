@@ -12,11 +12,11 @@ import pt.deti.ies.agendasaramago.models.Company;
 import pt.deti.ies.agendasaramago.models.Event;
 
 
-public interface CompanyRepository extends JpaRepository<Company, String> {
+public interface CompanyRepository extends JpaRepository<Company, Integer> {
     public Optional<Company> findByName(String name);
     public List<Company> findByCategory(String category);
-    @Query("SELECT e.name, e.description FROM Event e JOIN Company c ON e.company = c.name WHERE c.name = :companyName")
-    public List<Event> findAllEventsFromCompany(@Param("companyName") String companyName);
+    //@Query("SELECT e.name, e.description FROM Event e JOIN Company c ON e.company = c.name WHERE c.name = :companyName")
+    //public List<Event> findAllEventsFromCompany(@Param("companyName") String companyName);
 
 
 }

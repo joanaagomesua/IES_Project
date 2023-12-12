@@ -17,9 +17,14 @@ public class CompanyService {
     @Autowired
     private CompanyRepository companyRepository;
 
-    public Company getCompanyByName(String name){
-        Optional<Company> optionalCompany = companyRepository.findByName(name);
-        return optionalCompany.orElse(null);
+    public Company getCompanyById(int companyId) {
+        Optional<Company> companyOptional = companyRepository.findById(companyId);
+        return companyOptional.orElse(null);
+    }
+
+    public Company getCompanyByName(String companyName) {
+        Optional<Company> companyOptional = companyRepository.findByName(companyName);
+        return companyOptional.orElse(null);
     }
 
     public List<Company> getAllEvents() {
