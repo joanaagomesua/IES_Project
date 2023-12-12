@@ -2,6 +2,7 @@ package pt.deti.ies.agendasaramago.services;
 
 import pt.deti.ies.agendasaramago.repositories.EventRepository;
 import pt.deti.ies.agendasaramago.models.Event;
+import pt.deti.ies.agendasaramago.models.Company;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,7 @@ public class EventService {
         return eventRepository.findByCity(city);
     }
 
-    public List<Event> getEventByCompany(String company) {
+    public List<Event> getEventByCompany(Company company) {
         return eventRepository.findByCompany(company);
     }
 

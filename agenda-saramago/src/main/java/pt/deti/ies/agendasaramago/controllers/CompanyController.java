@@ -26,9 +26,9 @@ public class CompanyController {
     @Autowired
     private CompanyService companyService;
 
-    @GetMapping("/{name}")
-    ResponseEntity<Company> getCompanyByName(@PathVariable(value = "name") String name) {
-        return ResponseEntity.ok().body(companyService.getCompanyByName(name));
+    @GetMapping("/{id}")
+    ResponseEntity<Company> getCompanyByName(@PathVariable(value = "id") int id) {
+        return ResponseEntity.ok().body(companyService.getCompanyById(id));
     }
 
     @PostMapping("")
