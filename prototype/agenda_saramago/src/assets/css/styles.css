@@ -27,7 +27,6 @@
 }
 
 .DirectionsMap {
-  background-color: brown;
   height: 100%;
   width: 100%;
 
@@ -43,3 +42,14 @@
   align-items: center;
   min-width: 200px;
 }
+
+.filter-button {
+  background-color: #a7c7eb;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 30px 0px 0px 30px ;
+}
+

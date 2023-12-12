@@ -50,7 +50,7 @@ function event_page(){
                         </p>
                     </div>
                     <div className='font-poppins'>
-                        <h2 className='font-bold mb-2'>Tags:</h2>
+                        <h2 className='font-bold mb-2'>Filtros:</h2>
                         <div className="box-border h-20 w-full p-4 border-2 border-black border-opacity-10">
                             <div className='flex space-x-2'>
                                 <div className="rounded-full bg-slate-200 bg-opacity-100 p-2">
@@ -123,8 +123,7 @@ function event_page(){
                 </div>
                 </div>
                 <div className='w-full md:w-1/3 flex flex-col order-3'>
-                    <h2 className='font-poppins font-bold'>Location</h2>
-                    <Map  width="560px" height="390px"/>
+                    
                 </div>
             </div>
         </div>
