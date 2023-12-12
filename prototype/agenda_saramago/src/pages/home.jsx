@@ -1,6 +1,5 @@
 import React from 'react';
 import Map from '../components/map.jsx';
-import Event from '../components/event.jsx';
 import { useState } from "react";
 import { SearchBar } from "../components/SearchBar.jsx";
 import { SearchResultsList } from "../components/SearchResultsList.jsx";
@@ -23,7 +22,6 @@ function Home() {
             <Map/>
           </div>
       
-        <Event />
     </div>
   );
 }

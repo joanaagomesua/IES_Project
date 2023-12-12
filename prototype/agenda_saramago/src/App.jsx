@@ -22,14 +22,15 @@ function App() {
     <Favicon url={faviconUrl} /> 
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/event_page" element={<Event_page />} />
-        <Route path="/my_tickets" element={<My_tickets />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/favourites" element={<Favourites />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/event_search_page" element={<Event_search_page />} />
+          <Route path="/" element={<Home />}/>
+          <Route path="/event_page" element={<Event_page />} />
+          <Route path="/my_tickets" element={<My_tickets />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/favourites" element={<Favourites />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/event_search_page" element={<Event_search_page />} />
+        
       </Routes>
     </BrowserRouter>
   );
