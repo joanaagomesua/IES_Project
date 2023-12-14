@@ -35,6 +35,8 @@ public class Event {
     private String description;
     @Column(name = "tags")
     private String tags;
+    @Column(name = "duration")
+    private int duration;
     @Column(name = "datestart")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datestart;
@@ -54,12 +56,13 @@ public class Event {
 
     public Event() {}
 
-    public Event(int id, String name, Company company, String description, String tags, Date date_start, Date date_end, String schedule, String poster, String prices, String location, String city){
+    public Event(int id, String name, Company company, String description, String tags,int duration, Date date_start, Date date_end, String schedule, String poster, String prices, String location, String city){
         this.id = id;
         this.name = name;
         this.company = company;
         this.description = description;
         this.tags = tags;
+        this.duration= duration;
         this.datestart = datestart;
         this.dateend = dateend;
         this.schedule = schedule;
@@ -69,6 +72,7 @@ public class Event {
         this.city = city;
     }
 
+    
     public int getId() {
         return this.id;
     }
@@ -175,6 +179,7 @@ public class Event {
                 ", company='" + this.company + '\'' +
                 ", description='" + this.description + '\'' +
                 ", tags='" + this.tags + '\'' +
+                ", duration=" + this.duration +
                 ", datestart=" + this.datestart +
                 ", dateend=" + this.dateend +
                 ", schedule='" + this.schedule + '\'' +
@@ -183,6 +188,14 @@ public class Event {
                 ", location='" + this.location + '\'' +
                 ", city='" + this.city + '\'' +
                 '}';
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
 }

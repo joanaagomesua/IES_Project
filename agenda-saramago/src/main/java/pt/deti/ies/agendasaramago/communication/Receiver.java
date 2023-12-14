@@ -90,6 +90,8 @@ public class Receiver {
 
                         event.setCity(eventJson.getString("city"));
 
+                        event.setDuration(eventJson.getInt("duration"));
+
                         eventService.saveEvent(event);
                         System.out.println("EVENT ADDED!");
                         break;
