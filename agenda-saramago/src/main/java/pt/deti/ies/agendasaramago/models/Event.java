@@ -1,6 +1,8 @@
 package pt.deti.ies.agendasaramago.models;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,8 +28,9 @@ public class Event {
     private int id;
     @Column(name = "name")
     private String name;
-    @Column(name = "company")
-    private String company;
+    @ManyToOne
+    @JoinColumn(name = "company_id", referencedColumnName = "comp_id")
+    private Company company;
     @Column(name = "description")
     private String description;
     @Column(name = "tags")
@@ -51,7 +54,7 @@ public class Event {
 
     public Event() {}
 
-    public Event(int id, String name, String company, String description, String tags, Date date_start, Date date_end, String schedule, String poster, String prices, String location, String city){
+    public Event(int id, String name, Company company, String description, String tags, Date date_start, Date date_end, String schedule, String poster, String prices, String location, String city){
         this.id = id;
         this.name = name;
         this.company = company;
@@ -82,11 +85,11 @@ public class Event {
         this.name = name;
     }
 
-    public String getCompany() {
+    public Company getCompany() {
         return company;
     }
 
-    public void setCompany(String company) {
+    public void setCompany(Company company) {
         this.company = company;
     }
 

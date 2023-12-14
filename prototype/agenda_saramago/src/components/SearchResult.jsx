@@ -1,13 +1,13 @@
 import React from 'react';
-import "../assets/css/SearchResult.css";
+import '../assets/css/SearchResult.css';
 
-export const SearchResult = ({ result }) => {
+export const SearchResult = ({ result, onSelect }) => {
   return (
     <div
       className="search-result"
-      onClick={(e) => alert(`You selected ${result}!`)}
+      onClick={() => onSelect(result)}
     >
-      {result}
+      {result.name}
     </div>
   );
 };

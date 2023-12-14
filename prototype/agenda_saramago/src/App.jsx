@@ -30,6 +30,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/event_search_page" element={<Event_search_page />} />
+
       </Routes>
     </BrowserRouter>
   );

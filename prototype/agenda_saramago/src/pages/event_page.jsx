@@ -156,7 +156,44 @@ function event_page() {
                                 <Map  width="560px" height="390px"/>
                             </div>
                         </div>
-        )
+                    </div>
+                    <div className='mt-4 mb-4'>
+                    <h2 className='font-bold text-2xl mt-4 mb-2'>Date</h2>
+                        <p>20 de novembro de 2023</p>
+                        <h2 className='font-bold text-2xl mt-4 mb-2'>Schedule</h2>
+                        <p>15:30</p>
+                        <h2 className='font-bold text-2xl mt-4 mb-2'>Duration</h2>
+                        <p>50 minutos</p>
+
+                    </div>
+                </div>
+            </div>
+            <div className='flex h-auto bg-yellow-200 flex-col-reverse md:flex-row sm:flex-col'>
+            <div className='flex flex-col w-full md:w-2/3'>
+            <h1 className='font-poppins font-bold text-3xl mb-4'>Similar Events</h1>
+            <div className='flex items-start space-x-10'>
+              <div>
+                <h3 className='font-poppins text-2xl mb-2'>For kids...</h3>
+                <CarouselWithContent/>
+              </div>
+              <div className='border-l border-gray-500 pl-4'>
+                <div className='ml-6'>
+                    <h3 className='font-poppins text-2xl mb-2'>For theatre lovers...</h3>
+                    <CarouselWithContent />
+                </div>
+              </div>
+              <div className='border-l border-gray-500 pl-4'>
+                <div className='ml-6'>
+                <h3 className='font-poppins text-2xl mb-2'>Fantasy...</h3>
+                <CarouselWithContent/>
+                </div>
+              </div>
+                </div>
+                </div>
+                <div className='w-full md:w-1/3 flex flex-col order-3'>
+                    
+                </div>
+            </div>
         </div>
     );
     }
