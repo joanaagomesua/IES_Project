@@ -7,10 +7,10 @@ services:
     ports:
       - 3306:3306
     environment:
-      MYSQL_ROOT_PASSWORD: ies_agenda_2023
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: agenda_saramago
-      MYSQL_USER: user1
-      MYSQL_PASSWORD: ies_agenda_2023
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
     networks:
       - agenda_saramago_network
 
@@ -20,6 +20,9 @@ services:
     ports:
       - "5672:5672"
       - "15673:15673"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
     networks:
       - agenda_saramago_network
 
@@ -32,7 +35,6 @@ services:
       - mysql
     networks:
       - agenda_saramago_network
-
 
   reactclient:
     build: ./prototype/agenda_saramago
@@ -61,14 +63,17 @@ services:
       - SERVER_PORT=8080
       - SPRING_PROFILES_ACTIVE=prod
       - SPRING_APPLICATION_NAME=agenda_saramago
-      - SPRING_DATA_MYSQL_AUTHENTICATION_DATABASE=agenda_saramago
-      - SPRING_DATA_MYSQL_AUTO_INDEX_CREATION=true
-      - SPRING_DATA_MYSQL_HOST=mysql
-      - SPRING_DATA_MYSQL_PORT=3306
-      - SPRING_DATA_MYSQL_USERNAME=user1
-      - SPRING_DATA_MYSQL_PASSWORD=user1
-      - SPRING_DATA_MYSQL_DATABASE=agenda_saramago
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/agenda_saramago
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_DATASOURCE_HIBERNATE_DIALECT=org.hibernate.dialect.MySQL8Dialect
+      - SPRING_JPA_SHOW_SQL=true
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_RABBITMQ_PORT=5672
+      - SPRING_RABBITMQ_USERNAME=guest
+      - SPRING_RABBITMQ_PASSWORD=guest
     networks:
       - agenda_saramago_network
     

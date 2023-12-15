@@ -11,13 +11,13 @@ import karate from '../assets/images/karate.png';
 
 function my_tickets() {
   const cardData = [
-    { title: 'Campeonato Karaté', content: 'Participa num emocionante campeonato de Karaté, onde poderás demonstrar as tuas habilidades marciais e competir com outros talentosos praticantes de Karaté.', imageSrc: karate },
-    { title: 'Dança Contemporanea', content: 'Deixa-te envolver pela expressão artística da dança contemporânea. Testemunha performances únicas e inovadoras que transcendem os limites tradicionais da dança.', imageSrc: dance},
-    { title: 'Feira de Queijos e Vinhos', content: 'Desfruta de uma experiência gastronómica única na Feira de Queijos e Vinhos. Descobre a combinação perfeita entre diferentes tipos de queijos e vinhos requintados.', imageSrc: vinho},
-    { title: 'Festival de Cinema', content: 'Imersa-te no mundo cinematográfico através do Festival de Cinema. Desfruta de uma seleção diversificada de filmes, desde dramas a comédias.', imageSrc: cinema },
-    { title: 'Festival de Teatro', content: 'Deixa-te levar pela magia do teatro no Festival de Teatro. Assiste a performances cativantes, dramáticas e divertidas.', imageSrc: teatro },
-    { title: 'Clube de Leitura "Entre Páginas"', content: '"Entre Páginas" é mais do que um clube de leitura; é um refúgio para amantes da literatura.', imageSrc: livro},
-    { title: 'Feira Antiguidades', content: 'Explora a história através da Feira de Antiguidades, onde cada objeto conta uma história única.', imageSrc: antiques},
+    { title: 'Campeonato Karaté', data: '2023-12-28T00:00:00.000+00:00', hora: '15:30', city:'Coimbra', location:'Pavilhão MultiDesportivo',price:'10', imageSrc: karate },
+    { title: 'Dança Contemporanea', data:'2023-12-16T00:00:00.000+00:00', hora: '18:30', city:'Aveiro', location:'Teatro Aveirense',price:'2', imageSrc: dance},
+    { title: 'Feira de Queijos e Vinhos', data:'2024-01-23T00:00:00.000+00:00', hora:'02:30', city:'Espinho', location:'Praça dos Anjos', price:'4', imageSrc: vinho},
+    { title: 'Festival de Cinema', data:'2024-02-23T00:00:00.000+00:00', hora:'16:43', city:'Lisboa', location:'Praceta Eliloi',price:'9', imageSrc: cinema },
+    { title: 'Festival de Teatro',data:'2024-02-27T00:00:00.000+00:00', hora:'12:12', city:'Porto', location:'Teatro Sá', price:'1', imageSrc: teatro },
+    { title: 'Clube de Leitura "Entre Páginas"',data:'2024-02-27T00:00:00.000+00:00', hora:'09:00', city:'Viseu', location:'Casa da Maria', price:'0', imageSrc: livro},
+    { title: 'Feira Antiguidades',data:'2024-03-02T00:00:00.000+00:00', hora:'14:30', city:'Leiria', location:'Prça Rodrigues Lobo',price:'27,5', imageSrc: antiques},
   ];
 
   return (
@@ -27,7 +27,7 @@ function my_tickets() {
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap:'20px' }}>
         {cardData.map((event, index) => (
-          <Card key={index} title={event.title} content={event.content} imageSrc={event.imageSrc} />
+          <Card key={index} title={event.title} data={event.data} hora={event.hora} city={event.city} location={event.location} price={event.price}/>
         ))}
       </div>
     </div>
