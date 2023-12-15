@@ -3,7 +3,7 @@ package pt.deti.ies.agendasaramago.communication;
 import pt.deti.ies.agendasaramago.exceptions.ResourceNotFoundException;
 import org.json.JSONObject;
 import org.json.JSONArray;
-import java.util.Date;
+
 import java.util.*;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
@@ -43,9 +43,8 @@ public class Receiver {
 
                         event.setName(eventJson.getString("name"));
 
-                        String companyName = eventJson.getString("company");
-                        Company company = companyService.getCompanyByName(companyName);
-                        event.setCompany(company);
+                        event.setCompany(eventJson.getString("company"));
+
 
                         if (eventJson.has("tags") && eventJson.get("tags") instanceof JSONArray) {
                             JSONArray tagsArray = eventJson.getJSONArray("tags");
@@ -91,6 +90,8 @@ public class Receiver {
                         event.setCity(eventJson.getString("city"));
 
                         event.setDuration(eventJson.getInt("duration"));
+
+                        event.setSeats(eventJson.getInt("seats"));
 
                         eventService.saveEvent(event);
                         System.out.println("EVENT ADDED!");
