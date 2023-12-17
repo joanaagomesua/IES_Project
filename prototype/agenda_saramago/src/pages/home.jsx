@@ -3,6 +3,7 @@ import Map from '../components/map.jsx';
 import { useState } from "react";
 import { SearchBar } from "../components/SearchBar.jsx";
 import { SearchResultsList } from "../components/SearchResultsList.jsx";
+import Carousel from '../components/carousel.jsx';
 
 function Home() {
 
@@ -14,15 +15,9 @@ function Home() {
         <SearchBar setResults={setResults} />
         {results && results.length > 0 && <SearchResultsList results={results} />}
       </div>
-      <div className="card w-96 bg-base-100 shadow-xl">
-        <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-        <div className="card-body">
-          <h2 className="card-title">Shoes!</h2>
-          <p>If a dog chews shoes whose shoes does he choose?</p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-base-100">Buy Now</button>
-          </div>
-        </div>
+      <div className="carousel-container" class="mt-16 mr-40 mb-16 ml-40 ">
+        < h2> Close to you </h2>
+        <Carousel />
       </div>
 
           {/* <div className='w-1/3 h-{400px}  bg-bluepers'></div> */}

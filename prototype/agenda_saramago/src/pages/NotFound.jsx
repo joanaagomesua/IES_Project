@@ -7,16 +7,16 @@ const NotFound = () => {
         <img src="/src/assets/images/404.jpg" width="800vw" height="800vh"/>
 
         <p class="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-          Uh-oh!
+          Uups!
         </p>
 
-        <p class="mt-4 text-black">Looks like you travelled too far away!</p>
+        <p class="mt-4 text-black">Parece que viajaste para demasiado longe!</p>
 
         <a
           href="/"
-          class="mt-6 inline-block rounded bg-info px-5 py-3 text-sm font-medium text-white hover:bg-indigo-500 focus:outline-none focus:ring"
+          class="mt-6 inline-block rounded bg-primary px-5 py-3 text-sm font-medium text-primary-content hover:bg-secondary focus:outline-none focus:ring"
         >
-          Go Back Home
+          Voltar para a página inicial
         </a>
       </div>
     </div>
