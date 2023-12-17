@@ -3,9 +3,32 @@ module.exports = {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
+    "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
   ],
-  plugins: [require('daisyui')],
- }
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          primary: "#a7c7eb",
 
- 
+          secondary: "#758ca4",
+
+          accent: "#a48e75",
+
+          neutral: "#ebcba7",
+
+          "base-100": "#fff6ed",
+
+          info: "#38bdf8",
+
+          success: "#22c55e",
+
+          warning: "#fbbf24",
+
+          error: "#be123c",
+        },
+      },
+    ],
+  },
+  plugins: [require("daisyui")],
+};
