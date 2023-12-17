@@ -7,6 +7,7 @@ import random
 TAGS_JSON = "data/tags.json"
 DESC_JSON = "data/desc.json"
 CITIES_JSON = "data/cities.json"
+POSTER_JSON = "data/posters.json"
 
 class Event_Simulator():
     def __init__(self):
@@ -79,9 +80,8 @@ class Event_Simulator():
         location = Faker().address()
         # xy_location = [random.uniform(-180, 180), random.uniform(-90, 90)]
         
-        poster_dic = {"Dança": "img/dance.jpg", "Teatro": "img/teatro.jpg", "Música": "img/musica.jpg", "Leitura e Literatura": "img/leitura.jpg", "Artes Visuais": "img/artes.jpg", "Cinema e Vídeo": "img/cinema.jpg", "Gastronomia": "img/gastronomia.jpg", "Carreira e Desenvolvimento Profissional": "img/carreira.jpg", "Educação e Aprendizado": "img/educacao.png", "Cultura e Lazer": "img/lazer.jpg"}
-        
-        poster = poster_dic[category]
+        posters = self.loadfile(POSTER_JSON)
+        poster = posters[category]
         
         # print todos as entradas de evento
         # print("Name: ", name)
