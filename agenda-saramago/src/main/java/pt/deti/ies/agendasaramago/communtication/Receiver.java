@@ -43,7 +43,9 @@ public class Receiver {
 
                         event.setName(eventJson.getString("name"));
 
-                        event.setCompany(eventJson.getString("company"));
+                        String companyName = eventJson.getString("company");
+                        Company company = companyService.getCompanyByName(companyName);
+                        event.setCompany(company);
 
                         if (eventJson.has("tags") && eventJson.get("tags") instanceof JSONArray) {
                             JSONArray tagsArray = eventJson.getJSONArray("tags");
@@ -94,11 +96,14 @@ public class Receiver {
 
                     case "company_created":
                         JSONObject companyJson = jsonMessage.getJSONObject("company");
-                        Company company = new Company();
-                        company.setName(companyJson.getString("name"));
-                        company.setCategory(companyJson.getString("categories"));
-                        companyService.saveCompany(company);
-                        System.out.println("COMPANY ADDED!");
+                        Company new_company = new Company();
+                        String company_name = companyJson.getString("name");
+                        if (companyService.getCompanyByName(company_name) == null) {
+                            new_company.setName(companyJson.getString("name"));
+                            new_company.setCategory(companyJson.getString("categories"));
+                            companyService.saveCompany(new_company);
+                            System.out.println("COMPANY ADDED!");
+                        }
                         break;
                     default:
                         System.err.println("Couldn't read message type.");
