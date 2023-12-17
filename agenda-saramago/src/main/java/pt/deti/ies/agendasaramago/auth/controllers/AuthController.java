@@ -1,6 +1,8 @@
 package pt.deti.ies.agendasaramago.auth.controllers;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import pt.deti.ies.agendasaramago.repositories.UserRepository;
 import pt.deti.ies.agendasaramago.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,13 +36,17 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody User user) {
+    public ResponseEntity<String> login(@RequestBody User user) {
         Optional<String> hashedPasswordFromDatabase = userRepository.findPasswordByEmail(user.getEmail());
+        Optional<User> userOptional = userRepository.findByEmail(user.getEmail());
         JSONObject jsonMessage = new JSONObject();
         if (hashedPasswordFromDatabase.isPresent() && passwordEncoder.matches(user.getPassword(), hashedPasswordFromDatabase.get())) {
-            return "Sucesso!";
+            User userFromDatabase = userOptional.get();
+            jsonMessage.put("status", "success");
+            jsonMessage.put("user_id",userFromDatabase.getId());
         } else {
-            return "Login falhou!";
+            jsonMessage.put("status", "failed");
         }
+        return new ResponseEntity<>(jsonMessage.toString(), HttpStatus.OK);
     }
 }
