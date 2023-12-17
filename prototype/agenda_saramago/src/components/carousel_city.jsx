@@ -65,10 +65,10 @@ const CarouselComponent = () => {
 
   return (
     <div>
-      <div className="text-accent font-tangerine text-7xl text-shadow m-2">Close to you ...</div>
-      <div className="bg-secondary rounded-box relative">
+      <div className="text-accent underline decoration-solid font-tangerine text-7xl text-shadow m-2">Your liked companies ...</div>
+      <div className="bg-accent rounded-bo  relative">
         <div
-          className="carousel m-4 carousel-center w-[calc(100%-2rem)] space-x-4 h-[34rem]"
+          className="carousel m-6 carousel-center w-[calc(100%-3rem)] space-x-4 h-[34rem]"
           ref={carouselRef}
         >
           {/* Renderiza a imagem do evento */}
