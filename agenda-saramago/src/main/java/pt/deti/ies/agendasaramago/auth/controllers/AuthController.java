@@ -38,7 +38,6 @@ public class AuthController {
         Optional<String> hashedPasswordFromDatabase = userRepository.findPasswordByEmail(user.getEmail());
         JSONObject jsonMessage = new JSONObject();
         if (hashedPasswordFromDatabase.isPresent() && passwordEncoder.matches(user.getPassword(), hashedPasswordFromDatabase.get())) {
-            jsonMessage.
             return "Sucesso!";
         } else {
             return "Login falhou!";
