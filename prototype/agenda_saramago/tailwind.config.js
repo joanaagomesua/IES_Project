@@ -20,7 +20,7 @@ module.exports = {
 
           secondary: "#758ca4",
 
-          accent: "#a48e75",
+          accent: "#132f4c",
 
           neutral: "#ebcba7",
 
@@ -33,6 +33,7 @@ module.exports = {
           warning: "#fbbf24",
 
           error: "#be123c",
+
         },
       },
     ],

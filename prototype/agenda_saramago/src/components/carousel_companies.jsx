@@ -21,7 +21,7 @@ const CarouselComponent = () => {
 
   async function fetchData() {
     try {
-      const response = await fetch("http://localhost:8080/api/events/1");
+      const response = await fetch("http://localhost:8080/api/events/2");
       const data = await response.json();
       setEventData(data); // Armazena o objeto de evento completo
     } catch (error) {
@@ -65,7 +65,7 @@ const CarouselComponent = () => {
 
   return (
     <div>
-      <div className="text-accent font-tangerine text-7xl text-shadow m-2">Close to you ...</div>
+      <div className="text-accent font-tangerine text-7xl text-shadow m-2">Your liked companies ...</div>
       <div className="bg-secondary rounded-box relative">
         <div
           className="carousel m-4 carousel-center w-[calc(100%-2rem)] space-x-4 h-[34rem]"
