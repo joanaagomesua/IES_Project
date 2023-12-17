@@ -31,7 +31,7 @@ public class Event {
     @ManyToOne
     @JoinColumn(name = "company_id", referencedColumnName = "comp_id")
     private Company company;
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
     @Column(name = "tags")
     private String tags;

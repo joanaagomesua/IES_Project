@@ -1,9 +1,7 @@
 package pt.deti.ies.agendasaramago.services;
 
-import pt.deti.ies.agendasaramago.repositories.CompanyRepository;
-import pt.deti.ies.agendasaramago.repositories.EventRepository;
-import pt.deti.ies.agendasaramago.models.Company;
-import pt.deti.ies.agendasaramago.models.Event;
+import pt.deti.ies.agendasaramago.repositories.UserRepository;
+import pt.deti.ies.agendasaramago.models.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CompanyService {
+public class UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -23,6 +21,11 @@ public class CompanyService {
 
     public User getUserById(int id) {
         Optional<User> optionalUser = userRepository.findById(id);
+        return optionalUser.orElse(null);
+    }
+
+    public User getUserByEmail(String email) {
+        Optional<User> optionalUser = userRepository.findByEmail(email);
         return optionalUser.orElse(null);
     }
 
