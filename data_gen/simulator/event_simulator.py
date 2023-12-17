@@ -64,7 +64,7 @@ class Event_Simulator():
         # schedule
         schedule = data_time[0].time().strftime("%H:%M")
         
-        prices = {"children": 0, "adults": 0, "seniors": 0, "students": 0, "family": 0}
+        prices = {"crianças": 0, "adultos": 0, "seniores": 0, "estudantes": 0, "familia": 0}
         for key in prices:
             prices[key] = random.randint(0, 10)
         
@@ -101,8 +101,11 @@ class Event_Simulator():
             data_fim_form = data_fim.strftime("%Y-%m-%d")
         else: 
             data_fim_form = "NULL"
+            
+        seats = random.randint(1, 10)
+        seats = seats * 10
         
-        event = Event(name, company, description, tags, data_inicio_form, data_fim_form, schedule, poster, prices, location, city, duration)
+        event = Event(name, company, description, tags, data_inicio_form, data_fim_form, schedule, poster, prices, location, city, duration, seats)
         print('Event simulator finished.') 
         return {'type': 'event_created', 'event': event.toDic()}
 
@@ -127,5 +130,3 @@ if __name__ == '__main__':
     es = Event_Simulator()
     es.run()
         
-    
-  

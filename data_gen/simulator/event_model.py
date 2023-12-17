@@ -1,5 +1,5 @@
 class Event (object):
-    def __init__(self, name, company, description, tags, data_inicio, data_fim, schedule, poster, prices, location, city, duration):
+    def __init__(self, name, company, description, tags, data_inicio, data_fim, schedule, poster, prices, location, city, duration, seats):
         self.name = name
         self.company = company
         self.description = description
@@ -13,6 +13,7 @@ class Event (object):
         self.location = location 
         self.city = city
         self.duration = duration 
+        self.seats = seats #int
     
     def __str__(self):
         return 'Event: %s'.format(self.name)
@@ -30,7 +31,8 @@ class Event (object):
             'prices': self.prices,
             'location': self.location,
             'city': self.city,
-            'duration': self.duration
+            'duration': self.duration,
+            'seats': self.seats
         }
     
     

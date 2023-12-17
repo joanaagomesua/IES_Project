@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { Fragment } from 'react';
 import axios from "axios";
 import CarouselWithContent from '../components/carousel.jsx';
 import Map from '../components/map.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChair, faChild, faPerson, faPersonCane, faPlus, faUsers, faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
+import ProgressBar from '../components/progress_bar.jsx';
 
 function event_page() {
     const { id } = useParams();
@@ -16,6 +18,7 @@ function event_page() {
         const mes = data.getMonth() + 1;
         const ano = data.getFullYear();
     
+        // Adicionando zeros à esquerda para garantir que o formato seja 'dd/mm/yyyy'
         const diaFormatado = dia < 10 ? `0${dia}` : dia;
         const mesFormatado = mes < 10 ? `0${mes}` : mes;
     
@@ -36,6 +39,7 @@ function event_page() {
       }, [id]);
 
       useEffect(() => {
+        // Redirect to "/event_page/1" if the data is loaded
         if (eventData) {
         }
       }, [eventData, id, history]);
@@ -55,7 +59,7 @@ function event_page() {
                     <div className=' flex bg-green-200 space-x-10'>
                             <div className='flex-initial w-1/4'>
                                 <div className='relative'>
-                                    <img src={eventData.poster} alt="Event Poster"></img>{/*Image-> POSTER */}
+                                    <img src={eventData.poster} alt="Event Poster"></img> {/*Image-> POSTER */}
                                     <div className="absolute top-0 right-0 p-4 flex items-center justify-center">
                                         <button className="w-10 h-10 rounded-full bg-slate-300 hover:bg-slate-500 text-white">
                                             <FontAwesomeIcon icon={faPlus}/>
@@ -67,11 +71,9 @@ function event_page() {
                                 <div className='flex font-poppins font-bold mb-4'>
                                     <div className='w-1/2 flex flex-row items-center'>
                                         <FontAwesomeIcon icon={faChair}  className="mr-2" />
-                                        <div className="rounded-full w-full bg-neutral-200 dark:bg-neutral-600">
                                             <div className="bg-primary p-2 text-center text-xs font-medium leading-none text-primary-100" style={{ width: '25%' }}>
-                                            25% {/*ocupancy*/}
+                                            <ProgressBar bgcolor="#e5e5e5" progress={eventData.seats} height={20} />
                                             </div>
-                                        </div>
                                     </div>
                                 </div>
                                 <div className='font-poppins w-full mb-4'> {/* Description*/}
@@ -96,15 +98,15 @@ function event_page() {
                                     {pricesArray.map((priceItem, index) => {
                                     const [category, value] = priceItem.split(':');
                                     let icon = null;
-                                    if (category.toLowerCase() === 'children') {
+                                    if (category.toLowerCase() === 'crianças') {
                                         icon = <FontAwesomeIcon icon={faChild} />;
-                                    } else if (category.toLowerCase() === 'seniors') {
+                                    } else if (category.toLowerCase() === 'seniores') {
                                         icon = <FontAwesomeIcon icon={faPersonCane} />;
-                                    } else if (category.toLowerCase() === 'adults') {
+                                    } else if (category.toLowerCase() === 'adultos') {
                                         icon = <FontAwesomeIcon icon={faPerson} />;
-                                    }else if (category.toLowerCase() === 'family') {
+                                    }else if (category.toLowerCase() === 'familia') {
                                         icon = <FontAwesomeIcon icon={faUsers} />;
-                                    }else if (category.toLowerCase() === 'students') {
+                                    }else if (category.toLowerCase() === 'estudantes') {
                                         icon = <FontAwesomeIcon icon={faGraduationCap} />;
                                     }
                                     return (
