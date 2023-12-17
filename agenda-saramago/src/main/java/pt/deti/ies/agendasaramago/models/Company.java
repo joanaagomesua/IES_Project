@@ -21,7 +21,6 @@ public class Company {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comp_id")
     private int id;
-
     @Column(name = "comp_name")
     private String name;
     @Column(name = "comp_category")
