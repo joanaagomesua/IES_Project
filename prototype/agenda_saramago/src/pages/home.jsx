@@ -16,7 +16,6 @@ function Home() {
         {results && results.length > 0 && <SearchResultsList results={results} />}
       </div>
       <div className="carousel-container" class="mt-16 mr-40 mb-16 ml-40 ">
-        < h2> Close to you </h2>
         <Carousel />
       </div>
 
