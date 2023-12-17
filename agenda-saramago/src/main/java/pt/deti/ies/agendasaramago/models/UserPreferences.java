@@ -32,5 +32,55 @@ public class UserPreferences{
     @Column(name="followed_companies")
     private String companies;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getCities() {
+        return cities;
+    }
+
+    public void setCities(String cities) {
+        this.cities = cities;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
+    public String getCompanies() {
+        return companies;
+    }
+
+    public void setCompanies(String companies) {
+        this.companies = companies;
+    }
+
+    @Override
+    public String toString() {
+        return "UserPreferences{" +
+                "id=" + id +
+                ", user=" + user +
+                ", cities='" + cities + '\'' +
+                ", tags='" + tags + '\'' +
+                ", companies='" + companies + '\'' +
+                '}';
+    }
 }
 
