@@ -65,6 +65,7 @@ class Event_Simulator():
         schedule = data_time[0].time().strftime("%H:%M")
         
         prices = {"crianças": 0, "adultos": 0, "seniores": 0, "estudantes": 0, "familia": 0}
+        
         for key in prices:
             prices[key] = random.randint(0, 10)
         
