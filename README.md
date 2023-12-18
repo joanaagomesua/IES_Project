@@ -1,7 +1,16 @@
-Context and project bookmark placeholder. Be sure to include the following sections: 
-¾ Project abstract: title and brief description of the project features. 
-¾ Project team: students’ identification and the assigned roles. 
-¾ Architecture Diagram: updated diagram each iteration
-¾ [Project] Bookmarks: links to quickly access all project resources, such as project 
-management boards, editable versions of the reports in the cloud, entry point for 
-your API documentation,...g
+# **IES Final Project**
+
+## *Event Searching Application - Agenda, Saramago!*
+<br>
+
+| NMec   | Email                  | Name                                             | Role          |
+|--------|------------------------|--------------------------------------------------| ------------- |
+| 108713 | lilianapcribeiro@ua.pt | [Liliana Ribeiro](https://github.com/lilikas11)  | Team Manager  |
+| 107548 | lia.cardoso@ua.pt      | [Lia Cardoso](https://github.com/liacr301)       | Product Owner |
+| xxxxxx | xxxxxxxxxx@ua.pt       | [Joana Gomes ](https://github.com/joanaagomesua) | Architect     |
+| xxxxxx | xxxxxxxxxx@ua.pt       | [Matilde Teixeira](https://github.com/matildetex)| DevOps Master |
+
+<br>
+
+
+

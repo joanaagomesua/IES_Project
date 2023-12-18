@@ -65,7 +65,8 @@ class Event_Simulator():
         # schedule
         schedule = data_time[0].time().strftime("%H:%M")
         
-        prices = {"crianças": 0, "adultos": 0, "seniores": 0, "estudantes": 0, "famlia": 0}
+        prices = {"crianças": 0, "adultos": 0, "seniores": 0, "estudantes": 0, "familia": 0}
+        
         for key in prices:
             prices[key] = random.randint(0, 10)
         
@@ -102,7 +103,7 @@ class Event_Simulator():
         else: 
             data_fim_form = "NULL"
             
-        seats = random.randint(2, 20)
+        seats = random.randint(1, 10)
         seats = seats * 10
         
         event = Event(name, company, description, tags, data_inicio_form, data_fim_form, schedule, poster, prices, location, city, duration, seats)
@@ -130,5 +131,3 @@ if __name__ == '__main__':
     es = Event_Simulator()
     es.run()
         
-    
-  

@@ -1,8 +1,6 @@
 package pt.deti.ies.agendasaramago.models;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.JoinColumn;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,13 +26,14 @@ public class Event {
     private int id;
     @Column(name = "name")
     private String name;
-    @ManyToOne
-    @JoinColumn(name = "company_id", referencedColumnName = "comp_id")
-    private Company company;
-    @Column(name = "description", columnDefinition = "TEXT")
+    @Column(name = "company")
+    private String company;
+    @Column(name = "description", columnDefinition="TEXT")
     private String description;
     @Column(name = "tags")
     private String tags;
+    @Column(name = "duration")
+    private int duration;
     @Column(name = "datestart")
     @Temporal(TemporalType.TIMESTAMP)
     private Date datestart;
@@ -51,15 +50,18 @@ public class Event {
     private String location;
     @Column(name = "city")
     private String city;
+    @Column(name = "seats")
+    private int seats;
 
     public Event() {}
 
-    public Event(int id, String name, Company company, String description, String tags, Date date_start, Date date_end, String schedule, String poster, String prices, String location, String city){
+    public Event(int id, String name, String company, String description, String tags,int duration, Date date_start, Date date_end, String schedule, String poster, String prices, String location, String city, int seats){
         this.id = id;
         this.name = name;
         this.company = company;
         this.description = description;
         this.tags = tags;
+        this.duration= duration;
         this.datestart = datestart;
         this.dateend = dateend;
         this.schedule = schedule;
@@ -67,8 +69,10 @@ public class Event {
         this.prices = prices;
         this.location = location;
         this.city = city;
+        this.seats=seats;
     }
 
+    
     public int getId() {
         return this.id;
     }
@@ -85,11 +89,11 @@ public class Event {
         this.name = name;
     }
 
-    public Company getCompany() {
+    public String getCompany() {
         return company;
     }
 
-    public void setCompany(Company company) {
+    public void setCompany(String company) {
         this.company = company;
     }
 
@@ -175,6 +179,7 @@ public class Event {
                 ", company='" + this.company + '\'' +
                 ", description='" + this.description + '\'' +
                 ", tags='" + this.tags + '\'' +
+                ", duration=" + this.duration +
                 ", datestart=" + this.datestart +
                 ", dateend=" + this.dateend +
                 ", schedule='" + this.schedule + '\'' +
@@ -182,7 +187,26 @@ public class Event {
                 ", prices='" + this.prices + '\'' +
                 ", location='" + this.location + '\'' +
                 ", city='" + this.city + '\'' +
+                ", seats='" + this.seats + '\'' +
                 '}';
     }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public int getSeats() {
+        return seats;
+    }
+
+    public void setSeats(int seats) {
+        this.seats = seats;
+    }
+
+    
 
 }

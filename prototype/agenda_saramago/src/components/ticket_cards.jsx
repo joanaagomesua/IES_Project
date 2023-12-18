@@ -1,31 +1,32 @@
 import React, { useState } from 'react';
 
-function Card({ title, content, imageSrc }) {
+function formatarData(dateString) {
+  const data = new Date(dateString);
+  const dia = data.getDate();
+  const mes = data.getMonth() + 1;
+  const ano = data.getFullYear();
+
+  const diaFormatado = dia < 10 ? `0${dia}` : dia;
+  const mesFormatado = mes < 10 ? `0${mes}` : mes;
+
+  return `${diaFormatado}/${mesFormatado}/${ano}`;
+}
+
+function Card({ title, data, hora, city, location, price, imageSrc }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
       style={{
         position: 'relative',
-        maxWidth: '450px',
-        height: '500px',
+        maxWidth: '400px',
+        height: '600px',
         overflow: 'hidden',
+        margin: '20px',
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Div com a data visível sem hover */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '16px',
-          left: '16px',
-          zIndex: 1,
-          display: isHovered ? 'none' : 'block',
-        }}
-      >
-      </div>
-
       <div
         style={{
           border: '1px solid #ccc',
@@ -37,23 +38,24 @@ function Card({ title, content, imageSrc }) {
         <img
           src={imageSrc}
           alt={title}
-          style={{ width: '100%' }}
+          style={{ width: '100%', height: '50%', objectFit: 'cover' }}
         />
         <div
           style={{
             padding: '16px',
             position: 'absolute',
-            top: 0,
+            bottom: 0,
             left: 0,
             width: '100%',
-            height: '100%',
-            backgroundColor: 'rgba(255, 255, 255, 0.8)',
+            backgroundColor: 'rgba(255, 255, 255, 0.9)',
             display: isHovered ? 'block' : 'none',
           }}
         >
-          {/* Conteúdo visível apenas quando hover */}
-          <b style={{ fontSize: '35px', marginBottom: '8px', color: '#333' }}>{title}</b>
-          <p className='font-poppins w-full mb-4' style={{ fontSize: '24px', marginBottom: '8px', color: '#333' }}>{content}</p>
+          <h2 style={{ fontSize: '24px', marginBottom: '8px', color: '#333' }}>{title}</h2>
+          <p style={{ fontSize: '16px', marginBottom: '8px', color: '#555' }}>{formatarData(data)}</p>
+          <p style={{ fontSize: '16px', marginBottom: '8px', color: '#555' }}>{hora}</p>
+          <p style={{ fontSize: '16px', marginBottom: '8px', color: '#555' }}>{location}, {city}</p>
+          <p style={{ fontSize: '18px', marginBottom: '8px', color: '#333', fontWeight: 'bold' }}>{price} euros</p>
         </div>
       </div>
     </div>

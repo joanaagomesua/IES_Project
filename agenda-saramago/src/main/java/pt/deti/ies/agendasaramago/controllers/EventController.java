@@ -36,8 +36,6 @@ public class EventController {
         return ResponseEntity.ok().body(eventService.getEventByTags(tags));
     }
 
-    //PUT METHODS -----> not needed, adiantado
-    //create new event
     @PostMapping("")
     ResponseEntity<Event>createEvent(@RequestBody Event event){
         return ResponseEntity.ok().body(eventService.saveEvent(event));
@@ -48,4 +46,5 @@ public class EventController {
     ResponseEntity<Event> updateEventInfo(@PathVariable("id") int id, @RequestBody Event eventInfo) {
         return ResponseEntity.ok().body(eventService.updateEvent(eventInfo));
     }
+
 }
