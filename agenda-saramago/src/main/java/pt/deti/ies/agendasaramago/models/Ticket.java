@@ -24,21 +24,15 @@ public class Ticket {
     @ManyToOne
     @JoinColumn(name = "user")
     private User user;
-    @Column(name = "company")
-    private String company;
-    @Column(name = "description")
-    private String description;
     @ManyToOne
     @JoinColumn(name = "event_id")
     private Event event;
 
     public Ticket() {}
 
-    public Ticket(int id, User user, String company, String description, Event event) {
+    public Ticket(int id, User user, String company, Event event) {
         this.id = id;
         this.user = user;
-        this.company = company;
-        this.description = description;
         this.event = event;
     }
 
@@ -56,22 +50,6 @@ public class Ticket {
 
     public void setuser(User user) {
         this.user = user;
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Event getEvent() {

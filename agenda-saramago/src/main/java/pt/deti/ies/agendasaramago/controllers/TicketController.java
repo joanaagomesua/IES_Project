@@ -36,9 +36,9 @@ public class TicketController {
     private TicketService ticketService;
 
 
-    @GetMapping("")
-    public ResponseEntity<List<Ticket>> getTicketsByLoggedInUser(int user_id) {
-        List<Ticket> userTickets = ticketService.getTicketsByUserId(user_id);
+    @GetMapping("/{user}")
+    public ResponseEntity<List<Ticket>> getTicketsByLoggedInUser(@PathVariable(value = "user") Integer user) {
+        List<Ticket> userTickets = ticketService.getTicketsByUserId(user);
 
         return ResponseEntity.ok().body(userTickets);
     }

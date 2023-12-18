@@ -19,7 +19,7 @@ public class TicketService {
     @Autowired
     private TicketRepository ticketRepository;
 
-    public List<Ticket> getTicketsByUserId(int userId) {
+    public List<Ticket> getTicketsByUserId(Integer userId) {
         Optional<List<Ticket>> optionalTickets = Optional.ofNullable(ticketRepository.findByUser_Id(userId));
         return optionalTickets.orElse(null);
     }
