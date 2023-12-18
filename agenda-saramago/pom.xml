@@ -53,8 +53,6 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
-
-        <!-- Dependências do Hibernate e JPA -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
@@ -70,29 +68,21 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>5.6.6.Final</version>
         </dependency>
-
-        <!-- Dependência do MySQL Connector -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version>
         </dependency>
-
-        <!-- Dependência do Spring RabbitMQ -->
         <dependency>
             <groupId>org.springframework.amqp</groupId>
             <artifactId>spring-rabbit</artifactId>
-            <version>3.0.0</version> <!-- Versão corrigida -->
+            <version>3.0.0</version> 
         </dependency>
-
-        <!-- Dependência do JSON -->
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20200518</version>
         </dependency>
-
-        <!-- Dependência do Spring JDBC -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>

@@ -21,8 +21,9 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "person_name")
-    private String person_name;
+    @ManyToOne
+    @JoinColumn(name = "user")
+    private User user;
     @Column(name = "company")
     private String company;
     @Column(name = "description")
@@ -33,9 +34,9 @@ public class Ticket {
 
     public Ticket() {}
 
-    public Ticket(int id, String person_name, String company, String description, Event event) {
+    public Ticket(int id, User user, String company, String description, Event event) {
         this.id = id;
-        this.person_name = person_name;
+        this.user = user;
         this.company = company;
         this.description = description;
         this.event = event;
@@ -49,12 +50,12 @@ public class Ticket {
         this.id = id;
     }
 
-    public String getPerson_name() {
-        return person_name;
+    public User getuser() {
+        return user;
     }
 
-    public void setPerson_name(String person_name) {
-        this.person_name = person_name;
+    public void setuser(User user) {
+        this.user = user;
     }
 
     public String getCompany() {
