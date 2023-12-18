@@ -65,8 +65,8 @@ const CarouselComponent = () => {
 
   return (
     <div>
-      <div className="text-secondary underline font-tangerine text-7xl text-shadow m-2">Your favorite tags ... ...</div>
-      <div className="bg-secondary relative">
+      <div className="text-primary font-bold text-5xl text-shadow m-2">Your favorite tags ...</div>
+      <div className="bg-primary rounded-box relative">
         <div
           className="carousel m-6 carousel-center w-[calc(100%-3rem)] space-x-4 h-[34rem]"
           ref={carouselRef}

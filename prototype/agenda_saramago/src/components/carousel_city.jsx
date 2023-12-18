@@ -65,8 +65,8 @@ const CarouselComponent = () => {
 
   return (
     <div>
-      <div className="text-accent underline decoration-solid font-tangerine text-7xl text-shadow m-2">Your liked companies ...</div>
-      <div className="bg-accent rounded-bo  relative">
+      <div className="text-neutral font-bold text-5xl text-shadow m-2">Close to you ...</div>
+      <div className="bg-neutral rounded-box  relative">
         <div
           className="carousel m-6 carousel-center w-[calc(100%-3rem)] space-x-4 h-[34rem]"
           ref={carouselRef}

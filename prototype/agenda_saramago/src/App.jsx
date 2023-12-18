@@ -17,7 +17,6 @@ import logo from "./assets/images/logo.png";
 
 function App() {
   const faviconUrl = useState(logo); 
-
   return (
     <BrowserRouter>
     <Favicon url={faviconUrl} /> 
