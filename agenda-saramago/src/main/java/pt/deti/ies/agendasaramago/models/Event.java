@@ -1,20 +1,15 @@
 package pt.deti.ies.agendasaramago.models;
 
-import javax.persistence.Entity;
+import java.util.Date;
+
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import javax.persistence.Id;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.time.format.DateTimeFormatter;
-import java.time.ZonedDateTime;
-import java.time.ZoneId;
 
 
 @Table(name= "Event")
