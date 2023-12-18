@@ -13,7 +13,6 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import pt.deti.ies.agendasaramago.models.Company;
 import pt.deti.ies.agendasaramago.services.CompanyService;
-import pt.deti.ies.agendasaramago.models.NotifNewEvent;
 import pt.deti.ies.agendasaramago.models.Event;
 import pt.deti.ies.agendasaramago.services.EventService;
 import org.json.JSONException;
@@ -39,7 +38,6 @@ public class Receiver {
                     case "event_created":
                         JSONObject eventJson = jsonMessage.getJSONObject("event");
                         Event event = new Event();
-                        NotifNewEvent notif = new NotifNewEvent();
 
                         event.setName(eventJson.getString("name"));
 
