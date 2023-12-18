@@ -1,4 +1,5 @@
 version: "3.8"
+name: agenda_saramago
 services:
   mysql:
     image: mysql:8.0.33
@@ -11,8 +12,6 @@ services:
       MYSQL_DATABASE: agenda_saramago
       MYSQL_USER: user1
       MYSQL_PASSWORD: ies_agenda_2023
-    networks:
-      - agenda_saramago_network
 
   rabbitmq:
     image: rabbitmq
@@ -20,8 +19,13 @@ services:
     ports:
       - "5672:5672"
       - "15673:15673"
-    networks:
-      - agenda_saramago_network
 
-networks:
-  agenda_saramago_network:
+  api:
+    build: agenda-saramago/
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+      - rabbitmq
+    
+
