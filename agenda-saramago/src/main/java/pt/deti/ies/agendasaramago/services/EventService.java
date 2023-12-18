@@ -23,7 +23,6 @@ public class EventService {
         return eventRepository.findAll();
     }
 
-    //fazer handle das exceptions depois ---> esta primeira é só para não dar erros enquanto não criarmos as classes de exceptions
     public Event getEventById(int id) {
         Optional<Event> optionalEvent = eventRepository.findById(id);
         return optionalEvent.orElse(null);

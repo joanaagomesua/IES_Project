@@ -52,10 +52,12 @@ public class Event {
     private String city;
     @Column(name = "seats")
     private int seats;
+    @Column(name = "seats_not_available")
+    private int seats_not_available;
 
     public Event() {}
 
-    public Event(int id, String name, String company, String description, String tags,int duration, Date date_start, Date date_end, String schedule, String poster, String prices, String location, String city, int seats){
+    public Event(int id, String name, String company, String description, String tags,int duration, Date date_start, Date date_end, String schedule, String poster, String prices, String location, String city, int seats, int seats_not_available){
         this.id = id;
         this.name = name;
         this.company = company;
@@ -70,6 +72,7 @@ public class Event {
         this.location = location;
         this.city = city;
         this.seats=seats;
+        this.seats_not_available = seats_not_available;
     }
 
     
@@ -167,6 +170,30 @@ public class Event {
         return city;
     }
 
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public int getSeats() {
+        return seats;
+    }
+
+    public void setSeats(int seats) {
+        this.seats = seats;
+    }
+
+    public int getSeats_not_available() {
+        return seats_not_available;
+    }
+
+    public void setSeats_not_available(int seats_not_available) {
+        this.seats_not_available = seats_not_available;
+    }
+
     private String escapeString(String input) {
         return input != null ? input.replace("'", "\\'") : "null";
     }
@@ -191,21 +218,7 @@ public class Event {
                 '}';
     }
 
-    public int getDuration() {
-        return duration;
-    }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
-    public int getSeats() {
-        return seats;
-    }
-
-    public void setSeats(int seats) {
-        this.seats = seats;
-    }
 
     
 
