@@ -21,10 +21,14 @@ public interface EventRepository extends JpaRepository<Event, Integer> { //add o
     public List<Event> findByDatestart(Date datestart); //ideia é selecionar a data através de um calendário, that's why im using Date type
     @Query("SELECT e.seats FROM Event e WHERE e.id = :event_id")
     int getAvailableSeatsForEvent(@Param("event_id") Integer eventId);
-    // @Query("SELECT e.seatsNotAvailable FROM Event e WHERE e.id = :eventId")
-    // int getNotAvailableSeatsForEvent(@Param("eventId") Integer eventId);
+    @Query("SELECT e.seats_not_available FROM Event e WHERE e.id = :eventId")
+    int getNotAvailableSeatsForEvent(@Param("eventId") Integer eventId);
     @Transactional
     @Modifying
     @Query("UPDATE Event e SET e.seats = e.seats - 1 WHERE e.id = :eventId")
     int decrementAvailableSeats(@Param("eventId") Integer eventId); 
+    @Transactional
+    @Modifying
+    @Query("UPDATE Event e SET e.seats_not_available  = e.seats_not_available + 1 WHERE e.id = :eventId")
+    int incrementNonAvailableSeats(@Param("eventId") Integer eventId); 
 }

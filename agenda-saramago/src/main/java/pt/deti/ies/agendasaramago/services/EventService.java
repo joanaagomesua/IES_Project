@@ -76,4 +76,10 @@ public class EventService {
     public void updateSeats(Integer eventId) {
         eventRepository.decrementAvailableSeats(eventId);
     }
+
+    @Modifying
+    @Transactional
+    public void plusSeats(Integer eventId) {
+        eventRepository.incrementNonAvailableSeats(eventId);
+    }
 }

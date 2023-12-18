@@ -52,8 +52,7 @@ public class Event {
 
     public Event() {}
 
-    public Event(int id, String name, String company, String description, String tags,int duration, Date date_start, Date date_end, String schedule, String poster, String prices, String location, String city, int seats, int seats_not_available){
-        this.id = id;
+    public Event(String name, String company, String description, String tags,int duration, Date date_start, Date date_end, String schedule, String poster, String prices, String location, String city, int seats, int seats_not_available){
         this.name = name;
         this.company = company;
         this.description = description;
