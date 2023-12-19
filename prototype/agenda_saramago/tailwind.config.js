@@ -3,17 +3,40 @@ module.exports = {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
+    "node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
       fontFamily: {
-        'poppins': ['Poppins', 'sans-serif'],
+        tangerine: ["Tangerine", "serif"],
+      },
     },
-    colors:{
-      bluepers: "#a7c7eb"
-    }
   },
-  plugins: [require('flowbite/plugin')],
- }
-}
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          primary: "#a7c7eb",
+
+          secondary: "#758ca4",
+
+          accent: "#224160",
+
+          neutral: "#ebcba7",
+
+          "base-100": "#fefcf9",
+
+          info: "#38bdf8",
+
+          success: "#22c55e",
+
+          warning: "#fbbf24",
+
+          error: "#be123c",
+
+        },
+      },
+    ],
+  },
+  plugins: [require("daisyui")],
+};

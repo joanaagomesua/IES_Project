@@ -16,10 +16,11 @@ import java.util.*;
 @Table(name="user_preferences")
 public class UserPreferences{
     @Id
-    @Column(name="user_id")
+    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @OneToOne
-    @MapsId
     @JoinColumn(name = "user_id")
     private User user;
 

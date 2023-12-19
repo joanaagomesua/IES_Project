@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Fragment } from 'react';
 import axios from "axios";
 import CarouselWithContent from '../components/carousel.jsx';
 import Map from '../components/map.jsx'
@@ -21,7 +20,6 @@ function event_page() {
         const mes = data.getMonth() + 1;
         const ano = data.getFullYear();
     
-        // Adicionando zeros à esquerda para garantir que o formato seja 'dd/mm/yyyy'
         const diaFormatado = dia < 10 ? `0${dia}` : dia;
         const mesFormatado = mes < 10 ? `0${mes}` : mes;
     
@@ -47,7 +45,6 @@ function event_page() {
       }, [id]);
 
       useEffect(() => {
-        // Redirect to "/event_page/1" if the data is loaded
         if (eventData) {
         }
       }, [eventData, id, history]);

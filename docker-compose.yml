@@ -20,9 +20,6 @@ services:
     ports:
       - "5672:5672"
       - "15673:15673"
-    environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
     networks:
       - agenda_saramago_network
 
