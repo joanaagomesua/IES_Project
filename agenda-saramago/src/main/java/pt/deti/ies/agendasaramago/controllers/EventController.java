@@ -31,6 +31,11 @@ public class EventController {
         return ResponseEntity.ok().body(eventService.getEventById(id));
     }
 
+    @GetMapping("/city/{city}")
+    ResponseEntity<List<Event>> getEventsByCity(@PathVariable(value = "city") String city){
+        return ResponseEntity.ok().body(eventService.getEventByCity(city));
+    }
+
     @GetMapping("/tags/{tags}")
     ResponseEntity <List<Event>> getEventsByTags(@PathVariable(value = "tags") String tags){
         return ResponseEntity.ok().body(eventService.getEventByTags(tags));

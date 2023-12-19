@@ -1,15 +1,13 @@
 package pt.deti.ies.agendasaramago.services;
 
-import pt.deti.ies.agendasaramago.repositories.CompanyRepository;
-import pt.deti.ies.agendasaramago.repositories.EventRepository;
-import pt.deti.ies.agendasaramago.models.Company;
-import pt.deti.ies.agendasaramago.models.Event;
-
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import pt.deti.ies.agendasaramago.models.Company;
+import pt.deti.ies.agendasaramago.repositories.CompanyRepository;
 
 @Service
 public class CompanyService {
