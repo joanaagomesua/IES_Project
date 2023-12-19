@@ -6,10 +6,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChair, faChild, faPerson, faPersonCane, faPlus, faUsers, faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
 import ProgressBar from '../components/progress_bar.jsx';
+import dance from '../../img/danca.jpg';
+
 
 function event_page() {
     const { id } = useParams();
     const [eventData, setEventData] = useState(null);
+    const [imagePath, setImagePath] = useState();
 
     function formatarData(dateString) {
         const data = new Date(dateString);
@@ -27,7 +30,12 @@ function event_page() {
         const fetchData = async () => {
           try {
             const response = await axios.get(`http://localhost:8080/api/events/${id}`);
+            const url = "../../" + response.data.poster 
+            console.log(url)
+            setImagePath(url)
             setEventData(response.data);
+            console.log("BERTOOOO")
+            console.log(imagePath)
           } catch (error) {
             console.error('Error fetching data:', error);
           }
@@ -45,6 +53,7 @@ function event_page() {
         return <div>Loading...</div>;
       }
 
+
       const pricesArray = eventData.prices.split(',').map((price) => price.trim());
 
         return ( 
@@ -56,7 +65,7 @@ function event_page() {
                     <div className=' flex bg-green-200 space-x-10'>
                             <div className='flex-initial w-1/4'>
                                 <div className='relative'>
-                                    <img src={eventData.poster} alt="Event Poster"></img>{/*Image-> POSTER */}
+                                    <img src={dance} alt="image" /> {/*Image-> POSTER */}
                                     <div className="absolute top-0 right-0 p-4 flex items-center justify-center">
                                         <button className="w-10 h-10 rounded-full bg-slate-300 hover:bg-slate-500 text-white">
                                             <FontAwesomeIcon icon={faPlus}/>
@@ -69,7 +78,7 @@ function event_page() {
                                     <div className='w-1/2 flex flex-row items-center'>
                                         <FontAwesomeIcon icon={faChair}  className="mr-2" />
                                             <div className="bg-primary p-2 text-center text-xs font-medium leading-none text-primary-100" style={{ width: '25%' }}>
-                                            <ProgressBar bgcolor="#e5e5e5" progress={eventData.seats} height={20} />
+                                            <ProgressBar bgcolor="#e5e5e5" progress={eventData.seats_not_available*100/eventData.seats} height={20} />
                                             </div>
                                     </div>
                                 </div>
