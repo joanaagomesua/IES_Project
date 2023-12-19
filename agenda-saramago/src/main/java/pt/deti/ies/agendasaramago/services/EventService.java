@@ -28,15 +28,18 @@ public class EventService {
         return optionalEvent.orElse(null);
     }
 
-    public List<Event> getEventByTags(String tags){
-        return eventRepository.findByTags(tags);
+    public List<Event> getEventByTag(String tag) {
+        System.out.println("Calling getEventByTag with tag: " + tag);
+        List<Event> events = eventRepository.findByTagsContaining(tag);
+        System.out.println("Found events: " + events);
+        return events;
     }
 
     public List<Event> getEventByCity(String city) {
         return eventRepository.findByCity(city);
     }
 
-    public List<Event> getEventByCompany(Company company) {
+    public List<Event> getEventByCompany(String company) {
         return eventRepository.findByCompany(company);
     }
 
