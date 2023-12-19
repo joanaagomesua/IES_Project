@@ -37,6 +37,12 @@ public class EventController {
     @Autowired
     private CompanyService companyService;
 
+
+    @GetMapping("")
+    ResponseEntity<List<Event>> getAllEvents(){
+        return ResponseEntity.ok().body(eventService.getAllEvents());
+    }
+
     @GetMapping("/{user_id}/all_event_pref")
     public ResponseEntity<HashMap<String, List<Event>>> getAllPrefEventsFromUser(@PathVariable(value = "user_id") int user_id) throws ResourceNotFoundException {
         JSONObject prefs_user = new JSONObject(userPrefService.getAllPreferences(user_id));
