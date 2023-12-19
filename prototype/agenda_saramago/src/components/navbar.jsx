@@ -50,7 +50,7 @@ function Navbar() {
                   <Link to="/">
                     <img
                       className="h-14 w-auto"
-                      src="/src/assets/images/logo_small1.png"
+                      src="/logo_small1.png"
                       alt="Agenda Saramago"
                     />
                   </Link>

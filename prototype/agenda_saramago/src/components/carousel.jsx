@@ -21,7 +21,7 @@ const CarouselComponent = () => {
 
   async function fetchData() {
     try {
-      const response = await fetch("http://localhost:8080/api/events/1");
+      const response = await fetch(import.meta.env.VITE_API_URL+"/api/events/1");
       const data = await response.json();
       setEventData(data); // Armazena o objeto de evento completo
     } catch (error) {

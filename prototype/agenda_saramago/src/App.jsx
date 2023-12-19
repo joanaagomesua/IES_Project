@@ -13,10 +13,9 @@ import Register from './pages/register.jsx';
 import Event_search_page from './pages/event_search_page.jsx';
 import NotFound from './pages/NotFound.jsx';
 import Favicon from "react-favicon"; 
-import logo from "./assets/images/logo.png";
 
 function App() {
-  const faviconUrl = useState(logo); 
+  const faviconUrl = useState("/logo_small1.png"); 
   return (
     <BrowserRouter>
     <Favicon url={faviconUrl} /> 
