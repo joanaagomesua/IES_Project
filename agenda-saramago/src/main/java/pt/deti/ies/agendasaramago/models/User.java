@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
 import javax.persistence.CascadeType;
 
 import java.util.*;
@@ -31,8 +33,7 @@ public class User {
     private String bio;
     @Column(name="user_profile_pic")
     private String profile_pic;
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private UserPreferences userPreferences;
+
 
     public int getId() {
         return id;
@@ -98,13 +99,7 @@ public class User {
         this.password = password;
     }
 
-    public UserPreferences getUserPreferences() {
-        return userPreferences;
-    }
 
-    public void setUserPreferences(UserPreferences userPreferences) {
-        this.userPreferences = userPreferences;
-    }
 
     @Override
     public String toString() {

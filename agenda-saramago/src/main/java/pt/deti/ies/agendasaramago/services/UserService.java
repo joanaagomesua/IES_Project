@@ -30,6 +30,7 @@ public class UserService {
 
     public User updateUser(User user) {
         Optional<User> userToUpdateOptional = userRepository.findById((int) user.getId());
+        System.out.println(userToUpdateOptional);
         if (userToUpdateOptional.isPresent()) {
             User user_to_update = userToUpdateOptional.get();
             user_to_update.setUsername(user.getUsername());

@@ -25,8 +25,6 @@ public class Company {
     private String name;
     @Column(name = "comp_category")
     private String category;
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-    private List<Event> events = new ArrayList<>();
 
     public Company() {
     }
