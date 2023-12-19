@@ -31,6 +31,11 @@ public class CompanyController {
         return ResponseEntity.ok().body(companyService.getCompanyById(id));
     }
 
+    @GetMapping("/name/{name}")
+    ResponseEntity<Company> getCompanyByName(@PathVariable(value = "name") String name) {
+        return ResponseEntity.ok().body(companyService.getCompanyByName(name));
+    }
+
     @PostMapping("")
     ResponseEntity<Company> createCompany(@RequestBody Company company) {
         return ResponseEntity.ok().body(companyService.saveCompany(company));
