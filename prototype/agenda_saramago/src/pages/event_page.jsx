@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChair, faChild, faPerson, faPersonCane, faPlus, faUsers, faGraduationCap, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
 import ProgressBar from '../components/progress_bar.jsx';
-import dance from '../../img/danca.jpg';
+import { Link } from 'react-router-dom';
 
 
 function event_page() {
@@ -57,7 +57,8 @@ function event_page() {
         return <div>Loading...</div>;
       }
 
-      const pricesArray = eventData.prices.split(',').map((price) => price.trim());
+
+    const pricesArray = eventData.prices.split(',').map((price) => price.trim());
 
         return ( 
                 <div className="p-10 space-y-16">
@@ -99,17 +100,20 @@ function event_page() {
                                     <p className="text-xl">{eventData.description}</p>
                                 </div>
                                 <div className='mt-8 font-poppins'>
-                                    <h2 className='font-bold mb-2'>Filtros:</h2> {/*tags*/}
+                                    <h2 className='font-bold mb-2'>Filtros:</h2>
                                     <div className=" h-20 w-full p-4 ">
                                         <div className='flex space-x-2'>
                                             {eventData.tags.split(',').map((tag, index) => (
-                                            <div key={index} className="rounded-full bg-slate-200 bg-opacity-100 p-2">
-                                                <p className="text-black">#{tag.trim()}</p>
-                                            </div>
+                                                <Link key={index} to={`/event_search_page?tag=${tag.trim()}`}>
+                                                    <div className="rounded-full bg-slate-200 bg-opacity-100 p-2">
+                                                        <p className="text-black">#{tag.trim()}</p>
+                                                    </div>
+                                                </Link>
                                             ))}
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                             <div className='font-poppins space-y-8'>
                                 <div className='flex flex-col'>
