@@ -26,6 +26,7 @@ public class TicketService {
     }
 
     public Ticket buyTickets(Ticket ticket) {
+        System.out.println("HELOOOOO");
         int eventId = ticket.getEvent().getId();
         int availableSeats = eventRepository.getAvailableSeatsForEvent(eventId);
         int nonAvailableSeats = eventRepository.getNotAvailableSeatsForEvent(eventId);
