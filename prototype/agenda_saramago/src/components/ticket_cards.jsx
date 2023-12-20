@@ -38,7 +38,7 @@ function Card({ title, data, hora, city, location, price, imageSrc }) {
         <img
           src={imageSrc}
           alt={title}
-          style={{ width: '100%', height: '50%', objectFit: 'cover' }}
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
         <div
           style={{
@@ -55,7 +55,7 @@ function Card({ title, data, hora, city, location, price, imageSrc }) {
           <p style={{ fontSize: '16px', marginBottom: '8px', color: '#555' }}>{formatarData(data)}</p>
           <p style={{ fontSize: '16px', marginBottom: '8px', color: '#555' }}>{hora}</p>
           <p style={{ fontSize: '16px', marginBottom: '8px', color: '#555' }}>{location}, {city}</p>
-          <p style={{ fontSize: '18px', marginBottom: '8px', color: '#333', fontWeight: 'bold' }}>{price} euros</p>
+          <p style={{ fontSize: '18px', marginBottom: '8px', color: '#333', fontWeight: 'bold' }}>{price} </p>
         </div>
       </div>
     </div>

@@ -35,11 +35,8 @@ function event_page() {
           try {
             const response = await axios.get(`http://localhost:8080/api/events/${id}`);
             const url = "../../" + response.data.poster 
-            console.log(url)
             setImagePath(url)
             setEventData(response.data);
-            console.log("BERTOOOO")
-            console.log(imagePath)
           } catch (error) {
             console.error('Error fetching data:', error);
           }
