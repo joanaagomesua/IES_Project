@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
+import { Link } from 'react-router-dom';
+
 const CarouselComponent = () => {
   const [eventData, setEventData] = useState(null);
   const carouselRef = useRef(null);
@@ -60,12 +62,12 @@ const CarouselComponent = () => {
   }, [currentSlide]);
 
   if (!eventData) {
-    return <div>Carregando...</div>;
+    return <div>Loading...</div>;
   }
 
   return (
     <div>
-      <div className="text-neutral font-bold text-5xl text-shadow m-2">Close to you ...</div>
+      <div className="text-neutral font-poppins font-bold text-4xl text-shadow m-2">Perto de ti ...</div>
       <div className="bg-neutral rounded-box  relative">
         <div
           className="carousel m-6 carousel-center w-[calc(100%-3rem)] space-x-4 h-[34rem]"
@@ -73,6 +75,7 @@ const CarouselComponent = () => {
         >
           {/* Renderiza a imagem do evento */}
           <div className="group carousel-item w-96 relative">
+          
             <img
               src={eventData.poster}
               alt={eventData.name}
