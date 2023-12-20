@@ -37,33 +37,28 @@ public class EventController {
     @Autowired
     private CompanyService companyService;
 
+
+    @GetMapping("")
+    ResponseEntity<List<Event>> getAllEvents(){
+        return ResponseEntity.ok().body(eventService.getAllEvents());
+    }
+
     @GetMapping("/{user_id}/all_event_pref")
     public ResponseEntity<HashMap<String, List<Event>>> getAllPrefEventsFromUser(@PathVariable(value = "user_id") int user_id) throws ResourceNotFoundException {
         JSONObject prefs_user = new JSONObject(userPrefService.getAllPreferences(user_id));
-        System.out.println("ESTÁ AQUI ---->" + prefs_user);
 
         String citiesStr = prefs_user.optString("cities", "");
         String tagsStr = prefs_user.optString("tags", "");
         String companiesStr = prefs_user.optString("companies", "");
 
         String[] cities = citiesStr.split(", ");
-        for (String city: cities) {
-            System.out.println("OLHA A CITY" + city);
-        }
         String[] tags = tagsStr.split(", ");
-        for (String tag: tags) {
-            System.out.println("OLHA A TAG" + tag);
-        }
         String[] companies = companiesStr.split(", ");
-        for (String company: companies) {
-            System.out.println("OLHA A COMPANY" + company);
-        }
 
         HashMap<String, List<Event>> data = new HashMap<>();
 
         if (cities.length > 0 && !cities[0].isEmpty()) {
             for (String city : cities) {
-                System.out.println("Estou aqui 1");
                 List<Event> city_event = eventService.getEventByCity(city);
                 data.put(city, city_event);
             }
@@ -71,8 +66,6 @@ public class EventController {
 
         if (tags.length > 0 && !tags[0].isEmpty()) {
             for (String tag: tags){
-                System.out.println("Estou aqui 2");
-                System.out.println(tag);
                 List<Event> tag_event = eventService.getEventByTag(tag);
                 for (Event tag2: tag_event)
                     System.out.println(tag2);
@@ -82,26 +75,11 @@ public class EventController {
 
         if (companies.length > 0 && !companies[0].isEmpty()) {
             for (String company: companies){
-                System.out.println("Estou aqui 3");
                 List<Event> company_event = eventService.getEventByCompany(company);
                 data.put(company, company_event);
             }
         }
-        for (Map.Entry<String, List<Event>> entry : data.entrySet()) {
-            String key = entry.getKey();
-            List<Event> value = entry.getValue();
-
-            // Imprimir a chave
-            System.out.println("Chave: " + key);
-
-            // Imprimir os elementos da lista associada à chave
-            for (Event event : value) {
-                System.out.println("  - " + event.toString()); // Supondo que Event tenha um método toString() adequado
-            }
-        }
-
         return ResponseEntity.ok().body(data);
-
     }
 
     @GetMapping("/{id}")

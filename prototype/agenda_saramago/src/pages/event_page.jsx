@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChair, faChild, faPerson, faPersonCane, faPlus, faUsers, faGraduationCap, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
 import ProgressBar from '../components/progress_bar.jsx';
+import dance from '../../img/danca.jpg';
+
 
 function event_page() {
     const [isHeartFilled, setIsHeartFilled] = useState(false);
@@ -14,6 +16,7 @@ function event_page() {
     };
     const { id } = useParams();
     const [eventData, setEventData] = useState(null);
+    const [imagePath, setImagePath] = useState();
 
     function formatarData(dateString) {
         const data = new Date(dateString);
@@ -31,7 +34,12 @@ function event_page() {
         const fetchData = async () => {
           try {
             const response = await axios.get(`http://localhost:8080/api/events/${id}`);
+            const url = "../../" + response.data.poster 
+            console.log(url)
+            setImagePath(url)
             setEventData(response.data);
+            console.log("BERTOOOO")
+            console.log(imagePath)
           } catch (error) {
             console.error('Error fetching data:', error);
           }
@@ -49,7 +57,7 @@ function event_page() {
         return <div>Loading...</div>;
       }
 
-    const pricesArray = eventData.prices.split(',').map((price) => price.trim());
+      const pricesArray = eventData.prices.split(',').map((price) => price.trim());
 
         return ( 
                 <div className="p-10 space-y-16">
