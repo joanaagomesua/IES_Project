@@ -60,12 +60,12 @@ const CarouselComponent = () => {
   }, [currentSlide]);
 
   if (!eventData) {
-    return <div>Carregando...</div>;
+    return <div>Loading...</div>;
   }
 
   return (
     <div>
-      <div className="text-neutral decoration-solid font-bold text-5xl text-shadow m-2">Your liked companies ...</div>
+      <div className="text-neutral font-poppins decoration-solid font-bold text-4xl text-shadow m-2">Mais do que Gostas...</div>
       <div className="bg-neutral rounded-box  relative">
         <div
           className="carousel m-6 carousel-center w-[calc(100%-3rem)] space-x-4 h-[34rem]"

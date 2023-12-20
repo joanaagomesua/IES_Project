@@ -60,19 +60,19 @@ const CarouselComponent = () => {
   }, [currentSlide]);
 
   if (!eventData) {
-    return <div>Carregando...</div>;
+    return <div>Loading...</div>;
   }
 
   return (
     <div>
-      <div className="text-accent font-tangerine text-7xl text-shadow m-2">Close to you ...</div>
-      <div className="bg-secondary rounded-box relative">
+      <div className="text-accent text-7xl text-shadow m-2"></div>
+      <div className=" rounded-box relative">
         <div
           className="carousel m-4 carousel-center w-[calc(100%-2rem)] space-x-4 h-[34rem]"
           ref={carouselRef}
         >
           {/* Renderiza a imagem do evento */}
-          <div className="group carousel-item w-96 relative">
+          <div className="group carousel-item w-96 relative ">
             <img
               src={eventData.poster}
               alt={eventData.name}
