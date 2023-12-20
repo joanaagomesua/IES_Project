@@ -9,7 +9,10 @@ import Carousel_tags from '../components/carousel_tags.jsx';
 
 function Home() {
 
-  const [results, setResults] = useState([]); 
+  const [results, setResults] = useState([]);
+   const userId = localStorage.getItem('user_id') || 0;
+   const endpoint = `http://localhost:8080/api/events/${userId}/all_event_pref`;
+   console.log(endpoint)
 
   return (
     <div>
@@ -17,13 +20,8 @@ function Home() {
         <SearchBar setResults={setResults} />
         {results && results.length > 0 && <SearchResultsList results={results} />}
       </div>
-        <Carousel data= "http://localhost:8080/api/events/1/all_event_pref" />
-
-          {/* <div className='w-1/3 h-{400px}  bg-bluepers'></div> */}
-
-          <div className='m-20 '>
-            {/* <Map/> */}
-          </div>
+      {console.log(endpoint)}
+        <Carousel data={endpoint} />
       
     </div>
   );

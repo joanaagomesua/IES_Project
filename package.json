@@ -2,6 +2,7 @@
   "dependencies": {
     "@fontsource/dancing-script": "^5.0.16",
     "@fontsource/tangerine": "^5.0.8",
+    "daisyui": "^4.4.22",
     "react-router-dom": "^6.21.0"
   }
 }

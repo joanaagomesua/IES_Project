@@ -60,25 +60,29 @@ public class EventController {
         if (cities.length > 0 && !cities[0].isEmpty()) {
             for (String city : cities) {
                 List<Event> city_event = eventService.getEventByCity(city);
-                data.put(city, city_event);
+                ArrayList<Event> arrlistofOptions_c = new ArrayList<Event>(city_event);
+                data.put(city, arrlistofOptions_c);
             }
         }
 
         if (tags.length > 0 && !tags[0].isEmpty()) {
             for (String tag: tags){
                 List<Event> tag_event = eventService.getEventByTag(tag);
+                ArrayList<Event> arrlistofOptions_t = new ArrayList<Event>(tag_event);
                 for (Event tag2: tag_event)
                     System.out.println(tag2);
-                data.put(tag, tag_event);
+                data.put(tag, arrlistofOptions_t);
             }
         }
 
         if (companies.length > 0 && !companies[0].isEmpty()) {
             for (String company: companies){
                 List<Event> company_event = eventService.getEventByCompany(company);
-                data.put(company, company_event);
+                ArrayList<Event> arrlistofOptions_comp = new ArrayList<Event>(company_event);
+                data.put(company, arrlistofOptions_comp);
             }
         }
+
         return ResponseEntity.ok().body(data);
     }
 
