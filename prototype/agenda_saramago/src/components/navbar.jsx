@@ -1,18 +1,23 @@
-import { Fragment, useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Disclosure, Menu, Transition } from '@headlessui/react';
-import { Bars3Icon, BellIcon, XMarkIcon, UserIcon } from '@heroicons/react/24/outline';
-import React from 'react';
-import NotificationsDropdown from '../components/notification_dropdown.jsx';
+import { Fragment, useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
+import {
+  Bars3Icon,
+  BellIcon,
+  XMarkIcon,
+  UserIcon,
+} from "@heroicons/react/24/outline";
+import React from "react";
+import NotificationsDropdown from "../components/notification_dropdown.jsx";
 
 const navigation = [
-  { name: 'Os Meus Bilhetes', to: '/my_tickets', current: false },
-  { name: 'Favoritos', to: '/favourites', current: false },
-  { name: 'Calendário', to: '/calendar', current: false },
+  { name: "Os Meus Bilhetes", to: "/my_tickets", current: false },
+  { name: "Favoritos", to: "/favourites", current: false },
+  { name: "Calendário", to: "/calendar", current: false },
 ];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 function Navbar() {
@@ -26,7 +31,6 @@ function Navbar() {
   useEffect(() => {
     setOpenNotifs(false);
   }, [navigate]);
-
 
   return (
     <Disclosure as="nav" className="bg-[#a7c7eb]">
@@ -62,11 +66,11 @@ function Navbar() {
                       to={item.to}
                       className={classNames(
                         item.current
-                          ? 'bg-gray-900 text-white'
-                          : 'text-white bold hover:bg-gray-700 hover:text-white',
-                        'rounded-md px-4 py-4 text-l font-semibold'
+                          ? "bg-gray-900 text-white"
+                          : "text-white bold hover:bg-gray-700 hover:text-white",
+                        "rounded-md px-4 py-4 text-l font-semibold"
                       )}
-                      aria-current={item.current ? 'page' : undefined}
+                      aria-current={item.current ? "page" : undefined}
                     >
                       {item.name}
                     </Link>
@@ -74,7 +78,7 @@ function Navbar() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <button 
+                <button
                   type="button"
                   className="relative rounded-full bg-gray-100 p-1 text-gray-500 hover:text-gray-800 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                   onClick={toggleNotifications}
@@ -109,7 +113,10 @@ function Navbar() {
                         {({ active }) => (
                           <Link
                             to="/profile"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
                             Perfil
                           </Link>
@@ -119,7 +126,10 @@ function Navbar() {
                         {({ active }) => (
                           <Link
                             to="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
                             Definições
                           </Link>
@@ -129,8 +139,14 @@ function Navbar() {
                         {({ active }) => (
                           <Link
                             to="#"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                            onClick={() => localStorage.clear()} // Limpa todo o localStorage
+                            // onClick={() => localStorage.removeItem('user_id')} // Remove apenas a chave 'user_id', se preferir
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
                           >
+                            {" "}
                             Sair
                           </Link>
                         )}
@@ -150,10 +166,12 @@ function Navbar() {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'block rounded-md px-3 py-2 text-base font-medium'
+                    item.current
+                      ? "bg-gray-900 text-white"
+                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                    "block rounded-md px-3 py-2 text-base font-medium"
                   )}
-                  aria-current={item.current ? 'page' : undefined}
+                  aria-current={item.current ? "page" : undefined}
                 >
                   {item.name}
                 </Disclosure.Button>
