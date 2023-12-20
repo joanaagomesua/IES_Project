@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function Register(){
     return (
-        <section class="bg-gray-50 dark:bg-gray-900">
+        <section class="bg-base-100 dark:bg-gray-900">
         <div class="flex flex-col items-center px-6 py-8 mx-auto md:h-screen lg:py-0">
             <a href="#" className="flex items-center text-2xl font-semibold text-gray-900 dark:text-white">
                 <img className="w-64 mr-2" src="/src/assets/images/logo_big.png" alt="logo" />   
