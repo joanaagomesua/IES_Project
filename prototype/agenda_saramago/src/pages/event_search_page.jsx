@@ -3,11 +3,15 @@ import axios from 'axios';
 import { XMarkIcon, Bars3Icon } from '@heroicons/react/24/outline';
 import { Transition, Dialog } from '@headlessui/react';
 import { SearchBar } from '../components/SearchBar.jsx';
+import { useParams } from 'react-router-dom';
+import Card from '../components/ticket_cards';
 
 function EventSearchPage() {
-  const [open, setOpen] = useState(false);
-
-  const tags = 
+    const [open, setOpen] = useState(false);
+    const [tagData, setTagData] = useState([]);
+    const [selectedFilters, setSelectedFilters] = useState([]);
+  
+    const tags = 
     [
         {
             tag_id: 1,
@@ -50,20 +54,46 @@ function EventSearchPage() {
             tag_name: "Cultura e Lazer"
         },
     ];
+
     const handleTagClick = (tagName) => {
-        setSelectedFilters(prevFilters => {
+        // Mantenha a consistência com o nome usado no estado
+        setSelectedFilters((prevFilters) => {
           if (prevFilters.includes(tagName)) {
-            // Se a tag já estiver selecionada, remova-a dos filtros
-            return prevFilters.filter(filter => filter !== tagName);
+            return prevFilters.filter((filter) => filter !== tagName);
           } else {
-            // Se a tag não estiver selecionada, adicione-a aos filtros
             return [...prevFilters, tagName];
           }
         });
       };
-      
-    const [selectedFilters, setSelectedFilters] = useState([]);
-      
+    
+      useEffect(() => {
+        const fetchData = async () => {
+            try {
+                console.log("Fetching data...");
+                console.log(selectedFilters);
+          
+                const filtros = selectedFilters;
+                console.log(filtros);
+          
+                if (filtros.length > 0) {
+                  let combinedData = []; // Array para armazenar os resultados combinados
+          
+                  for (let i = 0; i < selectedFilters.length; i++) {
+                    console.log(selectedFilters[i]);
+                    const response = await axios.get(`http://localhost:8080/api/events/tag/${selectedFilters[i]}`);
+                    combinedData = [...combinedData, ...response.data]; // Adiciona os resultados ao array
+                  }
+          
+                  setTagData(combinedData); // Define os resultados combinados uma vez fora do loop
+                }
+              } catch (error) {
+                console.error('Error fetching data:', error);
+              }
+            };          
+    
+        fetchData();
+      }, [selectedFilters]);
+
 
     return (
         <div>
@@ -158,9 +188,21 @@ function EventSearchPage() {
             </div>
 
             <div className="p-20 space-y-20">
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '20px' }}>
-                    
-                    
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '20px' }}>
+            {tagData && Array.isArray(tagData) && tagData.length > 0 ?
+                tagData.map((event, index) => (
+                <Card
+                    key={index}
+                    title={event.name}
+                    data={event.datestart}
+                    hora={event.schedule}
+                    city={event.city}
+                    location={event.location}
+                    price={event.prices}
+                />
+                )) :
+                <p>Nenhum evento encontrado.</p>
+            }
                 </div>
             </div>
         </div>
