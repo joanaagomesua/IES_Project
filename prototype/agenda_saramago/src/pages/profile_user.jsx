@@ -16,20 +16,28 @@ function profile(){
     const [profileImage, setProfileImage] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
 
+    const userID = localStorage.getItem('user_id');
+
+    const [user, setUser] = useState({
+        id: userID,
+        username: '',
+        name: '',
+        email: '',
+        password: '',
+        bio: '',
+        birthday: '',
+        profile_pic: ''
+        // ... other properties
+    });
+    
     const handleEditClick = () => {
         setIsEditing(true);
     };
 
     const handleSaveClick = () => {
         setIsEditing(false);
-        console.log('Saving profile data:');
-        console.log('Profile Image:', profileImage);
-        console.log('Profile Image:', selectedImage || 'No image selected');
-        console.log('Name:', name);
-        console.log('Email:', email);
-        console.log('Bio:', bio || 'Not provided');
-        console.log('Birthday:', birthday || 'Not provided');
-
+        console.log('Saving profile data:', user);
+    
         fetch(`/api/user/${user.id}/update`, {
             method: 'PUT',
             headers: {
@@ -40,13 +48,15 @@ function profile(){
             .then(response => response.json())
             .then(data => console.log('Update response:', data))
             .catch(error => console.error('Error updating user:', error));
-   
     };
+    
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
-        setUser(prevUser => ({ ...prevUser, selectedImage: URL.createObjectURL(file), profileImage: file }));
+        setSelectedImage(URL.createObjectURL(file));
+        setProfileImage(file);
     };
+    
 
     const handleBirthdayChange = (event) => {
         const inputValue = event.target.value;
