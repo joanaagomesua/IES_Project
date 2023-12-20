@@ -4,7 +4,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import pt.deti.ies.agendasaramago.repositories.UserRepository;
+import pt.deti.ies.agendasaramago.repositories.UserPreferencesRepository;
 import pt.deti.ies.agendasaramago.models.User;
+import pt.deti.ies.agendasaramago.models.UserPreferences;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import pt.deti.ies.agendasaramago.auth.security.ASPasswordEncoder;
@@ -20,11 +22,22 @@ public class AuthController {
     private UserRepository userRepository;
 
     @Autowired
+    private UserPreferencesRepository userPreferencesRepository;
+
+    @Autowired
     private ASPasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
-    public User registerUser(@RequestBody User user) {
-        user.setUsername(user.getName());
+    public ResponseEntity<String> registerUser(@RequestBody User user) {
+        if (userRepository.existsByEmail(user.getEmail())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email is already registered.");
+        }
+
+        if (userRepository.existsByUsername(user.getUsername())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username is already taken.");
+        }
+
+        user.setUsername(user.getUsername());
         user.setEmail(user.getEmail());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setBirthday(user.getBirthday());
@@ -32,7 +45,15 @@ public class AuthController {
         if (user.getProfile_pic() != null){
             user.setProfile_pic(user.getProfile_pic());
         }
-        return userRepository.save(user);
+
+        User savedUser = userRepository.save(user);
+
+        UserPreferences userPreferences = new UserPreferences();
+        userPreferences.setUser(savedUser);
+        userPreferences.setCities("Aveiro");
+        userPreferencesRepository.save(userPreferences);
+
+        return ResponseEntity.ok("User registered successfully.");
     }
 
     @PostMapping("/login")

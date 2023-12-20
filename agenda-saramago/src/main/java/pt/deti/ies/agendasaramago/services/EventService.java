@@ -1,13 +1,18 @@
 package pt.deti.ies.agendasaramago.services;
 
-import pt.deti.ies.agendasaramago.repositories.EventRepository;
-import pt.deti.ies.agendasaramago.models.Event;
-import pt.deti.ies.agendasaramago.models.Company;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import pt.deti.ies.agendasaramago.models.Company;
+import pt.deti.ies.agendasaramago.models.Event;
+import pt.deti.ies.agendasaramago.repositories.EventRepository;
 
 @Service
 public class EventService {
@@ -23,21 +28,23 @@ public class EventService {
         return eventRepository.findAll();
     }
 
-    //fazer handle das exceptions depois ---> esta primeira é só para não dar erros enquanto não criarmos as classes de exceptions
     public Event getEventById(int id) {
         Optional<Event> optionalEvent = eventRepository.findById(id);
         return optionalEvent.orElse(null);
     }
 
-    public List<Event> getEventByTags(String tags){
-        return eventRepository.findByTags(tags);
+    public List<Event> getEventByTag(String tag) {
+        System.out.println("Calling getEventByTag with tag: " + tag);
+        List<Event> events = eventRepository.findByTagsContaining(tag);
+        System.out.println("Found events: " + events);
+        return events;
     }
 
     public List<Event> getEventByCity(String city) {
         return eventRepository.findByCity(city);
     }
 
-    public List<Event> getEventByCompany(Company company) {
+    public List<Event> getEventByCompany(String company) {
         return eventRepository.findByCompany(company);
     }
 
@@ -65,5 +72,17 @@ public class EventService {
         } else {
             return null;
         }
+    }
+
+    @Modifying
+    @Transactional
+    public void updateSeats(Integer eventId) {
+        eventRepository.decrementAvailableSeats(eventId);
+    }
+
+    @Modifying
+    @Transactional
+    public void plusSeats(Integer eventId) {
+        eventRepository.incrementNonAvailableSeats(eventId);
     }
 }

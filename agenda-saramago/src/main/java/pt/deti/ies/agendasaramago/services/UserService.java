@@ -1,13 +1,12 @@
 package pt.deti.ies.agendasaramago.services;
 
-import pt.deti.ies.agendasaramago.repositories.UserRepository;
-import pt.deti.ies.agendasaramago.models.User;
-
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import pt.deti.ies.agendasaramago.models.User;
+import pt.deti.ies.agendasaramago.repositories.UserRepository;
 
 @Service
 public class UserService {
@@ -31,6 +30,7 @@ public class UserService {
 
     public User updateUser(User user) {
         Optional<User> userToUpdateOptional = userRepository.findById((int) user.getId());
+        System.out.println(userToUpdateOptional);
         if (userToUpdateOptional.isPresent()) {
             User user_to_update = userToUpdateOptional.get();
             user_to_update.setUsername(user.getUsername());

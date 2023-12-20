@@ -1,20 +1,15 @@
 package pt.deti.ies.agendasaramago.models;
 
-import javax.persistence.Entity;
+import java.util.Date;
+
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import javax.persistence.Id;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.time.format.DateTimeFormatter;
-import java.time.ZonedDateTime;
-import java.time.ZoneId;
 
 
 @Table(name= "Event")
@@ -52,11 +47,12 @@ public class Event {
     private String city;
     @Column(name = "seats")
     private int seats;
+    @Column(name = "seats_not_available")
+    private int seats_not_available;
 
     public Event() {}
 
-    public Event(int id, String name, String company, String description, String tags,int duration, Date date_start, Date date_end, String schedule, String poster, String prices, String location, String city, int seats){
-        this.id = id;
+    public Event(String name, String company, String description, String tags,int duration, Date date_start, Date date_end, String schedule, String poster, String prices, String location, String city, int seats, int seats_not_available){
         this.name = name;
         this.company = company;
         this.description = description;
@@ -70,6 +66,7 @@ public class Event {
         this.location = location;
         this.city = city;
         this.seats=seats;
+        this.seats_not_available = seats_not_available;
     }
 
     
@@ -167,6 +164,30 @@ public class Event {
         return city;
     }
 
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public int getSeats() {
+        return seats;
+    }
+
+    public void setSeats(int seats) {
+        this.seats = seats;
+    }
+
+    public int getSeats_not_available() {
+        return seats_not_available;
+    }
+
+    public void setSeats_not_available(int seats_not_available) {
+        this.seats_not_available = seats_not_available;
+    }
+
     private String escapeString(String input) {
         return input != null ? input.replace("'", "\\'") : "null";
     }
@@ -191,21 +212,7 @@ public class Event {
                 '}';
     }
 
-    public int getDuration() {
-        return duration;
-    }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
-    public int getSeats() {
-        return seats;
-    }
-
-    public void setSeats(int seats) {
-        this.seats = seats;
-    }
 
     
 

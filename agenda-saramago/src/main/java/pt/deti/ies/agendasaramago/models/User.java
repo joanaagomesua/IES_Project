@@ -6,6 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.FetchType;
+import javax.persistence.CascadeType;
 
 import java.util.*;
 @Entity
@@ -29,6 +33,7 @@ public class User {
     private String bio;
     @Column(name="user_profile_pic")
     private String profile_pic;
+
 
     public int getId() {
         return id;
@@ -94,8 +99,10 @@ public class User {
         this.password = password;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+
+
+    @Override
+    public String toString() {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +

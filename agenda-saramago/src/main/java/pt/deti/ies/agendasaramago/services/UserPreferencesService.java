@@ -18,20 +18,18 @@ public class UserPreferencesService {
         return userprefRepository.save(userpref);
     }
 
-    public List<UserPreferences> getAllPreferences(int id) {
-        return userprefRepository.findAllPrefFromUser(id);
+    public UserPreferences getAllPreferences(int id) {
+        return userprefRepository.findByUserId(id).orElseThrow(() -> new RuntimeException());
     }
 
-    public UserPreferences updatePreferences(UserPreferences userpref) {
-        Optional<UserPreferences> prefToUpdateOptional = userprefRepository.findById((int) userpref.getId());
-        if (prefToUpdateOptional.isPresent()) {
-            UserPreferences pref_to_update = prefToUpdateOptional.get();
-            pref_to_update.setCities(userpref.getCities());
-            pref_to_update.setTags(userpref.getTags());
-            pref_to_update.setCompanies(userpref.getCompanies());
-            return userprefRepository.save(pref_to_update);
-        } else {
-            return null;
-        }
+    public UserPreferences updatePreferences(int userId, String cities, String tags, String companies) {
+        UserPreferences userPreferences = userprefRepository.findByUserId(userId)
+                .orElseThrow(() -> new RuntimeException("Preferências do usuário não encontradas para o ID: " + userId));
+
+        userPreferences.setCities(cities);
+        userPreferences.setTags(tags);
+        userPreferences.setCompanies(companies);
+
+        return userprefRepository.save(userPreferences);
     }
 }

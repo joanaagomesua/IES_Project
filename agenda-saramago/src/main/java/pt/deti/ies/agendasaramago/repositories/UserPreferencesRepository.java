@@ -9,6 +9,5 @@ import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserPreferencesRepository extends JpaRepository<UserPreferences, Integer> {
-    @Query("SELECT u FROM UserPreferences u WHERE u.user.id = :userId")
-    public List<UserPreferences> findAllPrefFromUser(int userId);
+    Optional<UserPreferences> findByUserId(int userId);
 }
