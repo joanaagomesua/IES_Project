@@ -65,7 +65,7 @@ function CarouselComponent({ data }) {
   }, [currentSlides]);
 
   if (!eventData) {
-    return <div>Carregando...</div>;
+    return <div>Loading...</div>;
   }
 
   return (

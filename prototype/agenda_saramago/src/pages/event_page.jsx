@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import CarouselWithContent from '../components/carousel.jsx';
-import Map from '../components/map.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChair, faChild, faPerson, faPersonCane, faPlus, faUsers, faGraduationCap } from '@fortawesome/free-solid-svg-icons';
+import { faChair, faChild, faPerson, faPersonCane, faPlus, faUsers, faGraduationCap, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
 import ProgressBar from '../components/progress_bar.jsx';
-import dance from '../../img/danca.jpg';
+import { Link } from 'react-router-dom';
 
 
 function event_page() {
+    const [isHeartFilled, setIsHeartFilled] = useState(false);
+
+    const handleToggleHeart = () => {
+        setIsHeartFilled(!isHeartFilled);
+    };
     const { id } = useParams();
     const [eventData, setEventData] = useState(null);
     const [imagePath, setImagePath] = useState();
@@ -31,11 +35,8 @@ function event_page() {
           try {
             const response = await axios.get(`http://localhost:8080/api/events/${id}`);
             const url = "../../" + response.data.poster 
-            console.log(url)
             setImagePath(url)
             setEventData(response.data);
-            console.log("BERTOOOO")
-            console.log(imagePath)
           } catch (error) {
             console.error('Error fetching data:', error);
           }
@@ -54,20 +55,30 @@ function event_page() {
       }
 
 
-      const pricesArray = eventData.prices.split(',').map((price) => price.trim());
+    const pricesArray = eventData.prices.split(',').map((price) => price.trim());
 
         return ( 
-                <div className="p-10 space-y-10">
-                    <div className="bg-blue-200 space-y-2">
-                        <p className='font-poppins font-bold text-4xl'>{eventData.name}</p> {/* Title */}
-                        <p className='font-poppins text-3xl'>{eventData.company}</p> {/* Company*/}
+                <div className="p-10 space-y-16">
+                    <div className="mt-8 text-[#758ca4] space-y-2">
+                        <p className='font-poppins font-bold text-4xl ' style={{ textShadow: '2px 1px 1px rgba(0, 0, 0, 0.5)'}}>{eventData.name}</p> {/* Title */}
+                        
+                        <p className='font-poppins text-3xl '>{eventData.company}
+                            <button className="ml-2" onClick={handleToggleHeart}>
+                                <FontAwesomeIcon
+                                    icon={faHeart}
+                                    className={`text-xl ${isHeartFilled ? 'text-red-500' : 'text-gray-500'}`}
+                                />
+                            </button>
+                        </p> {/* Company*/}
+                            
+                        
                     </div>
-                    <div className=' flex bg-green-200 space-x-10'>
+                    <div className=' flex space-x-10'>
                             <div className='flex-initial w-1/4'>
                                 <div className='relative'>
-                                    <img src={dance} alt="image" /> {/*Image-> POSTER */}
+                                    <img style={{ boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)'}}  src={eventData.poster} alt="Event Poster"></img>{/*Image-> POSTER */}
                                     <div className="absolute top-0 right-0 p-4 flex items-center justify-center">
-                                        <button className="w-10 h-10 rounded-full bg-slate-300 hover:bg-slate-500 text-white">
+                                        <button className="w-10 h-10 rounded-full  hover:bg-slate-500 text-white">
                                             <FontAwesomeIcon icon={faPlus}/>
                                         </button>
                                     </div>
@@ -77,30 +88,33 @@ function event_page() {
                                 <div className='flex font-poppins font-bold mb-4'>
                                     <div className='w-1/2 flex flex-row items-center'>
                                         <FontAwesomeIcon icon={faChair}  className="mr-2" />
-                                            <div className="bg-primary p-2 text-center text-xs font-medium leading-none text-primary-100" style={{ width: '25%' }}>
-                                            <ProgressBar bgcolor="#e5e5e5" progress={eventData.seats_not_available*100/eventData.seats} height={20} />
+                                            <div className=" p-2 text-center text-xs font-medium leading-none text-primary-100" style={{ width: '25%' }}>
+                                            <ProgressBar bgcolor="#a7c7eb" progress={eventData.seats} height={20} />
                                             </div>
                                     </div>
                                 </div>
-                                <div className='font-poppins w-full mb-4'> {/* Description*/}
-                                    <p>{eventData.description}</p>
+                                <div className='font-poppins w-full mb-6'> {/* Description*/}
+                                    <p className="text-xl">{eventData.description}</p>
                                 </div>
-                                <div className='font-poppins'>
-                                    <h2 className='font-bold mb-2'>Tags:</h2> {/*tags*/}
-                                    <div className="box-border h-20 w-full p-4 border-2 border-black border-opacity-10">
+                                <div className='mt-8 font-poppins'>
+                                    <h2 className='font-bold mb-2'>Filtros:</h2>
+                                    <div className=" h-20 w-full p-4 ">
                                         <div className='flex space-x-2'>
                                             {eventData.tags.split(',').map((tag, index) => (
-                                            <div key={index} className="rounded-full bg-slate-200 bg-opacity-100 p-2">
-                                                <p className="text-black">#{tag.trim()}</p>
-                                            </div>
+                                                <Link key={index} to={`/event_search_page?tag=${tag.trim()}`}>
+                                                    <div className="rounded-full bg-slate-200 bg-opacity-100 p-2">
+                                                        <p className="text-black">#{tag.trim()}</p>
+                                                    </div>
+                                                </Link>
                                             ))}
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
-                            <div className='font-poppins'>
-                            <h2 className='font-bold text-2xl mb-4'>Preços</h2>
+                            <div className='font-poppins space-y-8'>
                                 <div className='flex flex-col'>
+                                    <h2 className='font-bold text-2xl mb-2'>Preços</h2>
                                     {pricesArray.map((priceItem, index) => {
                                     const [category, value] = priceItem.split(':');
                                     let icon = null;
@@ -125,43 +139,44 @@ function event_page() {
                                     })}
                                 </div>
                                 <div className='mt-4 mb-4'>
-                                    <h2 className='font-bold text-2xl mt-4 mb-2'>Date</h2>
+                                    <h2 className='font-bold text-2xl mt-4 mb-2'>Data</h2>
                                         <p>{formatarData(eventData.datestart)}</p>
-                                        <h2 className='font-bold text-2xl mt-4 mb-2'>Schedule</h2>
+                                        <h2 className='font-bold text-2xl mt-6 mb-2'>Horário</h2>
                                         <p>{eventData.schedule}</p>
-                                        <h2 className='font-bold text-2xl mt-4 mb-2'>Duration</h2>
+                                        <h2 className='font-bold text-2xl mt-6 mb-2'>Duração</h2>
                                         <p>{eventData.duration} minutos</p>
                                 </div>
                             </div>
                         </div>
-                        <div className='flex h-auto bg-yellow-200 flex-col-reverse md:flex-row sm:flex-col'>
-                        <div className='flex flex-col w-full md:w-2/3'>
-                        <h1 className='font-poppins font-bold text-3xl mb-4'>Similar Events</h1>
-                        <div className='flex items-start space-x-10'>
-                        <div>
-                            <h3 className='font-poppins text-2xl mb-2'>For kids...</h3>
-                            <CarouselWithContent/>
+
+
+                        <div className=' h-auto flex-col-reverse md:flex-row sm:flex-col'>
+                            <div className='inline md:w-2/3'>
+                                <h1 className='font-poppins font-bold text-[#758ca4] text-3xl mb-8' style={{ textShadow: '1px 1px 1px rgba(0, 0, 0, 0.5)'}}>Eventos Semelhantes</h1>
+                                <div className='space-y-16'>
+                                    <div className=''>
+                                        <div className='ml-6'>  
+                                            <h3 className='font-poppins font-semibold text-[#758ca4] text-2xl mb-4'>Para Miúdos sem Graúdos:</h3>
+                                            <CarouselWithContent/>
+                                        </div>
+                                    </div>
+                                    <div className=''>
+                                        <div className='ml-6'>
+                                            <h3 className='font-poppins font-semibold text-[#758ca4] text-2xl mb-4'>Se és Amante do Teatro:</h3>
+                                            <CarouselWithContent />
+                                        </div>
+                                    </div>
+                                    <div className=''>
+                                        <div className='ml-6'>
+                                            <h3 className='font-poppins font-semibold text-[#758ca4] text-2xl mb-4'>Embarca numa Fantasia:</h3>
+                                            <CarouselWithContent/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                
                         </div>
-                        <div className='border-l border-gray-500 pl-4'>
-                            <div className='ml-6'>
-                                <h3 className='font-poppins text-2xl mb-2'>For theatre lovers...</h3>
-                                <CarouselWithContent />
-                            </div>
-                        </div>
-                        <div className='border-l border-gray-500 pl-4'>
-                            <div className='ml-6'>
-                            <h3 className='font-poppins text-2xl mb-2'>Fantasy...</h3>
-                            <CarouselWithContent/>
-                            </div>
-                        </div>
-                            </div>
-                            </div>
-                            <div className='w-full md:w-1/3 flex flex-col order-3'>
-                                <h2 className='font-poppins font-bold'>Location</h2>
-                                <Map  width="560px" height="390px"/>
-                            </div>
-                        </div>
-        )
+        
         </div>
     );
     }

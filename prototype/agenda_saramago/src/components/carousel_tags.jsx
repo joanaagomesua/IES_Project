@@ -65,7 +65,7 @@ const CarouselComponent = () => {
 
   return (
     <div>
-      <div className="text-primary font-bold text-5xl text-shadow m-2">Your favorite tags ...</div>
+      <div className="text-primary font-poppins font-bold text-4xl text-shadow m-2">Os teus filtros favoritos...</div>
       <div className="bg-primary rounded-box relative">
         <div
           className="carousel m-6 carousel-center w-[calc(100%-3rem)] space-x-4 h-[34rem]"

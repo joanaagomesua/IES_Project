@@ -1,65 +1,108 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
+import axios from 'axios';
+import { XMarkIcon, Bars3Icon } from '@heroicons/react/24/outline';
+import { Transition, Dialog } from '@headlessui/react';
+import { SearchBar } from '../components/SearchBar.jsx';
+import { useParams } from 'react-router-dom';
 import Card from '../components/ticket_cards';
-import { SearchBar } from "../components/SearchBar.jsx";
-import { SearchResultsList } from "../components/SearchResultsList.jsx";
-import "../assets/css/styles.css";
-import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
-import { XMarkIcon, Bars3Icon } from '@heroicons/react/24/outline'
-
 
 function EventSearchPage() {
     const [open, setOpen] = useState(false);
-
-    const staticData = [
-        { title: 'Campeonato Karaté', content: 'Participa num emocionante'},
-        { title: 'Dança Contemporanea', content: 'Deixa-te envolver pela'},
-        { title: 'Feira de Queijos e Vinhos', content: 'Desfruta de uma experiência'},
-        { title: 'Festival de Cinema', content: 'Imersa-te no mundo ' },
-        { title: 'Clube de Leitura "Entre Páginas"', content: '"Entre Páginas" é mais'},
-        { title: 'Feira Antiguidades', content: 'Explora a história através'},
+    const [tagData, setTagData] = useState([]);
+    const [selectedFilters, setSelectedFilters] = useState([]);
+  
+    const tags = 
+    [
+        {
+            tag_id: 1,
+            tag_name: "Dança"
+        },
+        {
+            tag_id: 2,
+            tag_name: "Teatro"
+        },
+        {
+            tag_id: 3,
+            tag_name: "Música"
+        },
+        {
+            tag_id: 4,
+            tag_name: "Leitura e Literatura"
+        },
+        {
+            tag_id: 5,
+            tag_name: "Artes Visuais"
+        },
+        {
+            tag_id: 6,
+            tag_name: "Cinema e Vídeo"
+        },
+        {
+            tag_id: 7,
+            tag_name: "Gastronomia"
+        },
+        {
+            tag_id: 8,
+            tag_name: "Carreira e Desenvolvimento Profissional"
+        },
+        {
+            tag_id: 9,
+            tag_name: "Educação e Aprendizagem"
+        },
+        {
+            tag_id: 10,
+            tag_name: "Cultura e Lazer"
+        },
     ];
 
-    const [results, setResults] = useState([]);
-    const [searchQuery, setSearchQuery] = useState('');
-
-    const handleSearchResultSelect = (selectedEvent) => {
-        console.log('Selected Event:', selectedEvent);
-    };
-
-    const filterEvents = (value) => {
-        setSearchQuery(value);
-        const filteredResults = staticData.filter((event) =>
-            event.title.toLowerCase().includes(value.toLowerCase()) ||
-            event.content.toLowerCase().includes(value.toLowerCase())
-        );
-        setResults(filteredResults);
-    };
-
-    const filters = [
-        { name: 'Dança', href: '#', current: true },
-        { name: 'Teatro', href: '#', current: false },
-        { name: 'Música', href: '#', current: false },
-        { name: 'Literatura', href: '#', current: false },
-        { name: 'Artes Visuais', href: '#', current: false },
-        { name: 'Cinema e Vídeo', href: '#', current: false },
-        { name: 'Gastronomia', href: '#', current: false },
-        { name: 'Carreira e Desenvolvimento Profissional', href: '#', current: false },
-        { name: 'Educação e Aprendizagem', href: '#', current: false },
-        { name: 'Cultura e Lazer', href: '#', current: false },
-    ]; // filter options here
-
-        
+    const handleTagClick = (tagName) => {
+        // Mantenha a consistência com o nome usado no estado
+        setSelectedFilters((prevFilters) => {
+          if (prevFilters.includes(tagName)) {
+            return prevFilters.filter((filter) => filter !== tagName);
+          } else {
+            return [...prevFilters, tagName];
+          }
+        });
+      };
     
-
+      useEffect(() => {
+        const fetchData = async () => {
+            try {
+                console.log("Fetching data...");
+                console.log(selectedFilters);
+          
+                const filtros = selectedFilters;
+                console.log(filtros);
+          
+                if (filtros.length > 0) {
+                  let combinedData = []; // Array para armazenar os resultados combinados
+          
+                  for (let i = 0; i < selectedFilters.length; i++) {
+                    console.log(selectedFilters[i]);
+                    const response = await axios.get(`http://localhost:8080/api/events/tag/${selectedFilters[i]}`);
+                    combinedData = [...combinedData, ...response.data]; // Adiciona os resultados ao array
+                  }
+          
+                  setTagData(combinedData); // Define os resultados combinados uma vez fora do loop
+                }
+              } catch (error) {
+                console.error('Error fetching data:', error);
+              }
+            };          
     
+        fetchData();
+      }, [selectedFilters]);
+
+
     return (
         <div>
 
             <div className="filter-panel">
                 <button className="filter-button" onClick={() => setOpen(true)}>
                     <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-                    
                 </button>
+
                 <Transition.Root show={open} as={Fragment}>
                 <Dialog as="div" className="relative z-10" onClose={setOpen}>
                     <Transition.Child
@@ -116,8 +159,17 @@ function EventSearchPage() {
                                 </div>
                                 <div className="relative mt-6 flex-1 px-20 sm:px-6">
                                     
-                                        Content here
-                                    
+                                    <div>
+                                    {tags.map(tag => (
+                                    <button
+                                        key={tag.tag_id}
+                                        className={`rounded-full font-poppins px-6 py-4 text-l mr-2 mb-2 ${selectedFilters.includes(tag.tag_name) ? 'bg-[#758ca4] text-[#fff6ed]' : 'bg-gray-200 text-black'}`}
+                                        onClick={() => handleTagClick(tag.tag_name)}
+                                    >
+                                        {tag.tag_name}
+                                    </button>
+                                    ))}
+                                    </div>
                                 </div>
                             </div>
                             </Dialog.Panel>
@@ -130,26 +182,28 @@ function EventSearchPage() {
             </div>
             <div>
                 <div className="search-bar-container">
-                    <SearchBar setResults={filterEvents} allEvents={staticData} />
-                    {searchQuery && (
-                        <div>
-                            <p>You searched for: {searchQuery}</p>
-                        </div>
-                    )}
-                    {results.length > 0 && (
-                        <SearchResultsList results={results} onSelect={handleSearchResultSelect} />
-                    )}
+                    <SearchBar/>
+                    
                 </div>
             </div>
 
             <div className="p-20 space-y-20">
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '20px' }}>
-                    {results.length > 0
-                        ? results.map((event, index) => (
-                            <Card key={index} title={event.title} content={event.content} />
-                        ))
-                        : <p>No results found.</p>
-                    }
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '20px' }}>
+            {tagData && Array.isArray(tagData) && tagData.length > 0 ?
+                tagData.map((event, index) => (
+                <Card
+                    key={index}
+                    title={event.name}
+                    data={event.datestart}
+                    hora={event.schedule}
+                    city={event.city}
+                    location={event.location}
+                    price={event.prices} 
+                    imageSrc={event.poster}
+                />
+                )) :
+                <p>Nenhum evento encontrado.</p>
+            }
                 </div>
             </div>
         </div>

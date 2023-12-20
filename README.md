@@ -1,6 +1,6 @@
 # **IES Final Project**
 
-## *Event Searching Application - Agenda, Saramago!*
+## *Event Searching Application - Agenda Saramago*
 <br>
 
 | NMec   | Email                  | Name                                             | Role          |

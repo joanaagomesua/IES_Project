@@ -7,7 +7,7 @@ const NotFound = () => {
         <img src="/src/assets/images/404.jpg" width="800vw" height="800vh"/>
 
         <p class="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-          Uups!
+          Ups!
         </p>
 
         <p class="mt-4 text-black">Parece que viajaste para demasiado longe!</p>
