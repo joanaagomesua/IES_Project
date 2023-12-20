@@ -1,12 +1,14 @@
 import pika
 import json
+import os
 
 class Sender():
     def __init__(self):
-        self.rabbitmq_host = 'localhost'
-        self.rabbitmq_port = 5672
-        self.rabbitmq_username = 'guest'
-        self.rabbitmq_password = 'guest'
+        self.rabbitmq_host = os.environ.get('RABBIT_HOST', 'localhost')
+        self.rabbitmq_port = os.environ.get('RABBIT_PORT', 5672)
+        self.rabbitmq_username = os.environ.get('RABBIT_USER', 'guest')
+        self.rabbitmq_password = os.environ.get('RABBIT_PASSWORD', 'guest')
+        print(f'Connecting to RabbitMQ at {self.rabbitmq_host}:{self.rabbitmq_port} as {self.rabbitmq_username}')
         self.exchange = '' 
         self.queue = 'new_event'
         self.routing_key = 'new_event'
