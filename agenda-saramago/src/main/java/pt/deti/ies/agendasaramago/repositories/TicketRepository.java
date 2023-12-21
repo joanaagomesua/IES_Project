@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import pt.deti.ies.agendasaramago.models.Ticket;
 
-public interface TicketRepository extends JpaRepository<Ticket, Long> {
+public interface TicketRepository extends JpaRepository<Ticket, Integer> {
    @Query("SELECT t FROM Ticket t WHERE t.user.id = :userId")
    public List<Ticket> findByUser_Id(@Param("userId") Integer userId);
 }
