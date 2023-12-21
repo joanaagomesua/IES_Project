@@ -33,7 +33,7 @@ function event_page() {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get(`http://localhost:8080/api/events/${id}`);
+            const response = await axios.get(import.meta.env.VITE_API_URL+`/events/${id}`);
             const url = "../../" + response.data.poster 
             setImagePath(url)
             setEventData(response.data);

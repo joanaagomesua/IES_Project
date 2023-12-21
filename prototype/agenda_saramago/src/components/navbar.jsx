@@ -138,7 +138,7 @@ function Navbar() {
                       <Menu.Item>
                         {({ active }) => (
                           <Link
-                            to="#"
+                            to="/login"
                             onClick={() => localStorage.clear()} // Limpa todo o localStorage
                             // onClick={() => localStorage.removeItem('user_id')} // Remove apenas a chave 'user_id', se preferir
                             className={classNames(

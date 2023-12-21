@@ -15,7 +15,7 @@ function Login() {
     setLoginError(""); // Resetar o erro de login a cada tentativa
 
     try {
-      const response = await fetch("http://localhost:8080/api/auth/login", {
+      const response = await fetch(import.meta.env.VITE_API_URL+"/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -48,7 +48,7 @@ function Login() {
         >
           <img
             className="w-96 h-54 mr-2"
-            src="/src/assets/images/logo_big.png"
+            src="/logo_big.png"
             alt="logo"
           />
         </a>
@@ -100,7 +100,6 @@ function Login() {
                       aria-describedby="remember"
                       type="checkbox"
                       className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                      required=""
                     />
                   </div>
                   <div className="ml-3 text-sm">

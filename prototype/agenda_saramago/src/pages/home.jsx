@@ -11,7 +11,7 @@ function Home() {
 
   const [results, setResults] = useState([]);
    const userId = localStorage.getItem('user_id') || 0;
-   const endpoint = `http://localhost:8080/api/events/${userId}/all_event_pref`;
+   const endpoint = import.meta.env.VITE_API_URL+`/events/${userId}/all_event_pref`;
    console.log(endpoint)
 
   return (

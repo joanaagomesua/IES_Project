@@ -88,7 +88,7 @@ function EventSearchPage() {
           
                   for (let i = 0; i < selectedFilters.length; i++) {
                     console.log(selectedFilters[i]);
-                    const response = await axios.get(`http://localhost:8080/api/events/tag/${selectedFilters[i]}`);
+                    const response = await axios.get(import.meta.env.VITE_API_URL+`/events/tag/${selectedFilters[i]}`);
                     combinedData = [...combinedData, ...response.data]; // Adiciona os resultados ao array
                   }
           

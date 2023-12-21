@@ -48,7 +48,7 @@ function Register() {
       try {
         // Enviar os dados como JSON para o endpoint
         const response = await fetch(
-          "http://localhost:8080/api/auth/register",
+          import.meta.env.VITE_API_URL+"/auth/register",
           {
             method: "POST",
             headers: {
@@ -90,7 +90,7 @@ function Register() {
           >
             <img
               className="w-64 mr-2"
-              src="/src/assets/images/logo_big.png"
+              src="/logo_big.png"
               alt="logo"
             />
           </a>
