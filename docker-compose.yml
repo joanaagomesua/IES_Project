@@ -52,6 +52,12 @@ services:
     depends_on:
       - api
       - rabbitmq
+    command: >
+      sh -c "
+        echo 'Esperando 10 segundos antes de iniciar...';
+        sleep 10;
+        exec python3 main.py 10
+      "
 
   web:
     build: prototype/agenda_saramago/
