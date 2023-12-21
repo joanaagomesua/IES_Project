@@ -20,13 +20,13 @@ public class TicketService {
     @Autowired
     private EventRepository eventRepository;
 
-    public List<Ticket> getTicketsByUserId(Integer userId) {
+    public List<Ticket> getTicketsByUserId(int userId) {
         Optional<List<Ticket>> optionalTickets = Optional.ofNullable(ticketRepository.findByUser_Id(userId));
         return optionalTickets.orElse(null);
     }
 
     public Ticket buyTickets(Ticket ticket) {
-        int eventId = ticket.getEvent().getId();
+        int eventId = ticket.getEvent_id();
         int availableSeats = eventRepository.getAvailableSeatsForEvent(eventId);
         int nonAvailableSeats = eventRepository.getNotAvailableSeatsForEvent(eventId);
         if (availableSeats-1 < 0) {

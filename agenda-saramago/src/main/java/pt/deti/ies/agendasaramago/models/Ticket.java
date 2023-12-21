@@ -17,19 +17,17 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @ManyToOne
-    @JoinColumn(name = "user")
-    private User user;
-    @ManyToOne
+    @Column(name= "user_id")
+    private int user_id;
     @JoinColumn(name = "event_id")
-    private Event event;
+    private int event_id;
 
     public Ticket() {}
 
-    public Ticket(int id, User user, String company, Event event) {
+    public Ticket(int id, int user_id, String company, int event_id) {
         this.id = id;
-        this.user = user;
-        this.event = event;
+        this.user_id = user_id;
+        this.event_id = event_id;
     }
 
     public int getId() {
@@ -40,20 +38,20 @@ public class Ticket {
         this.id = id;
     }
 
-    public User getuser() {
-        return user;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setuser(User user) {
-        this.user = user;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
-    public Event getEvent() {
-        return event;
+    public int getEvent_id() {
+        return event_id;
     }
 
-    public void setEvent(Event event) {
-        this.event = event;
+    public void setEvent_id(int event_id) {
+        this.event_id = event_id;
     }
 
     
