@@ -4,14 +4,14 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 function MyTickets() {
-  const { user } = useParams();
   const [ticketData, setTicketData] = useState(null);
   const [eventData, setEventData] = useState([]);
+  const userId = localStorage.getItem("user_id");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/tickets/${user}`);
+        const response = await axios.get(`http://localhost:8080/api/tickets/${userId}`);
         setTicketData(response.data);
         console.log(response.data);
       } catch (error) {
@@ -20,7 +20,7 @@ function MyTickets() {
     };
 
     fetchData();
-  }, [user]);
+  }, [userId]);
 
   useEffect(() => {
     const fetchEventData = async () => {
