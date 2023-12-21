@@ -16,45 +16,69 @@ function profile(){
     const [profileImage, setProfileImage] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
 
+    const userID = localStorage.getItem('user_id');
+
+    const [user, setUser] = useState({
+        id: userID,
+        username: '',
+        name: '',
+        email: '',
+        password: '',
+        bio: '',
+        birthday: '',
+        profile_pic: ''
+        // ... other properties
+    });
+    
     const handleEditClick = () => {
         setIsEditing(true);
     };
 
     const handleSaveClick = () => {
         setIsEditing(false);
-        console.log('Saving profile data:');
-        console.log('Profile Image:', profileImage);
-        console.log('Profile Image:', selectedImage || 'No image selected');
-        console.log('Name:', name);
-        console.log('Email:', email);
-        console.log('Bio:', bio || 'Not provided');
-        console.log('Birthday:', birthday || 'Not provided');
+        console.log('Saving profile data:', user);
+    
+        fetch(`/api/user/${user.id}/update`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(user),
+        })
+            .then(response => response.json())
+            .then(data => console.log('Update response:', data))
+            .catch(error => console.error('Error updating user:', error));
     };
+    
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         setSelectedImage(URL.createObjectURL(file));
         setProfileImage(file);
     };
+    
 
     const handleBirthdayChange = (event) => {
         const inputValue = event.target.value;
-        
         // Remove any non-numeric characters
         const numericValue = inputValue.replace(/[^0-9]/g, '');
     
         // Format the input as day/month/year
         if (numericValue.length <= 2) {
           // Allow only day input (e.g., 12)
-          setBirthday(numericValue);
+          setUser(prevUser => ({ ...prevUser, birthday: numericValue }));
         } else if (numericValue.length <= 4) {
           // Allow day and month input (e.g., 12/03)
-          setBirthday(`${numericValue.slice(0, 2)}/${numericValue.slice(2)}`);
+          setUser(prevUser => ({ ...prevUser, birthday: `${numericValue.slice(0, 2)}/${numericValue.slice(2)}` }));
         } else {
           // Allow full date input (e.g., 12/03/1990)
-          setBirthday(`${numericValue.slice(0, 2)}/${numericValue.slice(2, 4)}/${numericValue.slice(4, 8)}`);
+          setUser(prevUser => ({
+            ...prevUser,
+            birthday: `${numericValue.slice(0, 2)}/${numericValue.slice(2, 4)}/${numericValue.slice(4, 8)}`,
+          }));
         }
-      };
+    };
+
 
     // Default profile image URL
     const defaultProfileImage = 'https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-9.png';
