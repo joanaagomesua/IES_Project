@@ -12,5 +12,9 @@
 
 <br>
 
+## REST API Documentation
+API Documentation is available through this link (only works when running the project):
+http://localhost:8080/swagger-ui/#/
+
 
 
