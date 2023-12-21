@@ -30,11 +30,11 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody User user) {
         if (userRepository.existsByEmail(user.getEmail())) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O email já está registado.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email is already registered.");
         }
 
         if (userRepository.existsByUsername(user.getUsername())) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("O username já está registado.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username is already taken.");
         }
 
         user.setUsername(user.getUsername());

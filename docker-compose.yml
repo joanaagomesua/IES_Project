@@ -51,6 +51,7 @@ services:
       - RABBIT_PASSWORD=${RABBIT_PASSWORD}
     depends_on:
       - api
+      - rabbitmq
 
   web:
     build: prototype/agenda_saramago/

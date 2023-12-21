@@ -1,17 +1,9 @@
-# Start with a base image containing Java runtime
-FROM openjdk:17-jdk-alpine
-
-# Add Maintainer Info
-LABEL maintainer="example@example.com"
-
-# Make port 8080 available to the world outside this container
+FROM openjdk:17.0.1 AS builder
+WORKDIR /agenda-saramago
+COPY . .
+RUN mvn clean package
+FROM openjdk:17
+ARG JAR_FILE=target/agenda-saramago-0.0.1-SNAPSHOT.jar
+COPY ${JAR_FILE} App.jar
 EXPOSE 8080
-
-# The application's jar file
-ARG JAR_FILE=target/*.jar
-
-# Add the application's jar to the container
-ADD ${JAR_FILE} app.jar
-
-# Run the jar file 
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT ["java", "-jar", "/App.jar"]
