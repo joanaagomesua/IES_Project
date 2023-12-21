@@ -43,7 +43,7 @@ function App() {
           }
         />
         <Route
-          path="/my_tickets/:user"
+          path="/my_tickets"
           element={
             <ProtectedRoute>
               <My_tickets />

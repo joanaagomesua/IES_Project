@@ -45,6 +45,8 @@ function event_page() {
         fetchData();
       }, [id]);
 
+
+
       useEffect(() => {
         if (eventData) {
         }
@@ -54,7 +56,67 @@ function event_page() {
         return <div>Loading...</div>;
       }
 
+    const getUserPreferences = async () => {
+      try {
+        // Recupere o userId do localStorage
+        const userId = localStorage.getItem("user_id");
 
+        // Faça uma chamada para o endpoint de preferências do usuário
+        const response = await axios.get(`http://localhost:8080/api/user_preferences/${userId}`);
+
+        // Extraia as cidades, tags e empresas da resposta
+        const { cities, tags, companies } = response.data;
+
+        // Agora, você pode usar esses valores conforme necessário
+        console.log("Cidades:", cities);
+        console.log("Tags:", tags);
+        console.log("Empresas:", companies);
+
+        // Retorne ou utilize os valores conforme necessário
+        return { userId, cities, tags, companies };
+      } catch (error) {
+        console.error("Erro ao buscar preferências do usuário:", error);
+        // Lide com o erro conforme necessário
+      }
+    };
+
+    const addPref = async (new_company) => {
+      try {
+        // Obtenha as preferências do usuário
+        const { userId, cities, tags, companies } = await getUserPreferences();
+
+         if (companies && companies.includes(new_company)) {
+              console.log("A empresa já está nas preferências do usuário. Não é necessário adicionar.");
+              return;
+            }
+
+        const oldCompanies = companies || "";
+        const newCompanies = `${oldCompanies}, ${new_company}`;
+
+        // Faça a chamada para atualizar as preferências do usuário
+        const response = await axios.put(
+          `http://localhost:8080/api/user_preferences/${userId}/update`,
+          { cities, tags, companies: newCompanies }
+        );
+
+        console.log("Preferência adicionada com sucesso:", response.data);
+      } catch (error) {
+        console.error("Erro ao adicionar preferência:", error);
+      }
+    };
+
+    const buyTicket = async (eventId) => {
+        const userId = localStorage.getItem("user_id");
+        try {
+            const response = await axios.post(
+                `http://localhost:8080/api/tickets/buy`,
+                { user_id: userId, event_id: eventId }  // Use user_id e event_id conforme definido na sua DTO
+            );
+            console.log("Ticket comprado com sucesso:", response.data);
+        } catch (error) {
+            console.error("Erro ao comprar bilhete:", error);
+        }
+    };
     const pricesArray = eventData.prices.split(',').map((price) => price.trim());
 
         return ( 
@@ -63,7 +125,11 @@ function event_page() {
                         <p className='font-poppins font-bold text-4xl ' style={{ textShadow: '2px 1px 1px rgba(0, 0, 0, 0.5)'}}>{eventData.name}</p> {/* Title */}
                         
                         <p className='font-poppins text-3xl '>{eventData.company}
-                            <button className="ml-2" onClick={handleToggleHeart}>
+                            <button className="ml-2" onClick={() => {
+                                handleToggleHeart();
+                                addPref(eventData.company);
+                              }}
+                            >
                                 <FontAwesomeIcon
                                     icon={faHeart}
                                     className={`text-xl ${isHeartFilled ? 'text-red-500' : 'text-gray-500'}`}
@@ -78,7 +144,10 @@ function event_page() {
                                 <div className='relative'>
                                     <img style={{ boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)'}}  src={eventData.poster} alt="Event Poster"></img>{/*Image-> POSTER */}
                                     <div className="absolute top-0 right-0 p-4 flex items-center justify-center">
-                                        <button className="w-10 h-10 rounded-full  hover:bg-slate-500 text-white">
+                                         <button
+                                                className="w-10 h-10 rounded-full hover:bg-slate-500 text-white"
+                                                onClick={() => buyTicket(eventData.id)}
+                                            >
                                             <FontAwesomeIcon icon={faPlus}/>
                                         </button>
                                     </div>
@@ -182,4 +251,4 @@ function event_page() {
     }
 
 
-export default event_page
+export default event_page;

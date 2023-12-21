@@ -4,21 +4,41 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 function MyTickets() {
-  const { user } = useParams();
   const [ticketData, setTicketData] = useState(null);
+  const [eventData, setEventData] = useState([]);
+  const userId = localStorage.getItem("user_id");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(import.meta.env.VITE_API_URL+`/tickets/${user}`);
+        const response = await axios.get(`http://localhost:8080/api/tickets/${userId}`);
         setTicketData(response.data);
+        console.log(response.data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching ticket data:', error);
       }
     };
 
     fetchData();
-  }, [user]);
+  }, [userId]);
+
+  useEffect(() => {
+    const fetchEventData = async () => {
+      try {
+        if (ticketData && ticketData.length > 0) {
+          const eventIds = ticketData.map(ticket => ticket.event_id);
+          const eventResponses = await Promise.all(
+            eventIds.map(eventId => axios.get(`http://localhost:8080/api/events/${eventId}`))
+          );
+          setEventData(eventResponses.map(response => response.data));
+        }
+      } catch (error) {
+        console.error('Error fetching event data:', error);
+      }
+    };
+
+    fetchEventData();
+  }, [ticketData]);
 
   useEffect(() => {
     if (ticketData) {
@@ -36,15 +56,15 @@ function MyTickets() {
         <p className="mt-10 mb-20 font-poppins text-[#a7c7eb] font-bold text-4xl">Os Meus Bilhetes:</p>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '20px' }}>
-        {ticketData.map((item, index) => (
+        {eventData.map((item, index) => (
           <Card
             key={index}
-            title={item.event.name}
-            data={item.event.datestart}
-            hora={item.event.schedule}
-            city={item.event.city}
-            location={item.event.location}
-            price={item.event.prices}
+            title={item.name}
+            data={item.datestart}
+            hora={item.schedule}
+            city={item.city}
+            location={item.location}
+            price={item.prices}
           />
         ))}
       </div>
@@ -53,4 +73,3 @@ function MyTickets() {
 }
 
 export default MyTickets;
-
