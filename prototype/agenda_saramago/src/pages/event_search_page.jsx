@@ -3,14 +3,16 @@ import axios from 'axios';
 import { XMarkIcon, Bars3Icon } from '@heroicons/react/24/outline';
 import { Transition, Dialog } from '@headlessui/react';
 import { SearchBar } from '../components/SearchBar.jsx';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Card from '../components/ticket_cards';
 
 function EventSearchPage() {
     const [open, setOpen] = useState(false);
     const [tagData, setTagData] = useState([]);
     const [selectedFilters, setSelectedFilters] = useState([]);
-  
+    
+    const location = useLocation();
+
     const tags = 
     [
         {
@@ -67,6 +69,12 @@ function EventSearchPage() {
       };
     
       useEffect(() => {
+        const urlSearchParams = new URLSearchParams(location.search);
+        const tagParam = urlSearchParams.get('tag');
+
+        if (tagParam) {
+            setSelectedFilters([tagParam]);
+        }
         const fetchData = async () => {
             try {
                 console.log("Fetching data...");
@@ -92,7 +100,7 @@ function EventSearchPage() {
             };          
     
         fetchData();
-      }, [selectedFilters]);
+      }, [selectedFilters, location.search]);
 
 
     return (
