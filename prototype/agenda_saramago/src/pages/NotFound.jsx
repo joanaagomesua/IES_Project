@@ -4,7 +4,7 @@ const NotFound = () => {
   return (
     <div class="grid place-content-center px-4">
       <div class="text-center">
-        <img src="/src/assets/images/404.jpg" width="800vw" height="800vh"/>
+        <img src="/404.jpg" width="800vw" height="800vh"/>
 
         <p class="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
           Ups!

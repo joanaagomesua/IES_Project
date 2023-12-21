@@ -11,7 +11,7 @@ function MyTickets() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/tickets/${userId}`);
+        const response = await axios.get(import.meta.env.VITE_API_URL+`/tickets/${userId}`);
         setTicketData(response.data);
         console.log(response.data);
       } catch (error) {
@@ -28,7 +28,7 @@ function MyTickets() {
         if (ticketData && ticketData.length > 0) {
           const eventIds = ticketData.map(ticket => ticket.event_id);
           const eventResponses = await Promise.all(
-            eventIds.map(eventId => axios.get(`http://localhost:8080/api/events/${eventId}`))
+            eventIds.map(eventId => axios.get(import.meta.env.VITE_API_URL+`/events/${eventId}`))
           );
           setEventData(eventResponses.map(response => response.data));
         }

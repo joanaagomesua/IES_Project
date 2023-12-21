@@ -32,7 +32,7 @@ module.exports = {
 
           warning: "#fbbf24",
 
-          error: "#be123c",
+          error: "#e85151",
 
         },
       },

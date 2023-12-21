@@ -33,7 +33,7 @@ function event_page() {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await axios.get(`http://localhost:8080/api/events/${id}`);
+            const response = await axios.get(import.meta.env.VITE_API_URL+`/events/${id}`);
             const url = "../../" + response.data.poster 
             setImagePath(url)
             setEventData(response.data);
@@ -62,7 +62,7 @@ function event_page() {
         const userId = localStorage.getItem("user_id");
 
         // Faça uma chamada para o endpoint de preferências do usuário
-        const response = await axios.get(`http://localhost:8080/api/user_preferences/${userId}`);
+        const response = await axios.get(import.meta.env.VITE_API_URL+`/user_preferences/${userId}`);
 
         // Extraia as cidades, tags e empresas da resposta
         const { cities, tags, companies } = response.data;
@@ -95,7 +95,7 @@ function event_page() {
 
         // Faça a chamada para atualizar as preferências do usuário
         const response = await axios.put(
-          `http://localhost:8080/api/user_preferences/${userId}/update`,
+            import.meta.env.VITE_API_URL+`/user_preferences/${userId}/update`,
           { cities, tags, companies: newCompanies }
         );
 
@@ -109,7 +109,7 @@ function event_page() {
         const userId = localStorage.getItem("user_id");
         try {
             const response = await axios.post(
-                `http://localhost:8080/api/tickets/buy`,
+                import.meta.env.VITE_API_URL+`/tickets/buy`,
                 { user_id: userId, event_id: eventId }  // Use user_id e event_id conforme definido na sua DTO
             );
             console.log("Ticket comprado com sucesso:", response.data);
