@@ -26,7 +26,7 @@ public class TicketService {
     }
 
     public Ticket buyTickets(Ticket ticket) {
-        int eventId = ticket.getEven_id();
+        int eventId = ticket.getEvent_id();
         int availableSeats = eventRepository.getAvailableSeatsForEvent(eventId);
         int nonAvailableSeats = eventRepository.getNotAvailableSeatsForEvent(eventId);
         if (availableSeats-1 < 0) {

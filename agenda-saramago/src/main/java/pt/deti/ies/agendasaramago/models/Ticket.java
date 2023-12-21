@@ -18,9 +18,9 @@ public class Ticket {
     @Column(name = "id")
     private int id;
     @Column(name= "user_id")
-    private int user;
+    private int user_id;
     @JoinColumn(name = "event_id")
-    private int event;
+    private int event_id;
 
     public Ticket() {}
 
